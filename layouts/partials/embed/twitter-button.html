@@ -1,0 +1,27 @@
+
+    <a href="https://twitter.com/{{- .Site.Params.twitterName -}}?ref_src=twsrc%5Etfw" 
+    class="twitter-follow-button" 
+    {{ with .Site.Params.twitterLargeButton }}
+    data-size="large" {{ end }}
+    data-show-screen-name="false" 
+    data-lang="{{ substr .Site.LanguageCode 0 2 }}" 
+    data-show-count="false">Follow @{{- .Site.Params.twitterName -}}</a>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+
+    {{/*
+      {{ partial "embed/twitter-button.html" . }} 
+    ##ADD TO SITE.PARAMS 
+    ##TWITTER EMBEDS 
+    ##SEE https://publish.twitter.com/#
+    twitterName: "BillGates"
+    #twitter-feed partial
+    twitterDark: false # enable dark theme (FALSE)
+    twitterHeight: "800" #(NULL)
+    twitterWidth: "" #(NULL)
+    #twitter follow button options
+    twitterLargeButton: true #large button (FALSE)
+      
+      
+      */}}

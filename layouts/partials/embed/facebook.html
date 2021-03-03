@@ -1,0 +1,46 @@
+<script async defer crossorigin="anonymous" 
+src="https://connect.facebook.net/{{- .Site.LanguageCode -}}/sdk.js#xfbml=1&version=v10.0" nonce="XgByfE5D">
+</script>
+
+<div class="fb-page" 
+data-href="{{ .Site.Params.facebookURL }}" 
+data-tabs="{{ .Site.Params.facebookTabs }}" 
+data-width="{{ .Site.Params.facebookWidth }}" 
+data-height="{{ .Site.Params.facebookHeight }}" 
+data-small-header="{{ .Site.Params.facebookSmallHeader }}" 
+data-adapt-container-width="{{ .Site.Params.facebookAdaptiveWidth }}" 
+data-hide-cover="{{ .Site.Params.facebookHideCover }}" 
+data-show-facepile="{{ .Site.Params.facebookFriendsFaces }}"
+{{ with .Site.Params.facebookLazy }}
+data-lazy="{{ . }}" {{ end }}
+
+{{ with .Site.Params.facebookHideCTA }}
+data-hide-cta="{{ . }}" {{ end }}
+>
+<blockquote cite="{{ .Site.Params.facebookURL }}" class="fb-xfbml-parse-ignore">
+  <a href="{{ .Site.Params.facebookURL }}">{{ .Site.Params.facebookAuthor }}</a>
+</blockquote>
+</div>
+
+
+{{/* 
+
+{{ partial "embed/facebook.html" . }}
+##ADD TO SITE PARAMS
+##FACEBOOK EMBED
+## SEE https://developers.facebook.com/docs/plugins/page-plugin/
+##language set through .Site.LanguageCode
+##facebookAuthor: "Saint Peter&#039;s Anglican Church, Townsville" ##SHOULD ALREADY BE IN PARAMS
+##facebookUrl: https://www.facebook.com/saintpeterstownsville/ ##SHOULD ALREADY BE IN PARAMS
+facebookTabs: "timeline"   # tabs to render -  timeline,events,messages (comma seperated)
+facebookHideCover: false #default false
+facebookWidth: ""
+facebookHeight: "800" # The pixel height of the plugin. Min. is 70 default 500px
+facebookSmallHeader: false # Use the small header instead (FALSE)
+facebookAdaptiveWidth: true  #min 180px max 500px Try to fit inside the container width  (TRUE)
+facebookHideCover: false #hide cover photo in header (FALSE)
+facebookFriendsFaces: true #Show profile photos when friends like this  (TRUE)
+facebookHideCTA: false #Hide the custom call to action button (if available) (FALSE)
+facebookLazy: false # loading="lazy" iframe (FALSE)
+
+*/}}

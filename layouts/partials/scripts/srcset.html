@@ -1,0 +1,91 @@
+{{/* RESIZE RESOURCE IMAGES, THEN CREATE SRCSET TAGS. ENABLE LAZY LOADING NATIVE/JS AND NOSCRIPT SUPPORT */}}
+{{/* USE {{ partial "image/srcset.html" "page" . "image" "image_name" "class" "class_names"}} */}}
+{{/* .md file must have resources set up including src, title, name, params > lazy (false for above the fold), class
+(including img-fluid) */}}
+
+
+{{ $image := .page.Resources.GetMatch (printf "*%s*" .image ) }}
+
+{{/* IF SVG IMAGE */}}
+{{ if eq $image.MediaType.SubType "svg" }}
+{{ $svgContent := $image.Content }}
+{{ $viewBoxSizes := split (index (split (index (split $svgContent `viewBox=`) 1) `"`) 1) ` ` }}
+{{ $width := float (index $viewBoxSizes 2) }}
+{{ $height := float (index $viewBoxSizes 3) }}
+
+
+
+{{ if and (isset $image.Params "lazy") (not $image.Params.lazy) }} 
+<img alt="{{ $image.Title }}" 
+class="img-fluid {{ $image.Params.class -}} {{ $.class }}" 
+  src="{{ $image.RelPermalink }}" />
+{{ else -}}
+<img alt="{{- $image.Title -}}" 
+  class="lazyload {{ $image.Params.class -}} {{ $.class }}" 
+  data-sizes="auto"
+  data-src= "{{- $image.RelPermalink -}}"  />
+<noscript>
+  <img alt="{{ $image.Title }}" 
+  class="img-fluid {{ $image.Params.class -}} {{ $.class }}" 
+    src="{{ $image.RelPermalink }}" />
+</noscript>
+
+{{- end }}
+
+{{/* IF NOT SVG RESIZE */}}
+{{ else }}
+{{ $imageSize := imageConfig ($image.RelPermalink | printf "content/%s" ) }}
+{{ $lqip := $image.Resize .page.Site.Params.lqipWidth -}}
+{{ $lqipConfig := imageConfig ($image.RelPermalink | printf "content/%s" ) }}
+
+<!-- variables used for img tag -->
+{{ $imgSrc := "" }}
+{{ $imgSrcSet := slice }}
+{{ $widths := ""}}
+
+{{ if $image.Params.small }}
+{{ $widths = $.page.Site.Params.smallPhotoWidths }}
+{{ else }}
+<!-- uses settings from config.toml depending on orientation -->
+{{ $widths = $.page.Site.Params.landscapePhotoWidths }}
+{{ if gt $image.Height $image.Width }}
+{{ $widths = $.page.Site.Params.portraitPhotoWidths }}
+{{ end }}
+{{ end }}
+
+<!--
+  Add URL for each width to $imgSrcSet variable
+  format: "/path/img_1000.jpg 1000w,/path/img_500.jpg 500w"
+  Note: the first URL is used as "fallback" src in $imgSrc.
+-->
+{{ range $widths }}
+{{ $srcUrl := (printf "%dx" . | $image.Resize).RelPermalink }}
+{{ if eq $imgSrc "" }}{{ $imgSrc = $srcUrl }}{{ end }}
+{{ $imgSrcSet = $imgSrcSet | append (printf "%s %dw" $srcUrl .) }}
+{{ end }}
+{{ $imgSrcSet = (delimit $imgSrcSet ",") }}
+
+
+
+<!-- Format additional HTML attributes currently not in use by default -->
+{{ $attributes := slice }}
+{{ range $name, $value := .attrs }}
+{{ $attributes = $attributes | append (printf "%s=%q" $name $value) }}
+{{ end }}
+{{ $attributes = (delimit $attributes " ") }}
+
+
+<img alt="{{- $image.Title -}}" 
+  class="lazyload {{ $image.Params.class -}} {{ $.class }}" 
+  data-lowsrc="data:image/gif;base64,{{- $lqip.Content | base64Encode -}}"
+  data-sizes="auto"
+  data-srcset="{{- $imgSrcSet -}}"
+  srcset="data:image/gif;base64,{{- $lqip.Content | base64Encode -}}"
+  src= "{{- $imgSrc -}}"  />
+<noscript>
+  <img alt="{{- $image.Title -}}" 
+  class="img-fluid {{ $image.Params.class -}} {{ $.class }}" 
+  src="{{- $image.RelPermalink -}}" />
+</noscript>
+
+{{ end }}

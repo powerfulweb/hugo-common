@@ -1,0 +1,26 @@
+<a class="twitter-timeline" 
+data-lang="{{ substr .Site.LanguageCode 0 2 }}" 
+{{ with .Site.Params.twitterHeight }}
+data-height="{{ . }}" {{ end }}
+{{ with .Site.Params.twitterWidth }}
+data-width="{{ . }}"  {{ end }}
+{{ with .Site.Params.twitterDark }}
+data-theme="dark" {{ end }}
+href="https://twitter.com/{{- .Site.Params.twitterName -}}?ref_src=twsrc%5Etfw">Tweets by {{- .Site.Params.twitterName -}}</a> 
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+{{/*
+  {{ partial "embed/twitter-feed.html" . }} 
+##ADD TO SITE.PARAMS 
+##TWITTER EMBEDS 
+##SEE https://publish.twitter.com/#
+twitterName: "BillGates"
+#twitter-feed partial
+twitterDark: false # enable dark theme (FALSE)
+twitterHeight: "800" #(NULL)
+twitterWidth: "" #(NULL)
+#twitter follow button options
+twitterLargeButton: true #large button (FALSE)
+  
+  
+  */}}
