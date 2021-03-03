@@ -1,0 +1,19 @@
+{
+  "name": "hugo_modules",
+  "version": "0.0.1",
+  "description": "modules for hugo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/powerfulwebdesign/hugo_modules.git"
+  },
+  "author": "Powerful Web Design",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/powerfulwebdesign/hugo_modules/issues"
+  },
+  "homepage": "https://github.com/powerfulwebdesign/hugo_modules#readme"
+}
