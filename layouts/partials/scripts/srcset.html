@@ -1,7 +1,13 @@
 {{/* RESIZE RESOURCE IMAGES, THEN CREATE SRCSET TAGS. ENABLE LAZY LOADING NATIVE/JS AND NOSCRIPT SUPPORT */}}
-{{/* USE {{ partial "image/srcset.html" "page" . "image" "image_name" "class" "class_names"}} */}}
-{{/* .md file must have resources set up including src, title, name, params > lazy (false for above the fold), class
-(including img-fluid) */}}
+{{/* USE {{ partial "image/srcset.html" "page" . "image" "image_name" "class" "class_names with spaces"}} */}}
+{{/* .md file must have resources set up including 
+  - src (e.g. images/testimonials*), 
+  - title (used for alt text), 
+  - name (optional override, defaults to file name), 
+  - params 
+    - lazy (false for above the fold), 
+    - class (optional) 
+    - small (for small image resizing)   */}}
 
 
 {{ $image := .page.Resources.GetMatch (printf "*%s*" .image ) }}
