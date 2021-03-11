@@ -1,0 +1,86 @@
+{{/*   {{ partial "components/c-contact-details.html" . }}   */}}
+
+
+<div class="c-contact-details">
+  {{ with .Site.Params.phoneURL }}
+  <div class="c-contact-details__row">
+    <svg class="c-contact-details__sprite">
+      <use href="{{- $.Site.Params.phoneIcon | relURL -}}" />
+    </svg>
+    <div class="c-contact-details__text">
+      <a href="tel:{{- $.Site.Params.phoneURL -}}">{{- $.Site.Params.phoneText -}}</a>
+    </div>
+  </div>
+  {{ end }}
+  {{ with .Site.Params.phoneMobileURL }}
+  <div class="c-contact-details__row">
+    <svg class="c-contact-details__sprite">
+      <use href="{{- $.Site.Params.phoneMobileIcon | relURL -}}" />
+    </svg>
+    <div class="c-contact-details__text">
+      <a href="tel:{{- $.Site.Params.phoneMobileURL -}}">{{- $.Site.Params.phoneMobileText -}}</a>
+    </div>
+  </div>
+  {{ end }}
+  {{ with .Site.Params.emailURL }}
+  <div class="c-contact-details__row">
+    <svg class="c-contact-details__sprite">
+      <use href="{{- $.Site.Params.emailIcon | relURL -}}" />
+    </svg>
+    <div class="c-contact-details__text">
+      <a href="mailto:{{- $.Site.Params.emailURL -}}">{{- $.Site.Params.emailText -}}</a>
+    </div>
+  </div>
+  {{ end }}
+  {{ with .Site.Params.addressURL }}
+  <div class="c-contact-details__row">
+    <svg class="c-contact-details__sprite">
+      <use href="{{- $.Site.Params.addressIcon | relURL -}}" />
+    </svg>
+    <div class="c-contact-details__text">
+      <a href="{{- $.Site.Params.addressURL -}}" target="_BLANK">{{- $.Site.Params.addressText1 -}}
+        {{ with $.Site.Params.addressText2 }}<br>{{- . -}}{{ end }}{{ with $.Site.Params.addressText3 }}<br>{{- . -}}
+        {{ end }}</a>
+    </div>
+  </div>
+  {{ end }}
+  {{ with .Site.Params.helpURL }}
+  <div class="c-contact-details__row">
+    <svg class="c-contact-details__sprite">
+      <use href="{{- $.Site.Params.helpIcon | relURL -}}" />
+    </svg>
+    <div class="c-contact-details__text">
+      <a href="{{- $.Site.Params.helpURL -}}">{{- $.Site.Params.helpText -}}</a>
+    </div>
+  </div>
+  {{ end }}
+  {{ with .Site.Params.facebookText }}
+  <div class="c-contact-details__row">
+    <svg class="c-contact-details__sprite">
+      <use href="{{- $.Site.Params.facebookIcon | relURL -}}" />
+    </svg>
+    <div class="c-contact-details__text">
+      <a href="{{- $.Site.Params.facebookURL -}}">{{- . -}}</a>
+    </div>
+  </div>
+  {{ end }}
+  {{ with .Site.Params.hoursIcon }}
+  <div class="c-contact-details__row pt-2">
+    <svg class="c-contact-details__sprite">
+      <use href="{{- $.Site.Params.hoursIcon | relURL -}}" />
+    </svg>
+    <div class="c-contact-details__text">
+      <table>
+        <tbody>
+          {{ range $.Site.Params.hoursRange}}
+          <tr>
+            <td>{{- .day -}}:&nbsp;</td>
+            <td>{{- .open -}}{{- with .close -}}&nbsp;-&nbsp;{{- . -}}{{- end -}}</td>
+          </tr>
+          {{ end }}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  {{ end }}
+</div>

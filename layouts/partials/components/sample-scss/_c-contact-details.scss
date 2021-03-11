@@ -1,0 +1,15 @@
+.c-contact-details {
+
+  &__row {
+    @extend .d-flex, .flex-row;
+  }
+
+  &__sprite {
+    @extend .sprite, .sprite-4; 
+    @extend .text-primary, .bg-body, .m-3;
+  }
+
+  &__text {
+    @extend .d-flex, .align-items-center;
+  }
+}

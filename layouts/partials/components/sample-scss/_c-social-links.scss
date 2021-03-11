@@ -1,0 +1,18 @@
+.c-social-links {
+  @extend .d-flex, .flex-row;
+
+  &__href {
+    @extend .text-primary;
+    @extend .link-no-decoration;
+  }
+
+  &__icon {
+    @extend .text-primary, .m-2, .p-2;
+    @extend .icon, .icon-outline-3;
+  }
+
+  &__sprite {
+    @extend .sprite, .sprite-4; 
+    @extend .text-primary, .bg-body;
+  }
+}

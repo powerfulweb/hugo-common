@@ -4,19 +4,15 @@ src="https://connect.facebook.net/{{- .Site.LanguageCode -}}/sdk.js#xfbml=1&vers
 
 <div class="fb-page" 
 data-href="{{ .Site.Params.facebookURL }}" 
-data-tabs="{{ .Site.Params.facebookTabs }}" 
-data-width="{{ .Site.Params.facebookWidth }}" 
-data-height="{{ .Site.Params.facebookHeight }}" 
-data-small-header="{{ .Site.Params.facebookSmallHeader }}" 
-data-adapt-container-width="{{ .Site.Params.facebookAdaptiveWidth }}" 
-data-hide-cover="{{ .Site.Params.facebookHideCover }}" 
-data-show-facepile="{{ .Site.Params.facebookFriendsFaces }}"
-{{ with .Site.Params.facebookLazy }}
-data-lazy="{{ . }}" {{ end }}
-
-{{ with .Site.Params.facebookHideCTA }}
-data-hide-cta="{{ . }}" {{ end }}
->
+data-tabs="{{ .Site.Params.facebookTabs }}"
+{{ with .Site.Params.facebookWidth }} data-width="{{ . }}" {{ end }}
+{{ with .Site.Params.facebookHeight }} data-height="{{ . }}" {{ end }}
+{{ with .Site.Params.facebookSmallHeader }} data-small-header="{{ . }}" {{ end }}
+{{ with .Site.Params.facebookAdaptiveWidth }} data-adapt-container-width="{{ . }}" {{ end }}
+{{ with .Site.Params.facebookHideCover}} data-hide-cover="{{ . }}" {{ end }}
+{{ with .Site.Params.facebookFriendsFaces }} data-show-facepile="{{ . }}" {{ end }}
+{{ with .Site.Params.facebookLazy }} data-lazy="{{ . }}" {{ end }}
+{{ with .Site.Params.facebookHideCTA }} data-hide-cta="{{ . }}" {{ end }}>
 <blockquote cite="{{ .Site.Params.facebookURL }}" class="fb-xfbml-parse-ignore">
   <a href="{{ .Site.Params.facebookURL }}">{{ .Site.Params.facebookAuthor }}</a>
 </blockquote>
@@ -25,17 +21,17 @@ data-hide-cta="{{ . }}" {{ end }}
 
 {{/* 
 
-{{ partial "embed/facebook.html" . }}
+{{ partial "embed/c-facebook.html" . }}
 ##ADD TO SITE PARAMS
 ##FACEBOOK EMBED
 ## SEE https://developers.facebook.com/docs/plugins/page-plugin/
 ##language set through .Site.LanguageCode
 ##facebookAuthor: "Saint Peter&#039;s Anglican Church, Townsville" ##SHOULD ALREADY BE IN PARAMS
 ##facebookUrl: https://www.facebook.com/saintpeterstownsville/ ##SHOULD ALREADY BE IN PARAMS
-facebookTabs: "timeline"   # tabs to render -  timeline,events,messages (comma seperated)
-facebookHideCover: false #default false
-facebookWidth: ""
-facebookHeight: "800" # The pixel height of the plugin. Min. is 70 default 500px
+facebookTabs: "timeline"   # tabs to render -  timeline,events,messages (comma seperated) (timeline)
+facebookHideCover: false # (false)
+facebookWidth: "" # (340)
+facebookHeight: "800" # The pixel height of the plugin. Min. is 70 (500)
 facebookSmallHeader: false # Use the small header instead (FALSE)
 facebookAdaptiveWidth: true  #min 180px max 500px Try to fit inside the container width  (TRUE)
 facebookHideCover: false #hide cover photo in header (FALSE)
