@@ -1,6 +1,6 @@
 {
   "name": "hugo_modules",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "modules for hugo",
   "main": "index.js",
   "scripts": {
