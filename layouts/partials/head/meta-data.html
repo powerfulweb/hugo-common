@@ -1,0 +1,29 @@
+<meta charset="utf-8">
+<!-- Viewport for responsive web design -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Document Title -->
+<!-- Meta Description -->
+{{ with .Description -}}
+<meta name="description" content="{{ . }}">
+{{ else -}}
+<meta name="description" content="{{ .Site.Params.description }}">
+{{ end -}}
+{{ partial "head/browser-config.html" . }}
+<!-- Helps prevent duplicate content issues -->
+{{ if $.Scratch.Get "paginator" }}
+<link rel="canonical" href="{{ .Paginator.URL | absURL }}">
+{{ if .Paginator.HasPrev -}}
+<link rel="prev" href="{{ .Paginator.Prev.URL | absURL }}">
+{{ end -}}
+{{ if .Paginator.HasNext -}}
+<link rel="next" href="{{ .Paginator.Next.URL | absURL }}">
+{{ end -}}
+{{ else -}}
+<link rel="canonical" href="{{ .Permalink }}">
+{{ end -}}
+<!-- not used -->
+{{ range .AlternativeOutputFormats -}}
+<link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .Permalink | safeURL }}">
+{{ end -}}
+<!-- XXXX configure alternate language support -->
+

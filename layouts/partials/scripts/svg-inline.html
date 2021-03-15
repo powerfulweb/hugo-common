@@ -1,0 +1,4 @@
+{{/*  {{ partial "scripts/svg-inline.html" "icons/footer/telephone.svg" }}    */}}
+{{ with resources.Get . }}
+    {{ .Content | safeHTML }}
+{{ end }}

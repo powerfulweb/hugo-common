@@ -1,0 +1,26 @@
+<head>
+  {{ if .IsHome -}}
+  <title>{{ .Site.Title }} {{ with .Site.Params.titleAddition }} {{ $.Site.Params.titleSeparator }} {{ . }} {{ end }}
+  </title>
+  {{ else -}}
+  <title>{{ .Title }} {{ .Site.Params.titleSeparator }} {{ .Site.Title }}</title>
+  {{ end -}}
+  <!-- standard meta data -->
+  {{ partial "head/meta-data.html" . }}
+  <!-- styles  -->
+  {{ partial "head/stylesheet.html" . }}
+  <!-- twitter and facebook -->
+  {{ partial "head/social-media.html" . }}
+  <!-- schema data -->
+  {{ partial "head/schema-data.html" . }}
+  <!-- robot info-->
+  {{ partial "head/robot-data.html" . }}
+  <!-- javascript for head -->
+  {{ block "head/script-header" . }}{{ partial "head/script-header.html" . }}{{ end }}
+  <!-- preloading -->
+  {{ block "head/resource-hints" . }}{{ partial "head/resource-hints.html" . }}{{ end }}
+  <!-- google analytics -->
+  {{ if .Site.GoogleAnalytics}}
+  {{ template "_internal/google_analytics_async.html" . }}
+  {{ end }}
+</head>
