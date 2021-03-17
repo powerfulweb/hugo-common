@@ -1,0 +1,32 @@
+/* Toggle visibility on/off adding body adds more specifity and overrides bs !important */
+body .toggle-content-icon-fade {
+	display: none;
+  opacity: 0;
+	overflow: hidden;
+	transition: opacity 350ms ease-in-out;
+}
+body .toggle-content-icon-fade.is-visible {
+	display: block;
+  opacity: 1;
+}
+
+body .toggle-content-fade {
+	display: none;
+	height: 0;
+  opacity: 0;
+	overflow: hidden;
+	transition: height 350ms ease-in-out, opacity 750ms ease-in-out;
+}
+body .toggle-content-fade.is-visible {
+	display: block;
+	height: auto;
+  opacity: 1;
+}
+
+body .toggle-content {
+	display: none !important;
+}
+
+body .toggle-content.is-visible {
+	display: block !important;
+}
