@@ -1,0 +1,39 @@
+//comment
+.u-transition {
+  @include transition(0.3s);
+}
+
+//no text decoration on lines - inherits from standard text inside the div or higher
+.u-link-no-decoration {
+  color: inherit;
+  text-decoration: none;
+}
+
+.u-mask {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background-attachment: fixed;
+
+  &--white {
+    background-color: rgba(251, 251, 251, 0.2);
+  }
+}
+
+.u-overlay-hover 
+.u-mask {
+  @include transition(0.3s);
+  opacity: 0;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+
+

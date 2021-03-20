@@ -1,0 +1,43 @@
+{
+  "name": "hugo_modules",
+  "version": "0.0.2",
+  "description": "modules for hugo",
+  "main": "index.js",
+  "scripts": {
+
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/powerfulwebdesign/hugo_modules.git"
+  },
+  "author": "Powerful Web Design",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/powerfulwebdesign/hugo_modules/issues"
+  },
+  "homepage": "https://github.com/powerfulwebdesign/hugo_modules#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.13.10",
+    "@babel/core": "^7.13.10",
+    "@babel/preset-env": "^7.13.10",
+    "autoprefixer": "^10.2.5",
+    "eslint": "^7.22.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "stylelint": "^13.12.0",
+    "stylelint-config-recommended": "^4.0.0",
+    "gulp": "^4.0.2",
+    "gulp-cheerio": "^1.0.0",
+    "gulp-svg-sprite": "^1.5.0",
+    "gulp-svgo": "^2.2.1",
+    "postcss": "^8.2.8",
+    "postcss-cli": "^8.3.1",
+    "rimraf": "^3.0.2"
+  },
+  "dependencies": {
+    "swiper": "^6.4.15",
+    "@popperjs/core": "^2.9.1",
+    "bootstrap": "^5.0.0-beta2",
+    "lazysizes": "^5.3.0"
+  }
+}

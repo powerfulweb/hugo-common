@@ -1,0 +1,150 @@
+
+// btn btn-primary   
+// btn btn-outline-primary
+// optional btn-sm, btn-lg
+
+// btn has default size
+
+// rounded-1
+// rounded-2
+// rounded-3
+// rounded-circle
+// rounded-pill
+//uses rounded size variables
+
+@mixin o-icon__sprite--variant() {
+  fill: $color;
+}
+
+@mixin o-icon--variant(
+  $background, $border, $color: color-contrast($background),
+  $hover-background: if($color == $color-contrast-light, shade-color($background, $btn-hover-bg-shade-amount), tint-color($background, $btn-hover-bg-tint-amount)),
+  $hover-border: if($color == $color-contrast-light, shade-color($border, $btn-hover-border-shade-amount), tint-color($border, $btn-hover-border-tint-amount)),
+  $hover-color: color-contrast($hover-background),
+  $active-background: if($color == $color-contrast-light, shade-color($background,$btn-active-bg-shade-amount), tint-color($background, $btn-active-bg-tint-amount)),
+  $active-border: if($color == $color-contrast-light, shade-color($border, $btn-active-border-shade-amount), tint-color($border, $btn-active-border-tint-amount)),
+  $active-color: color-contrast($active-background),
+  $disabled-background: $background,
+  $disabled-border: $border,
+  $disabled-color: color-contrast($disabled-background)
+) {
+  color: $color;
+  border-color: $border;
+
+  &:hover {
+    color: $hover-color;
+    border-color: $hover-border;
+  }
+}
+
+@mixin o-icon--outline-variant(
+  $color, $color-hover: color-contrast($color),
+  $active-background: $color,
+  $active-border: $color,
+  $active-color: color-contrast($active-background)
+) {
+  color: $color;
+  border-color: $color;
+
+  &:hover {
+    color: $color-hover;
+    background-color: $active-background;
+    border-color: $active-border;
+  }
+}
+
+o-icon {
+  @extend .d-inline-flex;
+  
+  &--rounded-circle {
+    @extend .rounded-circle;
+  }
+  &--rounded-1 {
+    @extend .rounded-1;
+  }
+  &--rounded-2 {
+    @extend .rounded-2;
+  }
+  &--rounded-3 {
+    @extend .rounded-3;
+  }
+
+  &__sprite {
+    @extend .d-inline-flex;
+    //fill: currentColor;
+    //&--theme-color
+    //uses 
+  }
+
+}
+
+@each $color, $value in $theme-colors {
+  .o-icon--#{$color} {
+    @include o-icon--variant($value, $value);
+  }
+}
+
+@each $color, $value in $theme-colors {
+  .o-icon__sprite--#{$color} {
+    @include o-icon__sprite--variant($value, $value);
+  }
+}
+
+@each $color, $value in $theme-colors {
+  .o-icon-outline-#{$color} {
+    @include o-icon--outline-variant($value);
+  }
+}
+
+
+
+// @each $color, $value in $theme-colors {
+//   .btn-#{$color} {
+//     @include button-variant($value, $value);
+//   }
+// }
+
+// @each $border-radius, $value in $utilities {
+//   .0-icon--outline-#{$border-radius} {
+//     @include icon-variant($value, $value);
+//   }
+// }
+
+
+// @mixin icon-variant(
+//   $background,
+  
+// ) {
+//   color: $color;
+//   border-color: $border;
+
+
+//   }
+
+// @each $border-radius, $value in $utilities {
+//   .0-icon--outline-#{$border-radius} {
+//     @include icon-variant($value, $value);
+//   }
+// }
+
+
+// @mixin icon-variant(
+//   $background,
+  
+// ) {
+//   color: $color;
+//   border-color: $border;
+
+
+//   }
+
+
+.icon-outline-2 {
+  //set bs text-color
+  border: 2px solid currentColor;
+}
+
+.icon-outline-3 {
+  //set bs text-color
+  border: 3px solid currentColor;
+}

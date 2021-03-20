@@ -1,0 +1,160 @@
+
+
+//mixins
+@mixin svg-button-size($padding, $size, $border) {
+  border-width: $border;
+  padding: $padding;
+
+  svg {
+    height: $size;
+    width: $size;   
+  }
+}
+
+@mixin svg-button-variant(
+  $background,
+  $border,
+  $color: color-contrast($background),
+  $hover-background: if($color == $color-contrast-light, shade-color($background, 15%), tint-color($background, 15%)),
+  //$hover-border: if($color == $color-contrast-light, shade-color($border, 20%), tint-color($border, 10%)),
+  $hover-color: color-contrast($hover-background),
+  //$active-background: if($color == $color-contrast-light, shade-color($background, 20%), tint-color($background, 20%)),
+  //$active-border: if($color == $color-contrast-light, shade-color($border, 25%), tint-color($border, 10%)),
+  //$active-color: color-contrast($active-background),
+  $disabled-background: $background,
+  $disabled-border: $border,
+  $disabled-color: color-contrast($disabled-background)
+) {
+  @include box-shadow($btn-box-shadow);
+  background: $background;
+  border-color: $background;
+  color: $color;
+  // @include gradient-bg($background);
+  //border-color: $border;
+
+  &:hover {
+    //@include gradient-bg($hover-background);
+    background: $hover-background;
+    //border-color: $hover-border;
+    border-color: $hover-background;
+    color: $hover-color;
+  }
+
+  &:disabled {
+    background-color: $disabled-background;
+    // Remove CSS gradients if they're enabled
+    background-image: if($enable-gradients, none, null);
+    border-color: $disabled-border;
+    color: $disabled-color;
+  }
+}
+
+@mixin svg-button-outline-variant(
+  $color,
+  $color-hover: color-contrast($color),
+  $active-background: $color,
+  $active-border: $color,
+  $active-color: color-contrast($active-background)
+) {
+  border-color: $color;
+  color: $color;
+  background: $body-bg;
+  svg {
+    fill: $color;
+  }
+ 
+  &:hover {
+    background-color: $active-background;
+    border-color: $active-border;
+    color: $color-hover;
+    svg {
+      fill: $color-hover;
+    }
+
+  }
+
+  &:disabled,
+  &.disabled {
+    background-color: transparent;
+    color: $color;
+  }
+}
+
+
+
+
+.o-btn-svg {
+  @extend .d-inline-flex;
+  @include transition($btn-transition);
+  //display: inline-block;
+  background-color: transparent;
+  //border: $svg-btn-border-width solid transparent;
+  border-color: transparent;
+  border-radius: 50%;
+  border-style: solid;
+  border-width: $svg-btn-border;
+
+  color: $primary; //default
+  fill: $primary;
+
+  padding: $svg-btn-padding;
+
+  user-select: none;
+  vertical-align: middle;
+  svg {
+    //for all states and variants
+    background: transparent;
+  }
+
+  &:hover {
+    //color: $body-color; //styled in variants
+    text-decoration: none;
+  }
+
+  &:disabled,
+  &.disabled,
+  fieldset:disabled & {
+    @include box-shadow(none);
+    opacity: $btn-disabled-opacity;
+    pointer-events: none;
+  }
+
+  SVG {
+    @extend .d-inline-flex;
+    background: transparent;
+    fill: currentColor;
+    //margin: $btn-padding-y $btn-padding-x;
+    height: $svg-btn-icon-size;  //DEFAULT ONLY
+    width: $svg-btn-icon-size;   //DEFAULT ONLY
+  }
+
+  &--sm {
+    @include svg-button-size($svg-btn-padding-sm, $svg-btn-icon-size-sm, $svg-btn-border-sm);
+  }
+
+  &--lg {
+    @include svg-button-size($svg-btn-padding-lg, $svg-btn-icon-size-lg, $svg-btn-border-lg);
+  }
+  
+  &--xl {
+    @include svg-button-size($svg-btn-padding-xl, $svg-btn-icon-size-xl, $svg-btn-border-xl);
+  }
+}
+
+@each $color, $value in $theme-colors {
+  .o-btn-svg--#{$color} {
+    @include svg-button-variant($value, $value);
+  }
+}
+
+@each $color, $value in $theme-colors {
+  .o-btn-svg--outline-#{$color} {
+    @include svg-button-outline-variant($value);
+  }
+}
+
+
+
+
+
+

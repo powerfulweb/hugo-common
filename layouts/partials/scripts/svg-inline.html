@@ -1,4 +1,4 @@
-{{/*  {{ partial "scripts/svg-inline.html" "icons/footer/telephone.svg" }}    */}}
-{{ with resources.Get . }}
-    {{ .Content | safeHTML }}
-{{ end }}
+{{/*  {{ partial "scripts/svg-inline.html" "icons/footer/telephone.svg" }}    
+      {{ partial "scripts/svg-inline.html" $.Site.Params.twitterIcon }}   */}}
+{{ $icon := resources.Get . }}
+{{ $icon.Content | safeHTML }}

@@ -1,48 +1,34 @@
 
 <div class="c-social-links">
   {{ with $.Site.Params.twitterURL}}
-  <a href="{{ . }}" class="c-social-links__href" target="_BLANK">
-    <div class="c-social-links__btn-svg">
-      <svg>
-        <use href="{{ $.Site.Params.twitterIcon }}" />
-      </svg>
-    </div>
-  </a>
+  <button href="{{ . }}" class="c-social-links__btn-svg" target="_BLANK">
+    {{ partial "scripts/svg-inline.html" $.Site.Params.twitterIcon }}  
+  </button>
   {{ end }}
   {{ with $.Site.Params.facebookURL}}
-  <a href="{{ . }}" class="c-social-links_href" target="_BLANK">
-    <div class="c-social-links__btn-svg">
-      <svg>
-        <use href="{{ $.Site.Params.facebookIcon }}" />
-      </svg>
-    </div>
-  </a>
+  <button href="{{ . }}" class="c-social-links__btn-svg" target="_BLANK">
+    {{ partial "scripts/svg-inline.html" "icons/bootstrap/facebook.svg" }}  
+  </button>
   {{ end }}
   {{ with $.Site.Params.linkedInURL}}
-  <a href="{{ . }}" class="c-social-links_href" target="_BLANK">
-    <div class="c-social-links__btn-svg">
-      <svg>
-        <use href="{{ $.Site.Params.linkedInIcon }}" />
-      </svg>
-    </div>
-  </a>
+  <button href="{{ . }}" class="c-social-links__btn-svg" target="_BLANK">
+    <svg>
+      <use href="{{ $.Site.Params.linkedInIcon }}" />
+    </svg>
+  </button>
   {{ end }}
   {{ with $.Site.Params.instagramURL}}
-  <a href="{{ . }}" class="c-social-links_href" target="_BLANK">
-    <div class="c-social-links__btn-svg">
-      <svg>
-        <use href="{{ $.Site.Params.instagramIcon }}" />
-      </svg>
-    </div>
-  </a>
+  <button href="{{ . }}" class="c-social-links__btn-svg" target="_BLANK">
+    <svg>
+      <use href="{{ $.Site.Params.instagramIcon }}" />
+    </svg>
+  </button>
   {{ end }}
   {{ with $.Site.Params.googleBizURL}}
-  <a href="{{ . }}" class="c-social-links_href" target="_BLANK">
-    <div class="c-social-links__btn-svg">
-      <svg>
-        <use href="{{ $.Site.Params.googleBizIcon }}" />
-      </svg>
-    </div>
-  </a>
+  <button href="{{ . }}" class="c-social-links__btn-svg" target="_BLANK">
+    <svg>
+      <use href="{{ $.Site.Params.googleBizIcon }}" />
+    </svg>
+  </button>
   {{ end }}
 </div>

@@ -4,14 +4,11 @@
   "description": "modules for hugo",
   "main": "index.js",
   "scripts": {
-    "server": "npm run clean && hugo server --disableFastRender",
-    "build": "npm run clean && hugo --gc --minify",
-    "clean": "rimraf public",
-    "dev": "npm run clean && hugo",
     "mod:update": "hugo mod get -u ./...",
+    "mod:clean": "hugo mod clean",
+    "mod:vendor": "hugo mod vendor",
     "mod:dependencies": "hugo mod npm pack",
-    "mod:graph": "hugo mod graph",
-    "sprite": "gulp sprite --gulpfile gulp/gulpfile.js"
+    "mod:graph": "hugo mod graph"
   },
   "repository": {
     "type": "git",

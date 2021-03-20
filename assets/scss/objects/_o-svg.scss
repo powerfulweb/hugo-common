@@ -1,0 +1,42 @@
+//display SVG on its own
+@mixin svg-size($size) {
+  svg { 
+  height: $size;
+  width: $size;  
+  } 
+}
+
+@mixin svg-variant(
+  $color,
+) {
+  fill: $color;
+  color: $color;
+}
+
+.o-svg {
+   // set size with o-svg--$spacer (custom bs utility)
+  fill: $primary;
+  color: $primary;
+  //display: block;
+  background: transparent;
+  @extend .d-inline-flex;
+  margin: $btn-padding-y $btn-padding-x;
+  svg {
+    height: 1.5rem; 
+    width: 1.5rem; //DEFAULT ONLY
+  }
+  &--sm {
+    @include svg-size($svg-icon-size-sm);
+  }
+  &--lg {
+    @include svg-size($svg-icon-size-lg);
+  }
+}
+
+
+@each $color, $value in $theme-colors {
+  .o-svg--#{$color} {
+    @include svg-variant($value);
+  }
+}
+
