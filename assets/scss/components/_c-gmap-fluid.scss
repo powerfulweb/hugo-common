@@ -1,0 +1,38 @@
+.c-gmap-fluid {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+
+  /* Ratio 16:9 ( 100%/16*9 = 56.25% ) */
+  iframe {
+    box-sizing: content-box; //reverts back bootstrap change to border-box 
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    border: 0;
+  }
+}
+
+//no-script support
+html.no-js {
+  .c-gmap-fluid {
+    display: none !important;
+  }
+}
+
+//EXAMPLE USAGE - fluid resizing google map embed
+// {{ with .Site.Params.gmapURL }}
+//   <div class="row">
+//     <div class="c-gmap-fluid">
+//       <iframe src="{{ . }}" width="800" height="800" allowfullscreen="" aria-hidden="false"
+//         title="Location on Google Maps" tabindex="0" loading="lazy"></iframe>
+//     </div>
+//   </div>
+// {{ end }}
