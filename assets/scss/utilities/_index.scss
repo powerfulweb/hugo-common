@@ -4,11 +4,25 @@
 }
 
 //no text decoration on lines - inherits from standard text inside the div or higher
+%u-link-no-decoration {
+  color: inherit;
+  text-decoration: none;
+}
 .u-link-no-decoration {
   color: inherit;
   text-decoration: none;
 }
 
+//hover shadow
+%u-shadow-hover {
+  &--blue {
+    &:hover {
+    box-shadow: 0px 5px 25px rgba(47, 128, 237, 0.3);
+    }
+  }
+}
+
+//Hover mask
 .u-mask {
   position: absolute;
   bottom: 0;
