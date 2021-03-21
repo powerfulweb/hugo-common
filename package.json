@@ -1,11 +1,9 @@
 {
   "name": "hugo_modules",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "modules for hugo",
   "main": "index.js",
-  "scripts": {
-
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/powerfulwebdesign/hugo_modules.git"
