@@ -1,12 +1,2 @@
-github.com/FortAwesome/Font-Awesome v0.0.0-20210316185733-d79d85c3fad8 h1:3h1ZlZmKNqZtiTD6FF7GijnIB/PU9/jR+dclHF80pFE=
-github.com/FortAwesome/Font-Awesome v0.0.0-20210316185733-d79d85c3fad8/go.mod h1:IUgezN/MFpCDIlFezw3L8j83oeiIuYoj28Miwr/KUYo=
-github.com/FortAwesome/Font-Awesome v4.7.0+incompatible h1:3trjm7NtX5NXlju1AxSWSzedDMq2hsfH78Qtqrc8EgY=
-github.com/FortAwesome/Font-Awesome v4.7.0+incompatible/go.mod h1:IUgezN/MFpCDIlFezw3L8j83oeiIuYoj28Miwr/KUYo=
-github.com/feathericons/feather v4.28.0+incompatible h1:yj5sEKFTs++4yGYA53kfB02D2iWmpS8HlchmKlESEc4=
-github.com/feathericons/feather v4.28.0+incompatible/go.mod h1:+F8Ba9cmRHWu0pOVoZtid0iwkNJ8hr959HyPwj3hsRg=
-github.com/simple-icons/simple-icons v0.0.0-20210321124009-961d08ed7975 h1:UJHWRCThsKPpuMYkESOGy5ojJwnV1frXc0ktekkfarg=
-github.com/simple-icons/simple-icons v0.0.0-20210321124009-961d08ed7975/go.mod h1:oOgUUt8yVYOso/wEBi2ojfZP2MU/xxiNccIpaE+jCvE=
-github.com/simple-icons/simple-icons v2.17.1+incompatible h1:bZgl1gWxwNGgM57/RS50pb/6tGFXW6Jr95kYaZwvGJ0=
-github.com/simple-icons/simple-icons v2.17.1+incompatible/go.mod h1:oOgUUt8yVYOso/wEBi2ojfZP2MU/xxiNccIpaE+jCvE=
 github.com/twbs/icons v1.4.0 h1:RkoqGMbm7m2J+fiRlR/Zpa9WT/tcG3inafbq/njdW2Y=
 github.com/twbs/icons v1.4.0/go.mod h1:GnRlymgVWp5iVJCMa0Me5b6tFyGpVc2bSxPMRGIJmyA=
