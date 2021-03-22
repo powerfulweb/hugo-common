@@ -1,22 +1,25 @@
 module:
-  #replacements: "github.com/twbs/icons -> ../../../gitclone/bootstrap-icons, github.com/FortAwesome/Font-Awesome -> ../../../gitclone/font-awesome"
+  # replacements: "github.com/twbs/icons -> ../../../twbs/icons"
   imports:
     - path: github.com/twbs/icons
+    # - path: ../../../twbs/icons
       mounts:
       - source: icons
         target: assets/icons/bootsrap 
-    - path: github.com/FortAwesome/Font-Awesome
-      mounts:
-      - source: svgs
-        target: assets/icons/font-awesome
-        ignoreConfig: true
-    - path: github.com/feathericons/feather
-      mounts:
-      - source: icons
-        target: assets/icons/feather
-    - path: github.com/simple-icons/simple-icons
-      mounts:
-      - source: icons
-        target: assets/icons/simple
+
+    # # - path: github.com/FortAwesome/Font-Awesome
+    # - path: ../../../FontAwesome/Font-Awesome
+    #   mounts:
+    #   - source: svgs
+    #     target: assets/icons/font-awesome
+    #     #ignoreConfig: true
+    # - path: ../../../feathericons/feather
+    #   mounts:
+    #   - source: icons
+    #     target: assets/icons/feather
+    # - path: ../../../simple-icons/simple-icons
+    #   mounts:
+    #   - source: icons
+    #     target: assets/icons/simple
     
 
