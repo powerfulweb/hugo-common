@@ -9,6 +9,7 @@ module:
       mounts:
       - source: svgs
         target: assets/icons/font-awesome
+        ignoreConfig: true
     - path: github.com/feathericons/feather
       mounts:
       - source: icons
