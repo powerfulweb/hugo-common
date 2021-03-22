@@ -1,2 +1,0 @@
-# github.com/twbs/icons v1.4.0
-# github.com/FortAwesome/Font-Awesome v4.7.0+incompatible

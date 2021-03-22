@@ -1,0 +1,21 @@
+module:
+  #replacements: "github.com/twbs/icons -> ../../../gitclone/bootstrap-icons, github.com/FortAwesome/Font-Awesome -> ../../../gitclone/font-awesome"
+  imports:
+    - path: github.com/twbs/icons
+      mounts:
+      - source: icons
+        target: assets/icons/bootsrap 
+    - path: github.com/FortAwesome/Font-Awesome
+      mounts:
+      - source: svgs
+        target: assets/icons/font-awesome
+#
+# PARAMS
+#
+params:
+  #Social-links icons set 1
+  twitterIcon: "icons/bootstrap/twitter.svg"
+  facebookIcon: "/icons/contact-details/facebook"
+  linkedInIcon: "/wp-gen/icons/sprite.svg#linkedin"
+  gitHubIcon: ""
+  googleBizIcon: "/wp-gen/icons/sprite.svg#google"
