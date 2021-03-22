@@ -5,7 +5,7 @@
   {{ with .Site.Params.phoneURL }}
   <div class="c-contact-details__row">
     <div class="c-contact-details__svg">
-      {{ partial "scripts/svg-inline.html" $.Site.Params.phoneIcon }} 
+      {{ partial "scripts/svg-inline.html" $.Site.Params.contactPhoneIcon }} 
     </div>
     <div class="c-contact-details__text">
       <a class="c-contact-details__href" href="tel:{{- $.Site.Params.phoneURL -}}">{{- $.Site.Params.phoneText -}}</a>
@@ -15,7 +15,7 @@
   {{ with .Site.Params.phoneMobileURL }}
   <div class="c-contact-details__row">
     <div class="c-contact-details__svg">
-      {{ partial "scripts/svg-inline.html" $.Site.Params.phoneMobileIcon }} 
+      {{ partial "scripts/svg-inline.html" $.Site.Params.contactPhoneMobileIcon }} 
     </div>
     <div class="c-contact-details__text">
       <a class="c-contact-details__href" href="tel:{{- $.Site.Params.phoneMobileURL -}}">{{- $.Site.Params.phoneMobileText -}}</a>
@@ -25,7 +25,7 @@
   {{ with .Site.Params.emailURL }}
   <div class="c-contact-details__row">
     <div class="c-contact-details__svg">
-      {{ partial "scripts/svg-inline.html" $.Site.Params.emailIcon }} 
+      {{ partial "scripts/svg-inline.html" $.Site.Params.contactEmailIcon }} 
     </div>
     <div class="c-contact-details__text">
       <a class="c-contact-details__href" href="mailto:{{- $.Site.Params.emailURL -}}">{{- $.Site.Params.emailText -}}</a>
@@ -35,7 +35,7 @@
   {{ with .Site.Params.addressURL }}
   <div class="c-contact-details__row">
     <div class="c-contact-details__svg">
-      {{ partial "scripts/svg-inline.html" $.Site.Params.addressIcon }}
+      {{ partial "scripts/svg-inline.html" $.Site.Params.contactAddressIcon }}
     </div>
     <div class="c-contact-details__text">
       <a class="c-contact-details__href" href="{{- $.Site.Params.addressURL -}}" target="_BLANK">{{- $.Site.Params.addressText1 -}}
@@ -47,7 +47,7 @@
   {{ with .Site.Params.helpURL }}
   <div class="c-contact-details__row">
     <div class="c-contact-details__svg">
-      {{ partial "scripts/svg-inline.html" $.Site.Params.helpIcon }}
+      {{ partial "scripts/svg-inline.html" $.Site.Params.contactHelpIcon }}
     </div>
     <div class="c-contact-details__text">
       <a class="c-contact-details__href" href="{{- $.Site.Params.helpURL -}}">{{- $.Site.Params.helpText -}}</a>
@@ -57,7 +57,7 @@
   {{ with .Site.Params.facebookText }}
   <div class="c-contact-details__row">
     <div class="c-contact-details__svg">
-      {{ partial "scripts/svg-inline.html" $.Site.Params.facebookIconContact }}
+      {{ partial "scripts/svg-inline.html" $.Site.Params.contactFacebookIcon }}
     </div>
     <div class="c-contact-details__text">
       <a class="c-contact-details__href" href="{{- $.Site.Params.facebookURL -}}">{{- . -}}</a>
@@ -67,7 +67,7 @@
   {{ with .Site.Params.hoursIcon }}
   <div class="c-contact-details__row pt-2">
     <div class="c-contact-details__svg">
-      {{ partial "scripts/svg-inline.html" $.Site.Params.hoursIcon }}
+      {{ partial "scripts/svg-inline.html" $.Site.Params.contactHoursIcon }}
     </div>
     <div class="c-contact-details__text">
       <table>
