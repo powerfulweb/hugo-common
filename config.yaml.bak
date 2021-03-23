@@ -1,0 +1,25 @@
+#module:
+  # # replacements: "github.com/twbs/icons -> ../../../twbs/icons"
+  # imports:
+  #   - path: github.com/twbs/icons
+  #   # - path: ../../../twbs/icons
+  #     mounts:
+  #     - source: icons
+  #       target: assets/icons/bootsrap 
+
+    # # - path: github.com/FortAwesome/Font-Awesome
+    # - path: ../../../FontAwesome/Font-Awesome
+    #   mounts:
+    #   - source: svgs
+    #     target: assets/icons/font-awesome
+    #     #ignoreConfig: true
+    # - path: ../../../feathericons/feather
+    #   mounts:
+    #   - source: icons
+    #     target: assets/icons/feather
+    # - path: ../../../simple-icons/simple-icons
+    #   mounts:
+    #   - source: icons
+    #     target: assets/icons/simple
+    
+
