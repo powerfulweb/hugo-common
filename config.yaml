@@ -5,7 +5,7 @@ module:
     # - path: ../../../twbs/icons
       mounts:
       - source: icons
-        target: assets/icons/bootsrap 
+        target: assets/icons/bootstrap 
 
     # # - path: github.com/FortAwesome/Font-Awesome
     # - path: ../../../FontAwesome/Font-Awesome
