@@ -2,6 +2,7 @@ module:
   # replacements: "github.com/twbs/icons -> ../../../twbs/icons"
   imports:
     - path: github.com/twbs/icons
+      ignoreConfig: true
       mounts:
       - source: icons
         target: assets/icons/bootstrap 

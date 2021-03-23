@@ -6,4 +6,4 @@ hugo mod get -u github.com/twbs/icons  (version doesnt need to be specified )
 
 hugo mod get -u github.com/simple-icons/simple-icons@961d08e (4.16.0)
 
-hugo mod get -u github.com/feathericons/feather (version doesnt need to be specified )
+  hugo mod get -u github.com/feathericons/feather@9e0dcca
