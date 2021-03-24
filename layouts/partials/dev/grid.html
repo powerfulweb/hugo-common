@@ -1,0 +1,17 @@
+
+{{ if .Site.Params.devGrid }}
+<div class="container text-dark text-start" style="position:fixed; bottom:0px; margin: 0; padding: 0; 
+overflow:hidden; z-index: 200; min-width: 3400px; max-width: 3400px;">
+<table style="align-items: flex-start;">
+  <tr>
+    <th style="width: 576px; background: var(--bs-primary)" class="table-primary">XS &lt; 576px</th>
+    <th style="width: 192px; background: var(--bs-secondary);" class="table-primary">SM &GreaterEqual; 576px</th>
+    <th style="width: 224px; background: var(--bs-success)" class="table-primary">MD &GreaterEqual; 768px</th>
+    <th style="width: 208px; background: var(--bs-danger);" class="table-primary">LG &GreaterEqual; 992px</th>
+    <th style="width: 200px; background: var(--bs-warning);" class="table-primary">XL &GreaterEqual; 1200px</th>
+    <th style="width: 2000px; background: var(--bs-info);" class="table-primary">XXL &gt; 1400px</th>
+  </tr>
+
+</table>
+</div>
+{{ end }}
