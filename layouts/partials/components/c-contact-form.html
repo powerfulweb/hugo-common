@@ -1,6 +1,30 @@
-{{/*   {{ partial "components/c-contact-form.html" . }}   */}}
+{{/*   {{ partial "components/c-contact-form.html" . }}   
+formFieldsSplit  - range items
+formFields - range items for full width
+formTextareas - for textarea inputs
 
-<form id="{{ .Params.formName }}" class="c-contact-form needs-validation toggle-content is-visible" novalidate>
+*/}}
+
+
+<form id="{{ .Params.formId }}" class="c-contact-form needs-validation toggle-content is-visible" novalidate>
+  {{if .Params.formFieldsSplit }}
+  <div class="c-contact-form__row">
+    {{ range .Params.formFieldsSplit }}
+    <div class="c-contact-form__col">
+      <div class="c-contact-form__group">
+        <input id="{{- .id -}}" name="{{- .name -}}" type="{{- .type -}}" class="form-control"
+          placeholder="{{- .placeholder -}}" aria-label="{{- .placeholder -}}" {{with .minlength }}
+          minlength="{{- . -}}" {{ end }} {{ if .required }} required {{ end }}>
+        {{ with .invalidFeedback }}
+        <div class="invalid-feedback">
+          {{- . -}}
+        </div>
+        {{ end }}
+      </div>
+    </div>
+    {{ end }}
+  </div>
+  {{ end }}
   {{ range .Params.formFields }}
   <div class="c-contact-form__group">
     <input id="{{- .id -}}" name="{{- .name -}}" type="{{- .type -}}" class="form-control"

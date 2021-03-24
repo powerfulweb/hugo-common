@@ -3,9 +3,9 @@
 {{ $jsOpts := (dict  "sourceMap" "inline") }}
 {{ $babelOpts := dict "config" "config/babel.config.js" "noComments" true "minified" true "compact" true }}
 
-{{ $main := resources.Get "js/index.js" | js.Build $jsOpts | babel $babelOpts }}
+{{ $main := resources.Get "js/assets.js" | js.Build $jsOpts | babel $babelOpts }}
 {{ if .Site.IsServer }}
-{{ $main = resources.Get "js/index.js" | js.Build }}
+{{ $main = resources.Get "js/assets.js" | js.Build }}
 {{ end }}
 <script type="text/javascript" src="{{ $main.RelPermalink }}" defer></script>
 
