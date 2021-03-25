@@ -1,0 +1,8 @@
+//hover shadow
+%u-shadow-hover {
+  &--blue {
+    &:hover {
+    box-shadow: 0px 5px 25px rgba(47, 128, 237, 0.3);
+    }
+  }
+}

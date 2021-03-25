@@ -1,0 +1,48 @@
+//Hover mask
+
+
+// example
+// <div class="c-card">
+//   <div class="c-card__image-wrapper">
+//     <div clFass="c-card__image">
+//       {{ partial "scripts/srcset.html" (dict "page" $page "image" .image
+//       "class" "") }}
+//       <div class="c-card__mask"></div>
+//     </div>
+//   </div>
+//   <div class="c-card__body">
+//     <h3 class="c-card__title">{{ .title }}</h3>
+//     <h4 class="c-card__subtitle">{{ .subtitle }}</h4>
+//     <div class="c-card__text">{{ .content }}</div>
+//   </div>
+//   <div class="c-card__footer">
+//     <small>Last updated 3 mins ago</small>
+//   </div>
+// </div>
+
+
+%u-mask {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background-attachment: fixed;
+
+  &--white {
+    background-color: rgba(251, 251, 251, 0.2);
+  }
+}
+
+%u-overlay-hover 
+%u-mask {
+  @include transition(0.3s);
+  opacity: 0;
+
+  &:hover {
+    opacity: 1;
+  }
+}

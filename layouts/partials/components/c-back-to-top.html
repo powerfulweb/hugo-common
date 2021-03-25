@@ -1,6 +1,8 @@
-{{/* partial "components/c-back-to-top" . */}}
+{{/* partial "components/c-back-to-top" "icons/font-awesome/solid/arrow-up.svg" */}}
+
+{{/*  only display on SM and up  */}}
 <div class="d-none d-sm-block">
   <button class="c-to-top toggle-content-icon-fade" id="js-topNav" href="#top">
-    {{ partial "scripts/svg-inline.html" "icons/back-to-top/arrow-up-short.svg" }}
+    {{ partial "scripts/svg-inline.html" . }}
   </button>
 </div>
