@@ -1,4 +1,4 @@
-module github.com/powerfulwebdesign/hugo_modules
+module github.com/powerfulwebdesign/hugoCommon
 
 go 1.16
 

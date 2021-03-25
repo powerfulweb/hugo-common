@@ -4,11 +4,6 @@
   "description": "modules for hugo",
   "main": "index.js",
   "scripts": {
-    "mod:update": "hugo mod get -u ./...",
-    "mod:clean": "hugo mod clean",
-    "mod:vendor": "hugo mod vendor",
-    "mod:dependencies": "hugo mod npm pack",
-    "mod:graph": "hugo mod graph"
   },
   "repository": {
     "type": "git",
@@ -28,8 +23,6 @@
     "eslint": "^7.22.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",
-    "stylelint": "^13.12.0",
-    "stylelint-config-recommended": "^4.0.0",
     "gulp": "^4.0.2",
     "gulp-cheerio": "^1.0.0",
     "gulp-svg-sprite": "^1.5.0",
