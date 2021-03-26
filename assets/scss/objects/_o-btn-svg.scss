@@ -1,4 +1,4 @@
-
+//add square (radius option too)
 
 //mixins
 @mixin svg-button-size($padding, $size, $border) {
@@ -136,8 +136,8 @@
     @include svg-button-size($svg-btn-padding-lg, $svg-btn-icon-size-lg, $svg-btn-border-lg);
   }
   
-  &--xl {
-    @include svg-button-size($svg-btn-padding-xl, $svg-btn-icon-size-xl, $svg-btn-border-xl);
+  &--up {
+    @include svg-button-size($svg-btn-padding-up, $svg-btn-icon-size-up, $svg-btn-border-up);
   }
 }
 

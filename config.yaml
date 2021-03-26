@@ -9,7 +9,7 @@ module:
     - path: github.com/FortAwesome/Font-Awesome
       mounts:
       - source: svgs
-        target: assets/icons/font-awesome
+        target: assets/icons/awesome
     - path: github.com/feathericons/feather
       mounts:
       - source: icons
@@ -58,15 +58,37 @@ params:
   contactPhoneIcon: "icons/bootstrap/telephone.svg"
   contactAddressIcon: "icons/bootstrap/geo-alt.svg"
   contactHelpIcon: "icons/bootstrap/exclamation-triangle.svg"
-  contactFacebookIcon: "icons/font-awesome/brands/facebook-f.svg"
+  contactFacebookIcon: "icons/awesome/brands/facebook-f.svg"
   contactHoursIcon: "icons/bootstrap/clock.svg"
 
 
-
-  #MOBILE FOOTER DETAULTS
+  ##########################
+  # MOBILE FOOTER          #
+  ##########################
   footerPhoneURL: "#"
   footerPhoneText: "DEFAULT"
   footerPhoneIcon: "icons/bootstrap/telephone.svg"
+
+
+  #####################
+  # c-social-links    #
+  #####################
+
+  # socialTwitterURL:
+  # socialFacebookURL:
+  # socialLinkedInURL:
+  # socialInstagramURL: 
+  # socialGoogleBizURL:
+  
+  socialTwitterIcon: "icons/simple/twitter.svg"
+  socialFacebookIcon: "icons/simple/facebook.svg"
+  socialsocialLinkedInIcon: "icons/simple/linkedin.svg"
+  socialInstagramIcon: "icons/simple/instagram.svg"
+  socialGoogleBizIcon: "icons/simple/google.svg"
+  
+  
+  
+
   
 
 

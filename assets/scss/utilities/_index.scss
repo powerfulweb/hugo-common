@@ -1,28 +1,62 @@
 //Hover Mask
-@import "u-mask";
+@import 'u-mask';
 
 //Shadow Hover
-@import "u-shadow-hover";
-
-
+@import 'u-shadow-hover';
 
 .u-transition {
   @include transition(0.3s);
 }
 
-
 //no text decoration on lines - inherits from standard text inside the div or higher
-%u-link-no-decoration {
+a {
+  %u-link-no-decoration {
+    color: inherit;
+    text-decoration: none;
+
+    &:link {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    &:visited {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    &:hover {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    &:active {
+      color: inherit;
+      text-decoration: none;
+    }
+  }
+}
+
+a.u-link-no-decoration {
   color: inherit;
   text-decoration: none;
+
+  &:link {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  &:visited {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  &:hover {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  &:active {
+    color: inherit;
+    text-decoration: none;
+  }
 }
-.u-link-no-decoration {
-  color: inherit;
-  text-decoration: none;
-}
-
-
-
-
-
-

@@ -1,21 +1,20 @@
-
-//sizes for o-btn-svg
-$svg-btn-padding: .5rem !default;    //size / 3
-$svg-btn-icon-size: 1.5rem !default;  
-$svg-btn-border: 3px !default;
-
-$svg-btn-padding-sm: .33rem !default; //size / 3
+// sizes for o-btn-svg
+$svg-btn-padding-sm: .33rem !default; // size / 3
 $svg-btn-icon-size-sm: 1rem !default;  
 $svg-btn-border-sm: 2px !default;
 
-$svg-btn-padding-lg: .66rem !default; //size / 3
+$svg-btn-padding: .5rem !default;    // size / 3
+$svg-btn-icon-size: 1.5rem !default;  
+$svg-btn-border: 2.5px !default;
+
+$svg-btn-padding-lg: .66rem !default; // size / 3
 $svg-btn-icon-size-lg: 2rem !default;  
 $svg-btn-border-lg: 3px !default;
 
-//for back to top button
-$svg-btn-padding-xl: 0.2rem !default; //size / 3
-$svg-btn-icon-size-xl: 3rem !default; 
-$svg-btn-border-xl: 3px !default;
+// for back to top button
+$svg-btn-padding-up: 0rem !default; // size / 3
+$svg-btn-icon-size-up: 3rem !default; 
+$svg-btn-border-up: 3px !default;
 
 //SIZE FOR o-svg
 $svg-icon-size: $svg-btn-icon-size !default;  

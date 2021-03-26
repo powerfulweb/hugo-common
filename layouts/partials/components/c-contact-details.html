@@ -1,78 +1,80 @@
 {{/* {{ partial "components/c-contact-details.html" . }} */}}
+{{/* used site instead of $.Site inside with as $ not available from within nested partial unless passed explicitly */}}
+
 
 <div class="c-contact-details">
   {{ with .Site.Params.contactPhoneURL }}
   <div class="c-contact-details__row">
     <div class="c-contact-details__svg">
-      {{ partial "scripts/svg-inline.html" $.Site.Params.contactPhoneIcon }} 
+      {{ partial "scripts/svg-inline.html" site.Params.contactPhoneIcon }} 
     </div>
     <div class="c-contact-details__text">
-      <a class="c-contact-details__href" href="tel:{{- . -}}">{{- $.Site.Params.contactPhoneText -}}</a>
+      <a class="c-contact-details__href" href="tel:{{- . -}}">{{- site.Params.contactPhoneText -}}</a>
     </div>
   </div>
   {{ end }}
   {{ with .Site.Params.contactPhoneMobileURL }}
   <div class="c-contact-details__row">
     <div class="c-contact-details__svg">
-      {{ partial "scripts/svg-inline.html" $.Site.Params.contactPhoneMobileIcon }} 
+      {{ partial "scripts/svg-inline.html" site.Params.contactPhoneMobileIcon }} 
     </div>
     <div class="c-contact-details__text">
-      <a class="c-contact-details__href" href="tel:{{- . -}}">{{- $.Site.Params.contactPhoneMobileText -}}</a>
+      <a class="c-contact-details__href" href="tel:{{- . -}}">{{- site.Params.contactPhoneMobileText -}}</a>
     </div>
   </div>
   {{ end }}
   {{ with .Site.Params.contactEmailURL }}
   <div class="c-contact-details__row">
     <div class="c-contact-details__svg">
-      {{ partial "scripts/svg-inline.html" $.Site.Params.contactEmailIcon }} 
+      {{ partial "scripts/svg-inline.html" site.Params.contactEmailIcon }} 
     </div>
     <div class="c-contact-details__text">
-      <a class="c-contact-details__href" href="mailto:{{- . -}}">{{- $.Site.Params.contactEmailText -}}</a>
+      <a class="c-contact-details__href" href="mailto:{{- . -}}">{{- site.Params.contactEmailText -}}</a>
     </div>
   </div>
   {{ end }}
   {{ with .Site.Params.contactAddressURL }}
   <div class="c-contact-details__row">
     <div class="c-contact-details__svg">
-      {{ partial "scripts/svg-inline.html" $.Site.Params.contactAddressIcon }}
+      {{ partial "scripts/svg-inline.html" site.Params.contactAddressIcon }}
     </div>
     <div class="c-contact-details__text">
       <a class="c-contact-details__href" href="{{- . -}}" target="_BLANK">
-        {{- $.Site.Params.contactAddressText1 -}}
-        {{ with $.Site.Params.contactAddressText2 }}<br>{{- . -}}{{ end }}
-        {{ with $.Site.Params.contactAddressText3 }}<br>{{- . -}}{{ end }}</a>
+        {{- site.Params.contactAddressText1 -}}
+        {{ with site.Params.contactAddressText2 }}<br>{{- . -}}{{ end }}
+        {{ with site.Params.contactAddressText3 }}<br>{{- . -}}{{ end }}</a>
     </div>
   </div>
   {{ end }}
   {{ with .Site.Params.contactHelpURL }}
   <div class="c-contact-details__row">
     <div class="c-contact-details__svg">
-      {{ partial "scripts/svg-inline.html" $.Site.Params.contactHelpIcon }}
+      {{ partial "scripts/svg-inline.html" site.Params.contactHelpIcon }}
     </div>
     <div class="c-contact-details__text">
-      <a class="c-contact-details__href" href="{{- $.Site.Params.helpURL -}}">{{- $.Site.Params.contactHelpText -}}</a>
+      <a class="c-contact-details__href" href="{{- site.Params.helpURL -}}">{{- site.Params.contactHelpText -}}</a>
     </div>
   </div>
   {{ end }}
   {{ with .Site.Params.contactFacebookURL }}
   <div class="c-contact-details__row">
     <div class="c-contact-details__svg">
-      {{ partial "scripts/svg-inline.html" $.Site.Params.contactFacebookIcon }}
+      {{ partial "scripts/svg-inline.html" site.Params.contactFacebookIcon }}
     </div>
     <div class="c-contact-details__text">
-      <a class="c-contact-details__href" href="{{- $.Site.Params.contactFacebookURL -}}">{{- $.Site.Params.contactFacebookText -}}</a>
+      <a class="c-contact-details__href" href="{{- site.Params.contactFacebookURL -}}">{{- site.Params.contactFacebookText -}}</a>
     </div>
   </div>
   {{ end }}
   {{ if .Site.Params.contactHoursEnabled }}
   <div class="c-contact-details__row pt-2">
     <div class="c-contact-details__svg">
-      {{ partial "scripts/svg-inline.html" $.Site.Params.contactHoursIcon }}
+      {{ partial "scripts/svg-inline.html" site.Params.contactHoursIcon }}
     </div>
     <div class="c-contact-details__text">
       <table>
         <tbody>
-          {{ range $.Site.Params.contactHoursRange}}
+          {{ range site.Params.contactHoursRange}}
           <tr>
             <td>{{- .day -}}:&nbsp;</td>
             <td>{{- .open -}}{{- with .close -}}&nbsp;-&nbsp;{{- . -}}{{- end -}}</td>
