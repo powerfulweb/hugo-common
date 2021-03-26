@@ -1,24 +1,34 @@
 {
-  "name": "hugo_modules",
-  "version": "0.0.2",
+  "name": "hugo-common",
+  "version": "0.0.4",
   "description": "modules for hugo",
   "main": "index.js",
   "scripts": {
+    "server": "npm run clean && hugo server --disableFastRender",
+    "build": "npm run clean && hugo --gc --minify",
+    "clean": "rimraf public",
+    "dev": "npm run clean && hugo",
+    "mounts": " hugo config mounts",
+    "mod:update": "hugo mod get -u",
+    "mod:dependencies": "hugo mod npm pack",
+    "mod:clean": "hugo mod clean",
+    "mod:tidy": "hugo mod tidy",
+    "mod:graph": "hugo mod graph"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/powerfulwebdesign/hugo_modules.git"
+    "url": "git+https://github.com/powerfulwebdesign/hugoCommon.git"
   },
   "author": "Powerful Web Design",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/powerfulwebdesign/hugo_modules/issues"
+    "url": "https://github.com/powerfulwebdesign/hugoCommon/issues"
   },
-  "homepage": "https://github.com/powerfulwebdesign/hugo_modules#readme",
+  "homepage": "https://github.com/powerfulwebdesign/hugoCommon#readme",
   "devDependencies": {
     "@babel/cli": "^7.13.10",
     "@babel/core": "^7.13.10",
-    "@babel/preset-env": "^7.13.10",
+    "@babel/preset-env": "^7.13.12",
     "autoprefixer": "^10.2.5",
     "eslint": "^7.22.0",
     "eslint-config-airbnb-base": "^14.2.1",
@@ -29,12 +39,14 @@
     "gulp-svgo": "^2.2.1",
     "postcss": "^8.2.8",
     "postcss-cli": "^8.3.1",
-    "rimraf": "^3.0.2"
+    "rimraf": "^3.0.2",
+    "stylelint": "^13.12.0",
+    "stylelint-config-recommended": "^4.0.0"
   },
   "dependencies": {
-    "swiper": "^6.4.15",
     "@popperjs/core": "^2.9.1",
-    "bootstrap": "^5.0.0-beta2",
-    "lazysizes": "^5.3.0"
+    "bootstrap": "^5.0.0-beta3",
+    "lazysizes": "^5.3.0",
+    "swiper": "^6.5.0"
   }
 }
