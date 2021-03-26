@@ -18,5 +18,55 @@ module:
       mounts:
       - source: icons
         target: assets/icons/simple
-    
+
+
+params:
+  #####################
+  # c-contact-details #
+  #####################
+  # contactPhoneURL: "#"
+  # contactPhoneText: "DEFAULT"
+
+  # contactPhoneMobileURL: "#"
+  # contactPhoneMobileText: "DEFAULT"
+  
+  # contactEmailURL: "#"
+  # contactEmailText: "DEFAULT"
+ 
+  # contactAddressURL: "#"
+  # contactAddressText1: "DEFAULT"
+  # contactAddressText2: ""
+  # contactAddressText3: ""
+  
+  # contactHelpURL: "#"
+  # contactHelpText: "DEFAULT"
+ 
+  # contactFacebookURL: "#"
+  # contactFacebookText: "DEFAULT"
+
+  # contactHoursEnabled: true
+  # hoursRange:
+  # - day: "Mon"
+  #   open: "10am"
+  #   close: "7pm"
+  # - day: "Tue"
+  #   open: "10am"
+  #   close: "7pm"
+
+  contactEmailIcon: "icons/bootstrap/envelope.svg"
+  contactPhoneMobileIcon: "icons/bootstrap/phone.svg"
+  contactPhoneIcon: "icons/bootstrap/telephone.svg"
+  contactAddressIcon: "icons/bootstrap/geo-alt.svg"
+  contactHelpIcon: "icons/bootstrap/exclamation-triangle.svg"
+  contactFacebookIcon: "icons/font-awesome/brands/facebook-f.svg"
+  contactHoursIcon: "icons/bootstrap/clock.svg"
+
+
+
+  #MOBILE FOOTER DETAULTS
+  footerPhoneURL: "#"
+  footerPhoneText: "DEFAULT"
+  footerPhoneIcon: "icons/bootstrap/telephone.svg"
+  
+
 
