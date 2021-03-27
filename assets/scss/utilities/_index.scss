@@ -7,7 +7,7 @@
 //visibility toggle for forms
 @import 'u-visibility.scss';
 
-.u-transition {
+%u-transition {
   @include transition(0.3s);
 }
 

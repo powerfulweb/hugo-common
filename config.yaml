@@ -81,7 +81,7 @@ params:
   # socialGoogleBizURL:
   
   socialTwitterIcon: "icons/simple/twitter.svg"
-  socialFacebookIcon: "icons/simple/facebook.svg"
+  socialFacebookIcon: "icons/awesome/brands/facebook-f.svg"
   socialsocialLinkedInIcon: "icons/simple/linkedin.svg"
   socialInstagramIcon: "icons/simple/instagram.svg"
   socialGoogleBizIcon: "icons/simple/google.svg"

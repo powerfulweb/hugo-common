@@ -31,6 +31,9 @@
   &--lg {
     @include svg-size($svg-icon-size-lg);
   }
+  &--no-margin {
+    margin: 0;
+  }
 }
 
 
