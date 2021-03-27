@@ -3,7 +3,7 @@ export function contactForm({  //defaults
   formId = 'js-contactForm',
   formAction = '',
   formMethod = 'POST',
-  inputNameId = 'form_name',
+  inputNameId = 'name',
   submitId = 'js-submit',
   successId = 'js-successMessage',
   errorId = 'js-errorMessage',
@@ -57,12 +57,12 @@ export function contactForm({  //defaults
             encodeURIComponent(pair[1])
         );
     }
-    var httpReq = new XMLHttpReq();
-    httpReq.open(formMethod, formAction);
-    httpReq.setReqHeader('Content-Type', 'application/x-www-form-urlencoded');
-    httpReq.onreadystatechange = function() {
-      if (httpReq.readyState === XMLHttpReq.DONE) {
-        if (httpReq.status === 200) { //SUCCESS
+    var http = new XMLHttpRequest();
+    http.open(formMethod, formAction);
+    http.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    http.onreadystatechange = function() {
+      if (http.readyState === XMLHttpRequest.DONE) {
+        if (http.status === 200) { //SUCCESS
           console.log('Successfully submitted the req');
           hide(form);
           show(success);
@@ -72,7 +72,7 @@ export function contactForm({  //defaults
         }
       }
     };
-    httpReq.send(parameters.join('&'));
+    http.send(parameters.join('&'));
   }
 
   // Function that loads scripts on form input focus

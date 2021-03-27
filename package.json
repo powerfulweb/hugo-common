@@ -51,16 +51,16 @@
   "url": "git+https://github.com/powerfulwebdesign/hugoCommon.git"
  },
  "scripts": {
-  "build": "npm run clean \u0026\u0026 hugo --gc --minify",
+  "build": "npm run clean && hugo --gc --minify",
   "clean": "rimraf public",
-  "dev": "npm run clean \u0026\u0026 hugo",
+  "dev": "npm run clean && hugo",
   "mod:clean": "hugo mod clean",
   "mod:dependencies": "hugo mod npm pack",
   "mod:graph": "hugo mod graph",
   "mod:tidy": "hugo mod tidy",
   "mod:update": "hugo mod get -u",
   "mounts": " hugo config mounts",
-  "server": "npm run clean \u0026\u0026 hugo server --disableFastRender"
+  "server": "npm run clean && hugo server --disableFastRender"
  },
  "version": "0.0.4"
 }
