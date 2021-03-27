@@ -1,0 +1,27 @@
+.c-footer-call {
+  @extend .container-fluid, .d-block, .d-sm-none, .fixed-bottom;
+
+  &__href {
+    @extend .u-link-no-decoration;
+  }
+
+  &__row {
+    @extend .row;
+    @extend .bg-success;
+  }
+
+  &__col {
+    @extend .col, .d-flex, .justify-content-center, .align-items-center, .py-2;
+  }
+
+  &__svg {
+    @extend .o-svg, .o-svg--white;
+  }
+
+  &__text {
+    @extend .text-white, .h2;
+    margin: 0;
+    
+
+  }
+}

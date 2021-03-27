@@ -4,6 +4,9 @@
 //Shadow Hover
 @import 'u-shadow-hover';
 
+//visibility toggle for forms
+@import 'u-visibility.scss';
+
 .u-transition {
   @include transition(0.3s);
 }
