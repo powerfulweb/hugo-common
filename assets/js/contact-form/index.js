@@ -1,17 +1,21 @@
+'use strict';
 export function contactForm({  //defaults
-  formID = 'js-contact-form',
+  formId = 'js-contactForm',
   formAction = '',
   formMethod = 'POST',
-  submitID = 'submit',
-  successID = 'successMessage',
-  errorID = 'errorMessage',
+  inputNameId = 'form_name',
+  submitId = 'js-submit',
+  successId = 'js-successMessage',
+  errorId = 'js-errorMessage',
   grecaptchaKey = '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI', // localhost testing 
   grecaptchaLocation = 'bottomright', // bottomright, bottomleft, or inline. use bottom left to avoid scroll to top widget
 } = {}) {
  
-  window.onSubmit = function (token) {
+  
+
+  window.onSubmit = function () {
     console.log('submit clicked');
-    var form = document.getElementById(formID);
+    const form = document.getElementById(formId);
     if (!form.checkValidity()) {   //if not valid
       console.log('validation failed, grecaptcha reset');
       grecaptcha.reset(); //reset grecaptcha as it only allows 1 click before being disabled
@@ -24,12 +28,12 @@ export function contactForm({  //defaults
   };
 
   window.onloadCallback = function () {
-    grecaptcha.render(submitID, {
+    grecaptcha.render(submitId, {
       'sitekey': grecaptchaKey,
       'badge': grecaptchaLocation,
       'callback': onSubmit,
     });
-    document.getElementById(submitID).disabled = false;
+    document.getElementById(submitId).disabled = false;
   };
 
 
@@ -37,13 +41,12 @@ export function contactForm({  //defaults
     const show = function (elem) {
       elem.classList.add('is-visible');
     };
-    // Hide an element
     const hide = function (elem) {
       elem.classList.remove('is-visible');
     };
-    const success = document.getElementById(successID);
-    const error = document.getElementById(errorID);
-    const form = document.getElementById(formID);
+    const success = document.getElementById(successId);
+    const error = document.getElementById(errorId);
+    const form = document.getElementById(formId);
     // Gather form data
     let formData = new FormData(form);
     // Array to store the stringified and encoded key-value-pairs.
@@ -54,22 +57,22 @@ export function contactForm({  //defaults
             encodeURIComponent(pair[1])
         );
     }
-    var httpRequest = new XMLHttpRequest();
-    httpRequest.open(formMethod, formAction);
-    httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    httpRequest.onreadystatechange = function() {
-        if (httpRequest.readyState === XMLHttpRequest.DONE) {
-            if (httpRequest.status === 200) { //SUCCESS
-                console.log('Successfully submitted the request');
-                hide(form);
-                show(success);
-            } else { //ERROR
-                console.log('Error while submitting the request');
-                show(error);
-            }
+    var httpReq = new XMLHttpReq();
+    httpReq.open(formMethod, formAction);
+    httpReq.setReqHeader('Content-Type', 'application/x-www-form-urlencoded');
+    httpReq.onreadystatechange = function() {
+      if (httpReq.readyState === XMLHttpReq.DONE) {
+        if (httpReq.status === 200) { //SUCCESS
+          console.log('Successfully submitted the req');
+          hide(form);
+          show(success);
+        } else { //ERROR
+          console.log('Error while submitting the req');
+          show(error);
         }
+      }
     };
-    httpRequest.send(parameters.join('&'));
+    httpReq.send(parameters.join('&'));
   }
 
   // Function that loads scripts on form input focus
@@ -81,10 +84,10 @@ export function contactForm({  //defaults
     script.src = 'https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit';
     head.appendChild(script);
     // remove focus to avoid js error:
-    document.getElementById('form_name').removeEventListener('focus', loadScriptsOnFocus);
+    document.getElementById(inputNameId).removeEventListener('focus', loadScriptsOnFocus);
   }
 
-  document.getElementById('form_name').addEventListener('focus', loadScriptsOnFocus, false);
+  document.getElementById(inputNameId).addEventListener('focus', loadScriptsOnFocus, false);
   //add event listener to load grecaptcha
 
 }
