@@ -80,16 +80,18 @@ class="img-fluid {{ $image.Params.class -}} {{ $.class }}"
 
 
 <img alt="{{- $image.Title -}}" 
-  class="lazyload {{ $image.Params.class -}} {{ $.class }}" 
-  data-lowsrc="data:image/gif;base64,{{- $lqip.Content | base64Encode -}}"
+  class="lazyload blur-up{{ $image.Params.class -}} {{ $.class }}" 
   data-sizes="auto"
   data-srcset="{{- $imgSrcSet -}}"
+  src="{{- $image.RelPermalink -}}"
   srcset="data:image/gif;base64,{{- $lqip.Content | base64Encode -}}"
-  src= "{{- $imgSrc -}}"  />
+  src= "data:image/gif;base64,{{- $lqip.Content | base64Encode -}}"  />
 <noscript>
   <img alt="{{- $image.Title -}}" 
   class="img-fluid {{ $image.Params.class -}} {{ $.class }}" 
   src="{{- $image.RelPermalink -}}" />
 </noscript>
-
+<!-- srcset="data:image/gif;base64,{{- $lqip.Content | base64Encode -}}"
+  src= "{{- $imgSrc -}}" 
+  data-lowsrc="data:image/gif;base64,{{- $lqip.Content | base64Encode -}}"-->
 {{ end }}
