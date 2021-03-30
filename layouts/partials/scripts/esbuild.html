@@ -1,0 +1,11 @@
+
+
+{{ $jsOpts := (dict  "sourceMap" "inline") }}
+{{ $babelOpts := dict "config" "config/babel.config.js" "noComments" true "minified" true "compact" true }}
+{{ $ctx := . }}
+{{ $js := resources.Get $ctx | js.Build | babel $babelOpts }}
+{{ if site.IsServer }}
+{{ $js = resources.Get $ctx | js.Build $jsOpts }}
+{{ end }}
+<script type="text/javascript" src="{{ $js.RelPermalink }}" defer></script>
+

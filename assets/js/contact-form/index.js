@@ -3,7 +3,7 @@ export function contactForm({  //defaults
   formId = 'js-contactForm',
   formAction = '',
   formMethod = 'POST',
-  inputNameId = 'name',
+  inputNameId = 'contact-name',
   submitId = 'js-submit',
   successId = 'js-successMessage',
   errorId = 'js-errorMessage',
