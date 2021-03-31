@@ -14,13 +14,13 @@ export function contactForm({  //defaults
   
 
   window.onSubmit = function () {
-    console.log('submit clicked');
+    // console.log('submit clicked');
     const form = document.getElementById(formId);
     if (!form.checkValidity()) {   //if not valid
-      console.log('validation failed, grecaptcha reset');
+      // console.log('validation failed, grecaptcha reset');
       grecaptcha.reset(); //reset grecaptcha as it only allows 1 click before being disabled
     } else { //if valid
-      console.log('validation success');
+      // console.log('validation success');
       submitForm();
    
     }
@@ -63,11 +63,11 @@ export function contactForm({  //defaults
     http.onreadystatechange = function() {
       if (http.readyState === XMLHttpRequest.DONE) {
         if (http.status === 200) { //SUCCESS
-          console.log('Successfully submitted the req');
+          // console.log('Successfully submitted the req');
           hide(form);
           show(success);
         } else { //ERROR
-          console.log('Error while submitting the req');
+          // console.log('Error while submitting the req');
           show(error);
         }
       }
@@ -77,7 +77,7 @@ export function contactForm({  //defaults
 
   // Function that loads scripts on form input focus
   function loadScriptsOnFocus() {
-    console.log('captcha head script loaded');
+    // console.log('captcha head script loaded');
     var head = document.getElementsByTagName('head')[0];
     var script = document.createElement('script');
     script.type = 'text/javascript';
