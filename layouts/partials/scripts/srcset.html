@@ -78,14 +78,21 @@ class="img-fluid {{ $image.Params.class -}} {{ $.class }}"
 {{ end }}
 {{ $attributes = (delimit $attributes " ") }}
 
-
+{{ if and (isset $image.Params "lazy") (not $image.Params.lazy) }} 
+<img alt="{{- $image.Title -}}" 
+  class="lazyload {{ $.class }}" 
+  data-sizes="auto"
+  srcset="{{- $imgSrcSet -}}"
+  src="{{- $image.RelPermalink -}}"
+  loading="eager" />
+{{ else -}}
 <img alt="{{- $image.Title -}}" 
   class="lazyload blur-up{{ $image.Params.class -}} {{ $.class }}" 
   data-sizes="auto"
   data-srcset="{{- $imgSrcSet -}}"
   src="{{- $image.RelPermalink -}}"
-  srcset="data:image/gif;base64,{{- $lqip.Content | base64Encode -}}"
-  src= "data:image/gif;base64,{{- $lqip.Content | base64Encode -}}"  />
+  srcset="data:image/gif;base64,{{- $lqip.Content | base64Encode -}}"  />
+{{ end }}
 <noscript>
   <img alt="{{- $image.Title -}}" 
   class="img-fluid {{ $image.Params.class -}} {{ $.class }}" 

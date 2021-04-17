@@ -1,5 +1,5 @@
 
-{{ $js := resources.Get . | js.Build }}
+{{ $js := resources.Get . | js.Build | babel (dict "noComments" true "minified" true "compact" true) }}
 {{ $ctx := . }}
 {{ if site.IsServer }}
 {{ $js = resources.Get $ctx | js.Build (dict  "sourceMap" "inline")}}

@@ -19,6 +19,10 @@ module:
       - source: icons
         target: assets/icons/simple
 
+imaging: #HUGO mage processing config
+  quality: 90 # default 75
+  bgColor: "#fff" # transparency will be maintained but will fall back to this colour for JPEG.
+
 
 params:
   #####################

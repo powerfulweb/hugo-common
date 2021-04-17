@@ -1,10 +1,10 @@
 {{ $optionsToCSS := (dict "outputStyle" "compressed" "enableSourceMap" false "includePaths" (slice "node_modules")) }}
 
-{{ $css := resources.Get . | toCSS $optionsToCSS | postCSS (dict "config" "data/postcss.config.js") | fingerprint }}
+{{ $css := resources.Get . | toCSS $optionsToCSS | postCSS | fingerprint }}
 
 {{ $ctx := . }}
 {{ if site.IsServer }}
-{{ $optionsToCSS = (dict "outputStyle" "expanded" "enableSourceMap" true "includePaths" (slice "node_modules")) }}
+{{ $optionsToCSS = (dict "enableSourceMap" true "includePaths" (slice "node_modules")) }}
 {{ $css = resources.Get $ctx | toCSS $optionsToCSS | fingerprint }}
 {{ end }}
 
