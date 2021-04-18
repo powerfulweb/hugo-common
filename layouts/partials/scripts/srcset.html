@@ -2,13 +2,13 @@
 {{/* USE {{ partial "image/srcset.html" (dict "page" . "image" "image_name" "class" "class_names with spaces")}} */}}
 {{/* .md file must have resources set up including 
   - src (e.g. images/testimonials*), 
-  - title (used for alt text), 
-  - name (optional override, defaults to file name), 
-  - params 
-    - class (optional)
-    - eager: true (for above the fold)
-    - small: true (for small image resizing)
-    - slide: true  (for slider image resizing)   */}}
+    title: (used for alt text), 
+    name: (optional override, defaults to file name), 
+    params: 
+      class: " " (optional)
+      eager: true (for above the fold)
+      small: true (for small image resizing)
+      slide: true  (for slider image resizing)   */}}
 
 
 {{ $image := .page.Resources.GetMatch (printf "*%s*" .image ) }}
@@ -71,15 +71,6 @@ class="img-fluid {{ $image.Params.class -}} {{ $.class }}"
 {{ $imgSrcSet = $imgSrcSet | append (printf "%s %dw" $srcUrl .) }}
 {{ end }}
 {{ $imgSrcSet = (delimit $imgSrcSet ",") }}
-
-
-
-<!-- Format additional HTML attributes currently not in use by default -->
-{{ $attributes := slice }}
-{{ range $name, $value := .attrs }}
-{{ $attributes = $attributes | append (printf "%s=%q" $name $value) }}
-{{ end }}
-{{ $attributes = (delimit $attributes " ") }}
 
 {{ if $image.Params.eager }} 
 <img alt="{{- $image.Title -}}" 
