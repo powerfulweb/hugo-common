@@ -1,7 +1,7 @@
 export function stickyCollapse({  //defaults
     distance = 50,
-    parentId = 'js-nav-parent',
-    collapseClass = 'sticky-collapse',
+    parentId = 'js-navParent',
+    collapseClass = 'is-collapsed',
     
   } = {}) {
 
@@ -19,7 +19,7 @@ export function stickyCollapse({  //defaults
 
 export function topNav({  //defaults
     distance = 300,
-    parentId = 'js-top-nav',
+    parentId = 'js-topNav',
     visibleClass = 'is-visible',
   } = {}) {
 
