@@ -1,0 +1,16 @@
+//LAZYSIZES
+//
+// Disable lazyload images to browser can fallback to noscript tags below image
+.no-js img.lazyload {
+  display: none;
+}
+// lazysizes responsive images
+img[data-sizes="auto"] { display: block; width: 100%; }
+// lazysizes blur up css
+.js .lazyload, .lazyloading {
+  filter: blur(5px);
+  transition: filter 400ms;
+}
+.js .lazyloaded {
+  filter: blur(0);
+}

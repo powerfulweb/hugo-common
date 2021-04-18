@@ -23,7 +23,7 @@
     <img alt="{{- $image.Title -}}" 
       class="swiper-lazy {{ $image.Params.class -}} {{ $.class }}" 
       data-src= "{{- $image.RelPermalink -}}"  />
-    {{- end }}
+
     
     {{/* IF NOT SVG RESIZE */}}
     {{ else }}
@@ -58,15 +58,7 @@
     {{ end }}
     {{ $imgSrcSet = (delimit $imgSrcSet ",") }}
     
-    
-    
-    <!-- Format additional HTML attributes currently not in use by default -->
-    {{ $attributes := slice }}
-    {{ range $name, $value := .attrs }}
-    {{ $attributes = $attributes | append (printf "%s=%q" $name $value) }}
-    {{ end }}
-    {{ $attributes = (delimit $attributes " ") }}
-    
+
     
     <img alt="{{- $image.Title -}}" 
       class="swiper-lazy {{ $image.Params.class -}} {{ $.class }}" 
