@@ -101,10 +101,6 @@
 
   user-select: none;
   vertical-align: middle;
-  svg {
-    //for all states and variants
-    background: transparent;
-  }
 
   &:hover {
     //color: $body-color; //styled in variants
@@ -122,11 +118,14 @@
   SVG {
     @extend .d-inline-flex;
     background: transparent;
-    fill: currentColor;
+    //fill: currentColor;
+    fill: $body-bg;
     //margin: $btn-padding-y $btn-padding-x;
     height: $svg-btn-icon-size;  //DEFAULT ONLY
     width: $svg-btn-icon-size;   //DEFAULT ONLY
   }
+
+  
 
   &--sm {
     @include svg-button-size($svg-btn-padding-sm, $svg-btn-icon-size-sm, $svg-btn-border-sm);
