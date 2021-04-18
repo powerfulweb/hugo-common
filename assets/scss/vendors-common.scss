@@ -5,12 +5,38 @@
   display: none;
 }
 // lazysizes responsive images
-img[data-sizes="auto"] { display: block; width: 100%; }
+img[data-sizes='auto'] {
+  display: block;
+  width: 100%;
+}
 // lazysizes blur up css
-.js .lazyload, .lazyloading {
+.js .lazyload,
+.lazyloading {
   filter: blur(5px);
   transition: filter 400ms;
 }
 .js .lazyloaded {
   filter: blur(0);
+}
+
+//SWIPER
+//no-js support - creates grid from slideshow
+.no-js {
+  .swiper {
+    &-button-next,
+    &-button-prev,
+    &-pagination {
+      display: none;
+    }
+    &-container {
+     // empty
+    }
+    &-wrapper {
+      @extend .row;
+    }
+    &-slide {
+      @extend .col-12, .col-sm-6, .col-md-3, .p-2;
+      height: auto;
+    }
+  }
 }
