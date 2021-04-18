@@ -1,5 +1,4 @@
 module:
-  # replacements: "github.com/twbs/icons -> ../../../twbs/icons"
   imports:
     - path: github.com/twbs/icons
       ignoreConfig: true
@@ -93,35 +92,35 @@ params:
 
 
   ##PHOTO CONFIG
-landscapePhotoWidths: 
-- 1000
-- 800
-- 700
-- 600
-- 500
-- 400
-- 300
-portraitPhotoWidths: 
-- 800
-- 700
-- 600
-- 500
-- 400
-- 300
-- 200
-slidePhotoWidths:
-- 600
-- 500
-- 400
-- 300
-- 200
-smallPhotoWidths:
-- 300
-- 200 
-- 100
-- 76
-- 50
-lqipWidth: "20x"
+  landscapePhotoWidths: 
+  - 1000
+  - 800
+  - 700
+  - 600
+  - 500
+  - 400
+  - 300
+  portraitPhotoWidths: 
+  - 800
+  - 700
+  - 600
+  - 500
+  - 400
+  - 300
+  - 200
+  slidePhotoWidths:
+  - 600
+  - 500
+  - 400
+  - 300
+  - 200
+  smallPhotoWidths:
+  - 300
+  - 200 
+  - 100
+  - 76
+  - 50
+  lqipWidth: "20x"
   
   
   
