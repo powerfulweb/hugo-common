@@ -5,9 +5,10 @@
   - title (used for alt text), 
   - name (optional override, defaults to file name), 
   - params 
-    - lazy (false for above the fold), 
-    - class (optional) 
-    - small (for small image resizing)   */}}
+    - class (optional)
+    - eager: true (for above the fold)
+    - small: true (for small image resizing)
+    - slide: true  (for slider image resizing)   */}}
 
 
 {{ $image := .page.Resources.GetMatch (printf "*%s*" .image ) }}
@@ -49,6 +50,8 @@ class="img-fluid {{ $image.Params.class -}} {{ $.class }}"
 
 {{ if $image.Params.small }}
 {{ $widths = site.Params.smallPhotoWidths }}
+{{ else if $image.Params.slide }}
+{{ $widths = site.Params.slidePhotoWidths }}
 {{ else }}
 <!-- uses settings from config.toml depending on orientation -->
 {{ $widths = site.Params.landscapePhotoWidths }}
@@ -78,7 +81,7 @@ class="img-fluid {{ $image.Params.class -}} {{ $.class }}"
 {{ end }}
 {{ $attributes = (delimit $attributes " ") }}
 
-{{ if and (isset $image.Params "lazy") (not $image.Params.lazy) }} 
+{{ if $image.Params.eager }} 
 <img alt="{{- $image.Title -}}" 
   class="lazyload {{ $.class }}" 
   data-sizes="auto"
@@ -87,7 +90,7 @@ class="img-fluid {{ $image.Params.class -}} {{ $.class }}"
   loading="eager" />
 {{ else -}}
 <img alt="{{- $image.Title -}}" 
-  class="lazyload blur-up {{ $image.Params.class -}} {{ $.class }}" 
+  class="lazyload {{ $image.Params.class -}} {{ $.class }}" 
   data-sizes="auto"
   data-srcset="{{- $imgSrcSet -}}"
   src="{{- $image.RelPermalink -}}"
