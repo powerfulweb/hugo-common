@@ -1,5 +1,11 @@
+
+
+
 {{/* RESIZE RESOURCE IMAGES, THEN CREATE SRCSET TAGS. ENABLE LAZY LOADING NATIVE/JS AND NOSCRIPT SUPPORT */}}
-{{/* USE {{ partial "image/srcset.html" (dict "page" . "image" "image_name" "class" "class_names with spaces")}} */}}
+{{/* USE {{ partial "image/srcset.html" (dict "page" . "image" "image_name" "class" "class_names with spaces")}} 
+{{<srcset img="/media/spf13.jpg" class="**optional**" >}}
+
+*/}}
 {{/* .md file must have resources set up including 
   - src (e.g. images/testimonials*), 
     title: (used for alt text), 
@@ -11,7 +17,7 @@
       slide: true  (for slider image resizing)   */}}
 
 
-{{ $image := .page.Resources.GetMatch (printf "*%s*" .image ) }}
+{{ $image := .Page.Resources.GetMatch (printf "*%s*" (.Get "img") ) }}
 
 {{/* IF SVG IMAGE */}}
 {{ if eq $image.MediaType.SubType "svg" }}
@@ -22,16 +28,16 @@
 
   {{ if $image.Params.eager }} 
     <img alt="{{ $image.Title }}" 
-      class="img-fluid {{ $image.Params.class }} {{ $.class }}" 
+    class="img-fluid {{- $image.Params.class -}} {{- .Get "class" -}}" 
       src="{{ $image.RelPermalink }}" />
   {{ else -}}
     <img alt="{{- $image.Title -}}" 
-      class="lazyload {{ $image.Params.class }} {{ $.class }}" 
+      class="lazyload {{ $image.Params.class }} {{ .Get "class" }}" 
       data-sizes="auto"
-      data-src= "{{ $image.RelPermalink -}}"  />
+      data-src= "{{- $image.RelPermalink -}}"  />
     <noscript>
       <img alt="{{ $image.Title }}" 
-      class="img-fluid {{ $image.Params.class }} {{ $.class }}" 
+      class="img-fluid {{ $image.Params.class }} {{ .Get "class" }}" 
         src="{{ $image.RelPermalink }}" />
     </noscript>
   {{- end }}
@@ -39,7 +45,7 @@
 {{/* IF NOT SVG RESIZE */}}
 {{ else }}
   {{ $imageSize := imageConfig ($image.RelPermalink | printf "content/%s" ) }}
-  {{ $lqip := $image.Resize .page.Site.Params.lqipWidth -}}
+  {{ $lqip := $image.Resize .Site.Params.lqipWidth -}}
   {{ $lqipConfig := imageConfig ($image.RelPermalink | printf "content/%s" ) }}
 
   <!-- variables used for img tag -->
@@ -52,7 +58,7 @@
   {{ else if $image.Params.slide }}
     {{ $widths = site.Params.slidePhotoWidths }}
   {{ else }}
-    <!-- uses settings from config.toml depending on orientation -->
+  <!-- uses settings from config.toml depending on orientation -->
     {{ $widths = site.Params.landscapePhotoWidths }}
     {{ if gt $image.Height $image.Width }}
       {{ $widths = site.Params.portraitPhotoWidths }}
@@ -74,23 +80,23 @@
   {{ $imgSrcSet = (delimit $imgSrcSet ",") }}
 
   {{ if $image.Params.eager }} 
-    <img alt="{{- $image.Title -}}" 
-      class="lazyload {{ $image.Params.class }} {{ $.class }}" 
-      data-sizes="auto"
-      srcset="{{- $imgSrcSet -}}"
-      src="{{- $image.RelPermalink -}}"
-      loading="eager" />
+  <img alt="{{- $image.Title -}}" 
+    class="lazyload {{ $image.Params.class }} {{ .Get "class" }}" 
+    data-sizes="auto"
+    srcset="{{- $imgSrcSet -}}"
+    src="{{- $image.RelPermalink -}}"
+    loading="eager" />
   {{ else -}}
-    <img alt="{{- $image.Title -}}" 
-      class="lazyload {{ $image.Params.class }} {{ $.class }}" 
-      data-sizes="auto"
-      data-srcset="{{- $imgSrcSet -}}"
-      src="{{- $image.RelPermalink -}}"
-      srcset="data:image/gif;base64,{{- $lqip.Content | base64Encode -}}"  />
+  <img alt="{{- $image.Title -}}" 
+    class="lazyload {{ $image.Params.class }}  {{ .Get "class" }}" 
+    data-sizes="auto"
+    data-srcset="{{- $imgSrcSet -}}"
+    src="{{- $image.RelPermalink -}}"
+    srcset="data:image/gif;base64,{{- $lqip.Content | base64Encode -}}"  />
   {{ end }}
   <noscript>
     <img alt="{{- $image.Title -}}" 
-    class="img-fluid {{ $image.Params.class }} {{ $.class }}" 
+    class="img-fluid {{ $image.Params.class }} {{ .Get "class" }}" 
     src="{{- $image.RelPermalink -}}" />
   </noscript>
 {{ end }}

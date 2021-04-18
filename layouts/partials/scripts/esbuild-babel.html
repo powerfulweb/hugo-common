@@ -1,4 +1,4 @@
-
+{{/*  for testing only */}}
 {{ $js := resources.Get . | js.Build | babel (dict "noComments" true "minified" true "compact" true) }}
 {{ $ctx := . }}
 {{ if site.IsServer }}
