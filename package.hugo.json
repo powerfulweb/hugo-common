@@ -2,37 +2,20 @@
   "name": "hugo-common",
   "version": "0.0.4",
   "description": "modules for hugo",
-  "main": "index.js",
   "scripts": {
-    "server": "npm run clean && hugo server --disableFastRender",
-    "build": "npm run clean && hugo --gc --minify",
-    "clean": "rimraf public",
-    "dev": "npm run clean && hugo",
-    "mounts": " hugo config mounts",
-    "mod:update": "hugo mod get -u",
-    "mod:dependencies": "hugo mod npm pack",
-    "mod:clean": "hugo mod clean",
-    "mod:tidy": "hugo mod tidy",
-    "mod:graph": "hugo mod graph"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/powerfulwebdesign/hugoCommon.git"
+    "url": "git+https://github.com/powerfulwebdesign/hugo-common.git"
   },
   "author": "Powerful Web Design",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/powerfulwebdesign/hugoCommon/issues"
-  },
-  "homepage": "https://github.com/powerfulwebdesign/hugoCommon#readme",
   "devDependencies": {
     "@babel/cli": "^7.13.10",
     "@babel/core": "^7.13.10",
     "@babel/preset-env": "^7.13.12",
+    "@fullhuman/postcss-purgecss": "^4.0",
     "autoprefixer": "^10.2.5",
-    "eslint": "^7.22.0",
-    "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-plugin-import": "^2.22.1",
     "postcss": "^8.2.8",
     "postcss-cli": "^8.3.1",
     "rimraf": "^3.0.2"

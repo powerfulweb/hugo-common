@@ -3,44 +3,13 @@
  "bugs": {
   "url": "https://github.com/powerfulwebdesign/hugoCommon/issues"
  },
- "comments": {
-  "dependencies": {
-   "@popperjs/core": "project",
-   "bootstrap": "project",
-   "lazysizes": "project",
-   "swiper": "project"
-  },
-  "devDependencies": {
-   "@babel/cli": "project",
-   "@babel/core": "project",
-   "@babel/preset-env": "project",
-   "autoprefixer": "project",
-   "eslint": "project",
-   "eslint-config-airbnb-base": "project",
-   "eslint-plugin-import": "project",
-   "postcss": "project",
-   "postcss-cli": "project",
-   "rimraf": "project"
-  }
- },
+ 
  "dependencies": {
-  "@popperjs/core": "^2.9.1",
-  "bootstrap": "^5.0.0-beta3",
-  "lazysizes": "^5.3.0",
-  "swiper": "^6.5.0"
+
  },
  "description": "modules for hugo",
  "devDependencies": {
-  "@babel/cli": "^7.13.10",
-  "@babel/core": "^7.13.10",
-  "@babel/preset-env": "^7.13.12",
-  "autoprefixer": "^10.2.5",
-  "eslint": "^7.22.0",
-  "eslint-config-airbnb-base": "^14.2.1",
-  "eslint-plugin-import": "^2.22.1",
-  "postcss": "^8.2.8",
-  "postcss-cli": "^8.3.1",
-  "rimraf": "^3.0.2"
+
  },
  "homepage": "https://github.com/powerfulwebdesign/hugoCommon#readme",
  "license": "ISC",
@@ -51,16 +20,7 @@
   "url": "git+https://github.com/powerfulwebdesign/hugoCommon.git"
  },
  "scripts": {
-  "build": "npm run clean && hugo --gc --minify",
-  "clean": "rimraf public",
-  "dev": "npm run clean && hugo",
-  "mod:clean": "hugo mod clean",
-  "mod:dependencies": "hugo mod npm pack",
-  "mod:graph": "hugo mod graph",
-  "mod:tidy": "hugo mod tidy",
-  "mod:update": "hugo mod get -u",
-  "mounts": " hugo config mounts",
-  "server": "npm run clean && hugo server --disableFastRender"
+
  },
  "version": "0.0.4"
 }
