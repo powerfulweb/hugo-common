@@ -87,7 +87,7 @@ class="img-fluid {{ $image.Params.class -}} {{ $.class }}"
   loading="eager" />
 {{ else -}}
 <img alt="{{- $image.Title -}}" 
-  class="lazyload blur-up{{ $image.Params.class -}} {{ $.class }}" 
+  class="lazyload blur-up {{ $image.Params.class -}} {{ $.class }}" 
   data-sizes="auto"
   data-srcset="{{- $imgSrcSet -}}"
   src="{{- $image.RelPermalink -}}"
