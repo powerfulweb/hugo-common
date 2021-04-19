@@ -15,6 +15,7 @@
     "@babel/core": "^7.13.10",
     "@babel/preset-env": "^7.13.12",
     "@fullhuman/postcss-purgecss": "^4.0",
+    "purgecss-whitelister": "^2.4.0",
     "autoprefixer": "^10.2.5",
     "postcss": "^8.2.8",
     "postcss-cli": "^8.3.1",

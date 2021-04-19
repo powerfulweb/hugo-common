@@ -12,6 +12,10 @@ formTextareas - for textarea inputs
     {{ range .Params.formFieldsSplit }}
     <div class="c-contact-form__col">
       <div class="c-contact-form__group">
+        {{ $ctx := . }}
+        {{ with .label}}
+        <label for="{{- $ctx.id -}}" class="form-label">{{ . }}{{ if $ctx.requiredDot }}<span class="text-danger"> *</span></span>{{ end }}</label>
+        {{ end }}
         <input id="{{- .id -}}" name="{{- .name -}}" type="{{- .type -}}" class="form-control"
           placeholder="{{- .placeholder -}}" aria-label="{{- .placeholder -}}" {{with .minlength }}
           minlength="{{- . -}}" {{ end }} {{ if .required }} required {{ end }}>
@@ -27,6 +31,10 @@ formTextareas - for textarea inputs
   {{ end }}
   {{ range .Params.formFields }}
   <div class="c-contact-form__group">
+    {{ $ctx := . }}
+    {{ with .label}}
+    <label for="{{- $ctx.id -}}" class="form-label">{{ . }}{{ if $ctx.requiredDot }}<span class="text-danger"> *</span></span>{{ end }}</label>
+    {{ end }}
     <input id="{{- .id -}}" name="{{- .name -}}" type="{{- .type -}}" class="form-control"
       placeholder="{{- .placeholder -}}" aria-label="{{- .placeholder -}}" {{with .minlength }}
       minlength="{{- . -}}" {{ end }} {{ if .required }} required {{ end }}>
@@ -39,6 +47,10 @@ formTextareas - for textarea inputs
   {{ end }}
   {{ range .Params.formTextareas}}
   <div class="c-contact-form__group">
+    {{ $ctx := . }}
+    {{ with .label}}
+    <label for="{{- $ctx.id -}}" class="form-label">{{ . }}{{ if $ctx.requiredDot }}<span class="text-danger"> *</span></span>{{ end }}</label>
+    {{ end }}
     <textarea id="{{- .id -}}" name="{{- .name -}}" class="form-control" placeholder="{{- .placeholder -}}"
       rows="{{- .rows -}}" aria-label="{{ .placeholder }}" {{with .minlength }} minlength="{{ . }}" {{ end }} 
       {{ if .required }} required {{ end }}></textarea>

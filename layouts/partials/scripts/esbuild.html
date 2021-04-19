@@ -1,8 +1,0 @@
-
-{{ $js := resources.Get . | js.Build }}
-{{ $ctx := . }}
-{{ if site.IsServer }}
-{{ $js = resources.Get $ctx | js.Build (dict  "sourceMap" "inline")}}
-{{ end }}
-<script type="text/javascript" src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
-
