@@ -1,11 +1,12 @@
-{{ $optionsToCSS := (dict "outputStyle" "compressed" "enableSourceMap" false "includePaths" (slice "node_modules")) }}
 
-{{ $css := resources.Get . | toCSS $optionsToCSS | postCSS | fingerprint }}
+{{ $opts := (dict "outputStyle" "compressed" "enableSourceMap" false "includePaths" (slice "node_modules")) }}
+
+{{ $css := resources.Get . | toCSS $opts | postCSS | fingerprint }}
 
 {{ $ctx := . }}
 {{ if site.IsServer }}
-{{ $optionsToCSS = (dict "enableSourceMap" true "includePaths" (slice "node_modules")) }}
-{{ $css = resources.Get $ctx | toCSS $optionsToCSS | fingerprint }}
+{{ $opts = (dict "enableSourceMap" true "includePaths" (slice "node_modules")) }}
+{{ $css = resources.Get $ctx | toCSS $opts | fingerprint }}
 {{ end }}
 
 <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}" >

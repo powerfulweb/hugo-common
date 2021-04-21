@@ -1,0 +1,12 @@
+{{ $optionsToCSS := (dict "outputStyle" "compressed" "enableSourceMap" false "includePaths" (slice "node_modules")) }}
+
+{{ $css := resources.Get . | toCSS $optionsToCSS | postCSS | fingerprint | resources.PostProcess}}
+
+{{ $ctx := . }}
+{{ if site.IsServer }}
+{{ $optionsToCSS = (dict "enableSourceMap" true "includePaths" (slice "node_modules")) }}
+{{ $css = resources.Get $ctx | toCSS $optionsToCSS | fingerprint }}
+{{ end }}
+
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}" >
+  
