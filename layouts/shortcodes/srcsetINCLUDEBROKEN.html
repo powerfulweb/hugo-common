@@ -1,0 +1,14 @@
+{{ $ctx := . }}
+{{ $class := " " }}
+{{ with .Get "class" }}
+{{ $class := . }}
+{{ end }}
+{{ $image := "" }}
+{{ with .Get "image" }}
+{{ $image := . }}
+{{ end }}
+{{ if .IsNamedParams }}
+{{/* USE {{ partial "scripts/srcset.html" (dict "page" . "image" "image_name" "class" "class_names with spaces")}} */}}
+{{ partial "scripts/srcset" (dict "page" $ctx "image" $image "class" $class ) }}
+
+{{ end }}

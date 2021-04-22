@@ -3,7 +3,7 @@
 
 {{/* RESIZE RESOURCE IMAGES, THEN CREATE SRCSET TAGS. ENABLE LAZY LOADING NATIVE/JS AND NOSCRIPT SUPPORT */}}
 {{/* USE {{ partial "image/srcset.html" (dict "page" . "image" "image_name" "class" "class_names with spaces")}} 
-{{<srcset img="/media/spf13.jpg" class="**optional**" >}}
+{{<srcset image="/media/spf13.jpg" class="**optional**" >}}
 
 */}}
 {{/* .md file must have resources set up including 
@@ -17,7 +17,7 @@
       slide: true  (for slider image resizing)   */}}
 
 
-{{ $image := .Page.Resources.GetMatch (printf "*%s*" (.Get "img") ) }}
+{{ $image := .Page.Resources.GetMatch (printf "*%s*" (.Get "image") ) }}
 
 {{/* IF SVG IMAGE */}}
 {{ if eq $image.MediaType.SubType "svg" }}
