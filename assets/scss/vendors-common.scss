@@ -11,6 +11,9 @@ img[data-sizes='auto'] {
   display: block;
   width: 100%;
 }
+figure {
+  display: block !important;
+}
 // lazysizes blur up css
 .js .lazyload,
 .lazyloading {

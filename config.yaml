@@ -56,6 +56,7 @@ params:
   #   open: "10am"
   #   close: "7pm"
 
+  #solid icons
   contactEmailIcon: "icons/bootstrap/envelope.svg"
   contactPhoneMobileIcon: "icons/bootstrap/phone.svg"
   contactPhoneIcon: "icons/bootstrap/telephone.svg"
@@ -91,7 +92,7 @@ params:
 
 
 
-  ##PHOTO CONFIG
+  ##PHOTO CONFIG OLD
   landscapePhotoWidths: 
   - 1000
   - 800
@@ -108,19 +109,40 @@ params:
   - 400
   - 300
   - 200
-  slidePhotoWidths:
-  - 600
-  - 500
-  - 400
-  - 300
-  - 200
   smallPhotoWidths:
   - 300
   - 200 
   - 100
   - 76
   - 50
+
+  #SRCSET CONFIG
   lqipWidth: "20x"
+  photoWidthFull:
+  - 535
+  - 696
+  - 936
+  - 1140
+  - 1296
+
+  photoWidthCols:
+  - 178
+  - 279
+  - 372
+  - 468
+  - 558
+  - 648
+
+
+  photoWidthThumb:
+  - 32
+  - 72
+  - 96
+  - 166
+  - 196
+
+
+
   
   
   

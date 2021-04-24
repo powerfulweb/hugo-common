@@ -13,13 +13,49 @@
 
 {{ $image := .page.Resources.GetMatch (printf "*%s*" .image ) }}
 
-{{/* IF SVG IMAGE */}}
-{{ if eq $image.MediaType.SubType "svg" }}
-  {{ $svgContent := $image.Content }}
-  {{ $viewBoxSizes := split (index (split (index (split $svgContent `viewBox=`) 1) `"`) 1) ` ` }}
-  {{ $width := float (index $viewBoxSizes 2) }}
-  {{ $height := float (index $viewBoxSizes 3) }}
+{{ $imageSize := imageConfig ($image.RelPermalink | printf "content/%s" ) }}
+{{ $lqip := $image.Resize .Site.Params.lqipWidth -}}
+{{ $lqipConfig := imageConfig ($image.RelPermalink | printf "content/%s" ) }}
 
+<!-- variables used for img tag -->
+{{ $imgSrc := "" }}
+{{ $imgSrcSet := slice }}
+{{ $widths := ""}}
+
+{{ if $image.Params.widthCols }}
+  {{ $widths = site.Params.photoWidthCols }}
+{{ else if $image.Params.widthThumbs }}
+  {{ $widths = site.Params.photoWidthThumbs }}
+{{ else }}
+  {{ $widths = site.Params.photoWidthFull }}
+{{ end }}
+
+<!-- uses settings from config.toml depending on orientation -->
+  {{/*  {{ $widths = site.Params.landscapePhotoWidths }}
+  {{ if gt $image.Height $image.Width }}
+    {{ $widths = site.Params.portraitPhotoWidths }}
+  {{ end }}
+{{ end }}  */}}
+
+<!--
+  Add URL for each width to $imgSrcSet variable
+  format: "/path/img_1000.jpg 1000w,/path/img_500.jpg 500w"
+  Note: the first URL is used as "fallback" src in $imgSrc.
+-->
+{{ range $widths }}
+  {{ $srcUrl := (printf "%dx" . | $image.Resize).RelPermalink }}
+  {{ if eq $imgSrc "" }}
+    {{ $imgSrc = $srcUrl }}
+  {{ end }}
+  {{ $imgSrcSet = $imgSrcSet | append (printf "%s %dw" $srcUrl .) }}
+{{ end }}
+{{ $imgSrcSet = (delimit $imgSrcSet ",") }}
+
+{{/*  OUTPUT HTML  */}}
+{{- if $image.Params.figure -}}
+<figure class="figure">
+{{- end -}}
+{{ if eq $image.MediaType.SubType "svg" }}
   {{ if $image.Params.eager }} 
     <img alt="{{ $image.Title }}" 
       class="img-fluid {{ $image.Params.class }} {{ $.class }}" 
@@ -29,68 +65,37 @@
       class="lazyload {{ $image.Params.class }} {{ $.class }}" 
       data-sizes="auto"
       data-src= "{{ $image.RelPermalink -}}"  />
-    <noscript>
-      <img alt="{{ $image.Title }}" 
-      class="img-fluid {{ $image.Params.class }} {{ $.class }}" 
-        src="{{ $image.RelPermalink }}" />
-    </noscript>
-  {{- end }}
-
-{{/* IF NOT SVG RESIZE */}}
+  {{ end }}
 {{ else }}
-  {{ $imageSize := imageConfig ($image.RelPermalink | printf "content/%s" ) }}
-  {{ $lqip := $image.Resize .page.Site.Params.lqipWidth -}}
-  {{ $lqipConfig := imageConfig ($image.RelPermalink | printf "content/%s" ) }}
-
-  <!-- variables used for img tag -->
-  {{ $imgSrc := "" }}
-  {{ $imgSrcSet := slice }}
-  {{ $widths := ""}}
-
-  {{ if $image.Params.small }}
-    {{ $widths = site.Params.smallPhotoWidths }}
-  {{ else if $image.Params.slide }}
-    {{ $widths = site.Params.slidePhotoWidths }}
-  {{ else }}
-    <!-- uses settings from config.toml depending on orientation -->
-    {{ $widths = site.Params.landscapePhotoWidths }}
-    {{ if gt $image.Height $image.Width }}
-      {{ $widths = site.Params.portraitPhotoWidths }}
-    {{ end }}
-  {{ end }}
-
-  <!--
-    Add URL for each width to $imgSrcSet variable
-    format: "/path/img_1000.jpg 1000w,/path/img_500.jpg 500w"
-    Note: the first URL is used as "fallback" src in $imgSrc.
-  -->
-  {{ range $widths }}
-    {{ $srcUrl := (printf "%dx" . | $image.Resize).RelPermalink }}
-    {{ if eq $imgSrc "" }}
-      {{ $imgSrc = $srcUrl }}
-    {{ end }}
-    {{ $imgSrcSet = $imgSrcSet | append (printf "%s %dw" $srcUrl .) }}
-  {{ end }}
-  {{ $imgSrcSet = (delimit $imgSrcSet ",") }}
-
   {{ if $image.Params.eager }} 
-    <img alt="{{- $image.Title -}}" 
-      class="lazyload {{ $image.Params.class }} {{ $.class }}" 
-      data-sizes="auto"
-      srcset="{{- $imgSrcSet -}}"
-      src="{{- $image.RelPermalink -}}"
-      loading="eager" />
+  <img alt="{{- $image.Title -}}" 
+    class="lazyload {{ $image.Params.class }} {{ .Get "class" }}" 
+    data-sizes="auto"
+    srcset="{{- $imgSrcSet -}}"
+    src="{{- $image.RelPermalink -}}"
+    loading="eager" />
   {{ else -}}
-    <img alt="{{- $image.Title -}}" 
-      class="lazyload {{ $image.Params.class }} {{ $.class }}" 
-      data-sizes="auto"
-      data-srcset="{{- $imgSrcSet -}}"
-      src="{{- $image.RelPermalink -}}"
-      srcset="data:image/gif;base64,{{- $lqip.Content | base64Encode -}}"  />
+  <img alt="{{- $image.Title -}}" 
+    class="lazyload {{ $image.Params.class }}  {{ .Get "class" }}" 
+    data-sizes="auto"
+    data-srcset="{{- $imgSrcSet -}}"
+    src="{{- $image.RelPermalink -}}"
+    srcset="data:image/gif;base64,{{- $lqip.Content | base64Encode -}}"  />
+  {{ end }}
+  {{ if $image.Params.figure -}}
+  <figcaption class="figure-caption">{{ $image.Title }}</figcaption>
+  </figure>
   {{ end }}
   <noscript>
+    {{- if $image.Params.figure -}}
+    <figure class="figure">
+    {{- end -}}
     <img alt="{{- $image.Title -}}" 
-    class="img-fluid {{ $image.Params.class }} {{ $.class }}" 
+    class="img-fluid {{ $image.Params.class }} {{ .Get "class" }}" 
     src="{{- $image.RelPermalink -}}" />
+    {{ if $image.Params.figure -}}
+    <figcaption class="figure-caption">{{ $image.Title }}</figcaption>
+    </figure>
+    {{ end }}
   </noscript>
 {{ end }}
