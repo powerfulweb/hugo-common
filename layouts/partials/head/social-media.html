@@ -9,13 +9,13 @@ SITE PARAMS
 
 <!-- facebook open graph-->
 {{ template "_internal/opengraph.html" . }}
-<meta property="og:locale" content="{{ site.Language.Lang }}" />
+<meta property="og:locale" content="{{ site.Language.Lang }}">
 {{ with .Site.Params.facebookPublisher }}
-<meta property="article:publisher" content="https://www.facebook.com/{{ . }}" />{{ end }}
+<meta property="article:publisher" content="https://www.facebook.com/{{ . }}">{{ end }}
 {{ with .Site.Params.facebookAuthor }}
-<meta property="article:author" content="https://www.facebook.com/{{ . }}" />{{ end }}
+<meta property="article:author" content="https://www.facebook.com/{{ . }}">{{ end }}
 {{ with .Site.Params.facebookAppId }}
-<meta propterty="fb:app_id" content="{{ . }}" />{{ end }}
+<meta propterty="fb:app_id" content="{{ . }}">{{ end }}
 {{ if .IsTranslated }}
 	{{ range .Translations }}
 	  <meta property="og:locale:alternate" content="{{ .Language.Lang }}">
