@@ -1,3 +1,11 @@
+{{/*  
+SITE PARAMS  
+.Site.Params.schemaType "Organization" or "Person"
+
+.Site.Params.siteLinksSearchBox
+  
+  */}}
+
 {{ if .IsHome -}}
   {{ if eq .Site.Params.schemaType "Organization" -}}
     <script type="application/ld+json">

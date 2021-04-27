@@ -1,3 +1,9 @@
+{{/* 
+SITE PARAMS
+.Site.Params.titleAddition = ""
+.Site.Params.titleSeparator ="-"
+  */}}
+
 <head>
   {{ if .IsHome -}}
   <title>{{ .Site.Title }} {{ with .Site.Params.titleAddition }} {{ $.Site.Params.titleSeparator }} {{ . }} {{ end }}
