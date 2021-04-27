@@ -1,8 +1,10 @@
 {{/*  
 SITE PARAMS  
 .Site.Params.schemaType "Organization" or "Person"
-.Site.Params.schemaLogo = "relative file path without initial slash (goes after abs url of site)"
+.Site.Params.images: [] #first image is chosen
 .Site.Params.siteLinksSearchBox
+
+
 
 optional
         "{{ .Site.Params.twitterURL | safeURL }}",
@@ -14,6 +16,8 @@ optional
 {{ if eq .Section .Site.Params.schemaSection -}}
   */}}
 
+
+
 {{ if .IsHome -}}
   {{ with .Site.Params.schemaType -}}
     <script type="application/ld+json">
@@ -23,7 +27,10 @@ optional
       "url": "{{ "/" | absURL }}",
       "name": "{{ .Site.Title }}",
       {{ if eq .Site.Params.schemaType "Organization" -}}
-      "logo": "{{ "/" | absURL }}{{ .Site.Params.schemaLogo }}",
+      {{ with .Site.Params.images }}
+        {{ $schemaLogo := index . 0 }}
+        "logo": "{{ "/" | absURL }}{{ $schemaLogo }}",
+      {{ end }}
       {{ end }}
       "sameAs": [
         "{{ .Site.Params.twitterURL | safeURL }}",
@@ -71,11 +78,14 @@ optional
         "@type": "{{ .Site.Params.schemaType }}",
         "name": "{{ .Site.Title }}",
         {{ if eq .Site.Params.schemaType "Organization" -}}
-        "logo": {
-          "@type": "ImageObject",
-          "url": "{{ "/" | absURL }}{{ .Site.Params.schemaLogo }}"
-        }
-        {{ end -}}
+        {{ with .Site.Params.images }}
+          {{ $schemaLogo := index . 0 }}
+          "logo": {
+            "@type": "ImageObject",
+            "url": "{{ "/" | absURL }}{{ $schemaLogo }}"
+          }
+        {{ end }}
+        {{ end }}
       },
       "description": "{{ .Description }}"
     }

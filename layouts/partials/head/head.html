@@ -1,7 +1,9 @@
 {{/* 
 SITE PARAMS
-.Site.Params.titleAddition = ""
-.Site.Params.titleSeparator ="-"
+.Site.Params.titleAddition:  ""
+.Site.Params.titleSeparator: "-"
+SITE CONFIG 
+googleAnalytics:
   */}}
 
 <head>
@@ -29,4 +31,6 @@ SITE PARAMS
   {{ if .Site.GoogleAnalytics}}
   {{ template "_internal/google_analytics_async.html" . }}
   {{ end }}
+  <!-- set scratch for body classes -->
+  {{ partial "head/scratch.html" }}
 </head>
