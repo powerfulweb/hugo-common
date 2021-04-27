@@ -1,0 +1,17 @@
+{{ if eq .Kind "home" -}}
+{{ .Scratch.Set "class" "page page--single page--home" -}}
+{{ else if eq .Kind "404" -}}
+{{ .Scratch.Set "class" "page page--singe page--404" -}}
+{{ else if eq .Kind "page" -}}
+  {{ if eq .Type "page" -}}
+  {{ .Scratch.Set "class" (print "page page--single" ) -}}
+  {{ else }}
+  {{ .Scratch.Set "class" (print "page page--single page--" .Type ) -}}
+  {{ end }}
+{{ else if eq .Kind "section" -}}
+{{ .Scratch.Set "class" (print "page page--list page--section page--" .Type ) -}}
+{{ else if eq .Kind "taxonomy" -}}
+{{ .Scratch.Set "class" (print "page page--list page--taxonomy page--" .Type ) -}}
+{{ else if eq .Kind "taxonomyTerm" -}}
+{{ .Scratch.Set "class" (print "page page--list page--term page--" .Type ) -}}
+{{ end -}}
