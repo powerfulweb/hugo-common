@@ -1,6 +1,3 @@
-
-
-
 {{/* RESIZE RESOURCE IMAGES, THEN CREATE SRCSET TAGS. ENABLE LAZY LOADING NATIVE/JS AND NOSCRIPT SUPPORT */}}
 {{/* USE {{ partial "image/srcset.html" (dict "page" . "image" "image_name")}}  - folder and file extension not required
 {{<srcset image="spf13">}} - folder or extension not required
@@ -20,9 +17,9 @@ resources:
       # widthThumbs: true (for thumbnail and 6 col layer)
       */}}
 
-{{ $image := .Page.Resources.GetMatch (printf "**%s*" (.Get 0) ) }}
+{{ $image := .Page.Resources.GetMatch (printf "**%s**" (.Get 0) ) }}
 {{ $imageSize := imageConfig ($image.RelPermalink | printf "content/%s" ) }}
-{{ $lqip := $image.Resize .Site.Params.lqipWidth -}}
+{{ $lqip := $image.Resize "20x" }}
 {{ $lqipConfig := imageConfig ($image.RelPermalink | printf "content/%s" ) }}
 
 <!-- variables used for img tag -->
@@ -66,25 +63,25 @@ resources:
 {{ if eq $image.MediaType.SubType "svg" }}
   {{ if $image.Params.eager }} 
     <img alt="{{ $image.Title }}" 
-      class="img-fluid {{ $image.Params.class }} {{ $.class }}" 
+      class="img-fluid {{ $image.Params.class }}" 
       src="{{ $image.RelPermalink }}" />
   {{ else -}}
     <img alt="{{- $image.Title -}}" 
-      class="lazyload {{ $image.Params.class }} {{ $.class }}" 
+      class="lazyload {{ $image.Params.class }}" 
       data-sizes="auto"
       data-src= "{{ $image.RelPermalink -}}"  />
   {{ end }}
 {{ else }}
   {{ if $image.Params.eager }} 
   <img alt="{{- $image.Title -}}" 
-    class="lazyload {{ $image.Params.class }} {{ .Get "class" }}" 
+    class="lazyload {{ $image.Params.class }}" 
     data-sizes="auto"
     srcset="{{- $imgSrcSet -}}"
     src="{{- $image.RelPermalink -}}"
     loading="eager" />
   {{ else -}}
   <img alt="{{- $image.Title -}}" 
-    class="lazyload {{ $image.Params.class }}  {{ .Get "class" }}" 
+    class="lazyload {{ $image.Params.class }}" 
     data-sizes="auto"
     data-srcset="{{- $imgSrcSet -}}"
     src="{{- $image.RelPermalink -}}"
@@ -99,7 +96,7 @@ resources:
     <figure class="figure">
     {{- end -}}
     <img alt="{{- $image.Title -}}" 
-    class="img-fluid {{ $image.Params.class }} {{ .Get "class" }}" 
+    class="img-fluid {{ $image.Params.class }}" 
     src="{{- $image.RelPermalink -}}" />
     {{ if $image.Params.figure -}}
     <figcaption class="figure-caption">{{ $image.Title }}</figcaption>

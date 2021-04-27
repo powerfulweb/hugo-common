@@ -1,42 +1,36 @@
 {{/*  
 SITE PARAMS  
 .Site.Params.schemaType "Organization" or "Person"
-
+.Site.Params.schemaLogo = "relative file path without initial slash (goes after abs url of site)"
 .Site.Params.siteLinksSearchBox
+
+optional
+        "{{ .Site.Params.twitterURL | safeURL }}",
+        "{{ .Site.Params.linkedInURL | safeURL }}",
+        "{{ .Site.Params.gGitHubURL | safeURL }}",
+        "{{ .Site.Params.facebookURL | safeURL }}"
   
+
+{{ if eq .Section .Site.Params.schemaSection -}}
   */}}
 
 {{ if .IsHome -}}
-  {{ if eq .Site.Params.schemaType "Organization" -}}
+  {{ with .Site.Params.schemaType -}}
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Organization",
+      "@type": "{{ . }}",
       "url": "{{ "/" | absURL }}",
       "name": "{{ .Site.Title }}",
+      {{ if eq .Site.Params.schemaType "Organization" -}}
       "logo": "{{ "/" | absURL }}{{ .Site.Params.schemaLogo }}",
+      {{ end }}
       "sameAs": [
         "{{ .Site.Params.twitterURL | safeURL }}",
         "{{ .Site.Params.linkedInURL | safeURL }}",
         "{{ .Site.Params.gGitHubURL | safeURL }}",
         "{{ .Site.Params.facebookURL | safeURL }}"
       ]
-    }
-    </script>
-  {{ end -}}
-  {{ if eq .Site.Params.schemaType "Person" -}}
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "url": "{{ "/" | absURL }}",
-      "name": "{{ .Site.Params.title }}",
-      "sameAs": [
-      "{{ .Site.Params.twitterURL | safeURL }}",
-      "{{ .Site.Params.linkedInURL | safeURL }}",
-      "{{ .Site.Params.gGitHubURL | safeURL }}",
-      "{{ .Site.Params.facebookURL | safeURL }}"
-    ]
     }
     </script>
   {{ end -}}

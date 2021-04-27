@@ -1,13 +1,14 @@
 <!-- facebook open graph-->
 {{ template "_internal/opengraph.html" . }}
-<meta property="og:locale" content="{{ .Site.Params.ogLocale }}">
-{{/* ADD ALTERNATE LOCALE RANGE */}}
-<meta property="article:publisher" content="https://www.facebook.com/{{ .Site.Params.facebookPublisher }}">
-<meta property="article:author" content="https://www.facebook.com/{{ .Site.Params.facebookAuthor }}">
+<meta property="og:locale" content="{{ site.Language.Lang }}">
+{{ with .Site.Params.facebookPublisher }}
+<meta property="article:publisher" content="https://www.facebook.com/{{ . }}">{{ end }}
+{{ with .Site.Params.facebookAuthor }}
+<meta property="article:author" content="https://www.facebook.com/{{ . }}">{{ end }}
 <!-- twitter card -->
-
-
 {{ template "_internal/twitter_cards.html" . }}
-<meta name="twitter:site" content="{{ .Site.Params.twitterSite }}">
-<meta name="twitter:creator" content="{{ .Site.Params.twitterCreator }}">
+{{ with .Site.Params.twitterSite }}
+<meta name="twitter:site" content="{{ . }}">{{ end }}
+{{ with .Site.Params.twitterCreator }}
+<meta name="twitter:creator" content="{{ . }}">{{ end }}
 <meta name="twitter:url" content="{{ .Permalink }}">

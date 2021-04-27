@@ -117,7 +117,6 @@ params:
   - 50
 
   #SRCSET CONFIG
-  lqipWidth: "20x"
   photoWidthFull:
   - 535
   - 696
