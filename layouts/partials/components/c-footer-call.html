@@ -1,0 +1,31 @@
+{{/* SITE PARAMS 
+##################### 
+### MOBILE FOOTER ###
+##################### 
+footerPhoneIcon: "icons/bootstrap/phone.svg"
+footerPhoneURL: "tel:+6104XXXXXXXX"
+footerPhoneText "xxxx xxx xxx"
+
+BS5 - CUSTOM MAPS
+$custom-colors: (
+  "bg": $body-bg,
+  );  
+$theme-colors: map-merge($theme-colors, $custom-colors);
+
+
+
+*/}}
+<!-- mobile footer -->
+
+<div class="container-fluid d-block d-sm-none fixed-bottom" id="footer-mobile">
+  <a href="{{- .Site.Params.footerphoneURL -}}" class="u-link--no-decoration">
+    <div class="row bg-success">
+      <div class="col text-bg h2 d-flex justify-content-center my-2">
+        <div class="o-svg o-svg--no-margin m-2">
+          {{ partial "scripts/svg-inline.html" .Site.Params.footerPhoneIcon }}
+        </div>
+        <div class="m-0 pt-1">{{- .Site.Params.footerPhoneText -}}</div>
+      </div>
+    </div>
+  </a>
+</div>

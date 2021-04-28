@@ -1,4 +1,7 @@
 module:
+  hugoVersion:
+    extended: true
+    min: "0.82" #keep increasing as hugo is upgraded locally
   imports:
     - path: github.com/twbs/icons
       ignoreConfig: true

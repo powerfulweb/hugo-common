@@ -2,7 +2,7 @@
   @extend .container-fluid, .d-block, .d-sm-none, .fixed-bottom;
 
   &__href {
-    @extend .u-link-no-decoration;
+    @extend .u-link--no-decoration;
   }
 
   &__row {

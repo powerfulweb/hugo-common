@@ -1,42 +1,43 @@
+{{/* 
+
+{{ partial "embed/c-facebookEmbed.html" . }}
+##ADD TO SITE PARAMS
+##FACEBOOKEmbed EMBED
+## SEE https://developers.facebook.com/docs/plugins/page-plugin/
+##language set through .Site.LanguageCode
+facebookEmbedName: "Saint Peter&#039;s Anglican Church, Townsville" 
+facebookEmbedUrl: https://www.facebook.com/saintpeterstownsville/ 
+facebookEmbedTabs: "timeline"   # tabs to render -  timeline,events,messages (comma seperated) (timeline)
+facebookEmbedHideCover: false # (false)
+facebookEmbedWidth: "" # #min 180px max 500px (340)
+facebookEmbedHeight: "800" # The pixel height of the plugin. Min. is 70 (500)
+facebookEmbedSmallHeader: false # Use the small header instead (FALSE)
+facebookEmbedAdaptiveWidth: true   Try to fit inside the container width  (TRUE)
+facebookEmbedHideCover: false #hide cover photo in header (FALSE)
+facebookEmbedFriendsFaces: true #Show profile photos when friends like this  (TRUE)
+facebookEmbedHideCTA: false #Hide the custom call to action button (if available) (FALSE)
+facebookEmbedLazy: false # loading="lazy" iframe (FALSE)
+
+*/}}
+
 <script async defer crossorigin="anonymous" 
 src="https://connect.facebook.net/{{- .Site.LanguageCode -}}/sdk.js#xfbml=1&version=v10.0" nonce="XgByfE5D">
 </script>
 
 <div class="fb-page" 
-data-href="{{ .Site.Params.facebookURL }}" 
-data-tabs="{{ .Site.Params.facebookTabs }}"
-{{ with .Site.Params.facebookWidth }} data-width="{{ . }}" {{ end }}
-{{ with .Site.Params.facebookHeight }} data-height="{{ . }}" {{ end }}
-{{ with .Site.Params.facebookSmallHeader }} data-small-header="{{ . }}" {{ end }}
-{{ with .Site.Params.facebookAdaptiveWidth }} data-adapt-container-width="{{ . }}" {{ end }}
-{{ with .Site.Params.facebookHideCover}} data-hide-cover="{{ . }}" {{ end }}
-{{ with .Site.Params.facebookFriendsFaces }} data-show-facepile="{{ . }}" {{ end }}
-{{ with .Site.Params.facebookLazy }} data-lazy="{{ . }}" {{ end }}
-{{ with .Site.Params.facebookHideCTA }} data-hide-cta="{{ . }}" {{ end }}>
-<blockquote cite="{{ .Site.Params.facebookURL }}" class="fb-xfbml-parse-ignore">
-  <a href="{{ .Site.Params.facebookURL }}">{{ .Site.Params.facebookAuthor }}</a>
+data-href="{{ .Site.Params.facebookEmbedURL }}" 
+data-tabs="{{ .Site.Params.facebookEmbedTabs }}"
+{{ with .Site.Params.facebookEmbedWidth }} data-width="{{ . }}" {{ end }}
+{{ with .Site.Params.facebookEmbedHeight }} data-height="{{ . }}" {{ end }}
+{{ with .Site.Params.facebookEmbedSmallHeader }} data-small-header="{{ . }}" {{ end }}
+{{ with .Site.Params.facebookEmbedAdaptiveWidth }} data-adapt-container-width="{{ . }}" {{ end }}
+{{ with .Site.Params.facebookEmbedHideCover}} data-hide-cover="{{ . }}" {{ end }}
+{{ with .Site.Params.facebookEmbedFriendsFaces }} data-show-facepile="{{ . }}" {{ end }}
+{{ with .Site.Params.facebookEmbedLazy }} data-lazy="{{ . }}" {{ end }}
+{{ with .Site.Params.facebookEmbedHideCTA }} data-hide-cta="{{ . }}" {{ end }}>
+<blockquote cite="{{ .Site.Params.facebookEmbedURL }}" class="fb-xfbml-parse-ignore">
+  <a href="{{ .Site.Params.facebookEmbedURL }}">{{ .Site.Params.facebookEmbedName }}</a>
 </blockquote>
 </div>
 
 
-{{/* 
-
-{{ partial "embed/c-facebook.html" . }}
-##ADD TO SITE PARAMS
-##FACEBOOK EMBED
-## SEE https://developers.facebook.com/docs/plugins/page-plugin/
-##language set through .Site.LanguageCode
-##facebookAuthor: "Saint Peter&#039;s Anglican Church, Townsville" ##SHOULD ALREADY BE IN PARAMS
-##facebookUrl: https://www.facebook.com/saintpeterstownsville/ ##SHOULD ALREADY BE IN PARAMS
-facebookTabs: "timeline"   # tabs to render -  timeline,events,messages (comma seperated) (timeline)
-facebookHideCover: false # (false)
-facebookWidth: "" # #min 180px max 500px (340)
-facebookHeight: "800" # The pixel height of the plugin. Min. is 70 (500)
-facebookSmallHeader: false # Use the small header instead (FALSE)
-facebookAdaptiveWidth: true   Try to fit inside the container width  (TRUE)
-facebookHideCover: false #hide cover photo in header (FALSE)
-facebookFriendsFaces: true #Show profile photos when friends like this  (TRUE)
-facebookHideCTA: false #Hide the custom call to action button (if available) (FALSE)
-facebookLazy: false # loading="lazy" iframe (FALSE)
-
-*/}}

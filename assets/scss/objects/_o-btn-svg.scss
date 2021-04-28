@@ -1,3 +1,22 @@
+// sizes for o-btn-svg
+$svg-btn-padding-sm: .33rem !default; // size / 3
+$svg-btn-icon-size-sm: 1rem !default;  
+$svg-btn-border-sm: 2px !default;
+
+$svg-btn-padding: .5rem !default;    // size / 3
+$svg-btn-icon-size: 1.5rem !default;  
+$svg-btn-border: 2.5px !default;
+
+$svg-btn-padding-lg: .66rem !default; // size / 3
+$svg-btn-icon-size-lg: 2rem !default;  
+$svg-btn-border-lg: 3px !default;
+
+// for back to top button
+$svg-btn-padding-up: 0rem !default; // size / 3
+$svg-btn-icon-size-up: 3rem !default; 
+$svg-btn-border-up: 3px !default;
+
+
 //add square (radius option too)
 
 //mixins
@@ -88,14 +107,12 @@
   @include transition($btn-transition);
   //display: inline-block;
   background-color: transparent;
-  //border: $svg-btn-border-width solid transparent;
   border-color: transparent;
   border-radius: 50%;
   border-style: solid;
   border-width: $svg-btn-border;
 
-  color: $primary; //default
-  fill: $primary;
+  color: inherit; //color is inherited unless set with o-svg--$color
 
   padding: $svg-btn-padding;
 
@@ -125,12 +142,10 @@
     width: $svg-btn-icon-size;   //DEFAULT ONLY
   }
 
-  
-
   &--sm {
     @include svg-button-size($svg-btn-padding-sm, $svg-btn-icon-size-sm, $svg-btn-border-sm);
   }
-
+  //md is default size
   &--lg {
     @include svg-button-size($svg-btn-padding-lg, $svg-btn-icon-size-lg, $svg-btn-border-lg);
   }

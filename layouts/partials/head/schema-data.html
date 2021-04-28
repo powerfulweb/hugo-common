@@ -25,18 +25,18 @@ optional
       "@context": "https://schema.org",
       "@type": "{{ . }}",
       "url": "{{ "/" | absURL }}",
-      "name": "{{ .Site.Title }}",
-      {{ if eq .Site.Params.schemaType "Organization" -}}
-      {{ with .Site.Params.images }}
+      "name": "{{ site.Title }}",
+      {{ if eq site.Params.schemaType "Organization" -}}
+      {{ with site.Params.images }}
         {{ $schemaLogo := index . 0 }}
         "logo": "{{ "/" | absURL }}{{ $schemaLogo }}",
       {{ end }}
       {{ end }}
       "sameAs": [
-        "{{ .Site.Params.twitterURL | safeURL }}",
-        "{{ .Site.Params.linkedInURL | safeURL }}",
-        "{{ .Site.Params.gGitHubURL | safeURL }}",
-        "{{ .Site.Params.facebookURL | safeURL }}"
+        "{{ site.Params.twitterURL | safeURL }}",
+        "{{ site.Params.linkedInURL | safeURL }}",
+        "{{ site.Params.gGitHubURL | safeURL }}",
+        "{{ site.Params.facebookURL | safeURL }}"
       ]
     }
     </script>
@@ -77,8 +77,8 @@ optional
       "publisher": {
         "@type": "{{ .Site.Params.schemaType }}",
         "name": "{{ .Site.Title }}",
-        {{ if eq .Site.Params.schemaType "Organization" -}}
-        {{ with .Site.Params.images }}
+        {{ if eq site.Params.schemaType "Organization" -}}
+        {{ with site.Params.images }}
           {{ $schemaLogo := index . 0 }}
           "logo": {
             "@type": "ImageObject",

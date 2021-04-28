@@ -1,3 +1,8 @@
+//SIZE FOR o-svg
+$svg-icon-size-sm: $svg-btn-icon-size-sm !default;  
+$svg-icon-size: $svg-btn-icon-size !default;  
+$svg-icon-size-lg: $svg-btn-icon-size-lg !default;  
+
 //display SVG on its own
 @mixin svg-size($size) {
   svg { 
@@ -15,15 +20,16 @@
 
 .o-svg {
    // set size with o-svg--$spacer (custom bs utility)
-  fill: $primary;
-  color: $primary;
+  //fill: $primary;
+  color: inherit;  //color is inherited unless set with o-svg--$color
   //display: block;
   background: transparent;
   @extend .d-inline-flex;
   margin: $btn-padding-y $btn-padding-x;
   svg {
-    height: 1.5rem; 
-    width: 1.5rem; //DEFAULT ONLY
+    height: $svg-icon-size; 
+    width: $svg-icon-size; //DEFAULT ONLY
+    fill: currentColor;  //inherits from o-svg
   }
   &--sm {
     @include svg-size($svg-icon-size-sm);

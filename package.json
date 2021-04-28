@@ -20,6 +20,7 @@
   "url": "git+https://github.com/powerfulwebdesign/hugoCommon.git"
  },
  "scripts": {
+ "vendor": "hugo mod vendor"
 
  },
  "version": "0.0.4"
