@@ -3,13 +3,9 @@
  "bugs": {
   "url": "https://github.com/powerfulwebdesign/hugoCommon/issues"
  },
- 
- "dependencies": {
-
- },
  "description": "modules for hugo",
  "devDependencies": {
-
+  "standard-version": "^9.2.0"
  },
  "homepage": "https://github.com/powerfulwebdesign/hugoCommon#readme",
  "license": "ISC",
@@ -20,8 +16,10 @@
   "url": "git+https://github.com/powerfulwebdesign/hugoCommon.git"
  },
  "scripts": {
- "vendor": "hugo mod vendor"
-
+  "vendor": "hugo mod vendor",
+  "release": "standard-version",
+  "release:dry-run": "standard-version --dry-run",
+  "git:push": "git push --follow-tags origin main"
  },
- "version": "0.0.4"
+ "version": "0.0.5"
 }
