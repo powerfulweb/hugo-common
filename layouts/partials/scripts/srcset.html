@@ -20,7 +20,6 @@ resources:
 {{ $image := .page.Resources.GetMatch (printf "**%s**" .image ) }}
 
 {{ $imageSize := imageConfig ($image.RelPermalink | printf "content/%s" ) }}
-{{/* $lqip := $image.Resize .Site.Params.lqipWidth -*/}}
 {{ $lqip := $image.Resize "20x" -}}
 {{ $lqipConfig := imageConfig ($image.RelPermalink | printf "content/%s" ) }}
 
@@ -36,13 +35,6 @@ resources:
 {{ else }}
   {{ $widths = site.Params.photoWidthFull }}
 {{ end }}
-
-<!-- uses settings from config.toml depending on orientation -->
-  {{/*  {{ $widths = site.Params.landscapePhotoWidths }}
-  {{ if gt $image.Height $image.Width }}
-    {{ $widths = site.Params.portraitPhotoWidths }}
-  {{ end }}
-{{ end }}  */}}
 
 <!--
   Add URL for each width to $imgSrcSet variable
@@ -60,49 +52,36 @@ resources:
 
 {{/*  OUTPUT HTML  */}}
 {{- if $image.Params.figure -}}
-<figure class="figure">
+  <figure class="figure">
 {{- end -}}
 {{ if eq $image.MediaType.SubType "svg" }}
-  {{ if $image.Params.eager }} 
     <img alt="{{ $image.Title }}" 
       class="img-fluid {{ $image.Params.class }}" 
       src="{{ $image.RelPermalink }}" />
+{{ else }}
+  {{ if $image.Params.eager }} 
+    <img alt="{{- $image.Title -}}" 
+      class="lazyload {{ $image.Params.class }}" 
+      data-sizes="auto"
+      srcset="{{- $imgSrcSet -}}"
+      src="{{- $image.RelPermalink -}}"
+      loading="eager" />
   {{ else -}}
     <img alt="{{- $image.Title -}}" 
       class="lazyload {{ $image.Params.class }}" 
       data-sizes="auto"
-      data-src= "{{ $image.RelPermalink -}}"  />
-  {{ end }}
-{{ else }}
-  {{ if $image.Params.eager }} 
-  <img alt="{{- $image.Title -}}" 
-    class="lazyload {{ $image.Params.class }}" 
-    data-sizes="auto"
-    srcset="{{- $imgSrcSet -}}"
-    src="{{- $image.RelPermalink -}}"
-    loading="eager" />
-  {{ else -}}
-  <img alt="{{- $image.Title -}}" 
-    class="lazyload {{ $image.Params.class }}" 
-    data-sizes="auto"
-    data-srcset="{{- $imgSrcSet -}}"
-    src="{{- $image.RelPermalink -}}"
-    srcset="data:image/gif;base64,{{- $lqip.Content | base64Encode -}}"  />
-  {{ end }}
-  {{ if $image.Params.figure -}}
-  <figcaption class="figure-caption">{{ $image.Title }}</figcaption>
-  </figure>
+      data-srcset="{{- $imgSrcSet -}}"
+      src="{{- $image.RelPermalink -}}"
+      srcset="data:image/gif;base64,{{- $lqip.Content | base64Encode -}}"  />
   {{ end }}
   <noscript>
-    {{- if $image.Params.figure -}}
-    <figure class="figure">
-    {{- end -}}
     <img alt="{{- $image.Title -}}" 
     class="img-fluid {{ $image.Params.class }}" 
     src="{{- $image.RelPermalink -}}" />
-    {{ if $image.Params.figure -}}
-    <figcaption class="figure-caption">{{ $image.Title }}</figcaption>
-    </figure>
-    {{ end }}
   </noscript>
 {{ end }}
+{{ if $image.Params.figure -}}
+<figcaption class="figure-caption">{{ $image.Title }}</figcaption>
+</figure>
+{{ end }}
+
