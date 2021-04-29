@@ -56,51 +56,37 @@ resources:
 {{ end }}
 {{ $imgSrcSet = (delimit $imgSrcSet ",") }}
 
-{{/*  OUTPUT HTML  */}}
+<!-- output html -->
 {{- if $image.Params.figure -}}
-<figure class="figure">
+  <figure class="figure">
 {{- end -}}
 {{ if eq $image.MediaType.SubType "svg" }}
-  {{ if $image.Params.eager }} 
     <img alt="{{ $image.Title }}" 
       class="img-fluid {{ $image.Params.class }}" 
       src="{{ $image.RelPermalink }}" />
+{{ else }}
+  {{ if $image.Params.eager }} 
+    <img alt="{{- $image.Title -}}" 
+      class="lazyload {{ $image.Params.class }}" 
+      data-sizes="auto"
+      srcset="{{- $imgSrcSet -}}"
+      src="{{- $image.RelPermalink -}}"
+      loading="eager" />
   {{ else -}}
     <img alt="{{- $image.Title -}}" 
       class="lazyload {{ $image.Params.class }}" 
       data-sizes="auto"
-      data-src= "{{ $image.RelPermalink -}}"  />
-  {{ end }}
-{{ else }}
-  {{ if $image.Params.eager }} 
-  <img alt="{{- $image.Title -}}" 
-    class="lazyload {{ $image.Params.class }}" 
-    data-sizes="auto"
-    srcset="{{- $imgSrcSet -}}"
-    src="{{- $image.RelPermalink -}}"
-    loading="eager" />
-  {{ else -}}
-  <img alt="{{- $image.Title -}}" 
-    class="lazyload {{ $image.Params.class }}" 
-    data-sizes="auto"
-    data-srcset="{{- $imgSrcSet -}}"
-    src="{{- $image.RelPermalink -}}"
-    srcset="data:image/gif;base64,{{- $lqip.Content | base64Encode -}}"  />
-  {{ end }}
-  {{ if $image.Params.figure -}}
-  <figcaption class="figure-caption">{{ $image.Title }}</figcaption>
-  </figure>
+      data-srcset="{{- $imgSrcSet -}}"
+      src="{{- $image.RelPermalink -}}"
+      srcset="data:image/gif;base64,{{- $lqip.Content | base64Encode -}}"  />
   {{ end }}
   <noscript>
-    {{- if $image.Params.figure -}}
-    <figure class="figure">
-    {{- end -}}
     <img alt="{{- $image.Title -}}" 
     class="img-fluid {{ $image.Params.class }}" 
     src="{{- $image.RelPermalink -}}" />
-    {{ if $image.Params.figure -}}
-    <figcaption class="figure-caption">{{ $image.Title }}</figcaption>
-    </figure>
-    {{ end }}
   </noscript>
+{{ end }}
+{{ if $image.Params.figure -}}
+<figcaption class="figure-caption">{{ $image.Title }}</figcaption>
+</figure>
 {{ end }}
