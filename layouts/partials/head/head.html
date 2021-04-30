@@ -8,7 +8,7 @@ googleAnalytics:
 
 <head>
   {{ if .IsHome -}}
-  <title>{{ .Site.Title }} {{ with .Site.Params.titleAddition }} {{ $.Site.Params.titleSeparator }} {{ . }} {{ end }}
+  <title>{{- .Site.Title -}}{{- with .Site.Params.titleAddition -}} {{- $.Site.Params.titleSeparator -}} {{- . -}}{{- end -}}
   </title>
   {{ else -}}
   <title>{{ .Title }} {{ .Site.Params.titleSeparator }} {{ .Site.Title }}</title>
@@ -28,7 +28,7 @@ googleAnalytics:
   <!-- preloading -->
   {{ block "head/resource-hints" . }}{{ partial "head/resource-hints.html" . }}{{ end }}
   <!-- google analytics -->
-  {{ template "_internal/google_analytics_async.html" . }}
+  {{ template "_internal/google_analytics.html" . }}
   <!-- set scratch for body classes -->
   {{ partial "head/scratch.html" }}
 </head>
