@@ -3,6 +3,7 @@
  "bugs": {
   "url": "https://github.com/powerfulwebdesign/hugoCommon/issues"
  },
+ "version": "0.0.8",
  "description": "modules for hugo",
  "devDependencies": {
   "standard-version": "^9.2.0"
@@ -20,6 +21,5 @@
   "release": "standard-version",
   "release:dry-run": "standard-version --dry-run",
   "git:push": "git push --follow-tags origin main"
- },
- "version": "0.0.7"
+ }
 }
