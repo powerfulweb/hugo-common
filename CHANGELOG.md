@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.2](https://github.com/powerfulwebdesign/hugoCommon/compare/v0.0.8...v1.0.2) (2021-05-01)
+
+
+### Bug Fixes
+
+* added o-svg instructions ([c3054a7](https://github.com/powerfulwebdesign/hugoCommon/commit/c3054a76aaca6f3038de21fd43ea9df199aeed41))
+* added prettierrc ([efcd582](https://github.com/powerfulwebdesign/hugoCommon/commit/efcd5827a8afa01c1d4b39108a9c3b73d3e16852))
+* changed button to a ([9be5625](https://github.com/powerfulwebdesign/hugoCommon/commit/9be5625b0267dc0212f52bbefbf4d99b341170f6))
+* conditional image processing if not svg ([861c330](https://github.com/powerfulwebdesign/hugoCommon/commit/861c330f47ed6ae73f81a4aa3b39fa4489bef72d))
+
 ### [1.0.1](https://github.com/powerfulwebdesign/hugoCommon/compare/v0.0.8...v1.0.1) (2021-05-01)
 
 
