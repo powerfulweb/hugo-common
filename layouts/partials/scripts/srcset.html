@@ -19,13 +19,18 @@ resources:
 
 {{ $image := .page.Resources.GetMatch (printf "**%s**" .image ) }}
 
+{{/*  define variables inside if */}}
+{{ $imgSrcSet := ""}}
+{{ $lqip := "" -}}
+{{/*  disable image processing for svg  */}}
+{{ if ne $image.MediaType.SubType "svg" }}
 {{ $imageSize := imageConfig ($image.RelPermalink | printf "content/%s" ) }}
-{{ $lqip := $image.Resize "20x" -}}
+{{ $lqip = $image.Resize "20x" -}}
 {{ $lqipConfig := imageConfig ($image.RelPermalink | printf "content/%s" ) }}
 
 <!-- variables used for img tag -->
 {{ $imgSrc := "" }}
-{{ $imgSrcSet := slice }}
+{{ $imgSrcSet = slice }}
 {{ $widths := ""}}
 
 {{ if $image.Params.widthCols }}
@@ -49,6 +54,7 @@ resources:
   {{ $imgSrcSet = $imgSrcSet | append (printf "%s %dw" $srcUrl .) }}
 {{ end }}
 {{ $imgSrcSet = (delimit $imgSrcSet ",") }}
+{{ end }}
 
 {{/*  OUTPUT HTML  */}}
 {{- if $image.Params.figure -}}

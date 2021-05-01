@@ -18,13 +18,19 @@ resources:
       */}}
 
 {{ $image := .Page.Resources.GetMatch (printf "**%s**" (.Get 0) ) }}
+
+{{/*  define variables inside if */}}
+{{ $imgSrcSet := ""}}
+{{ $lqip := "" -}}
+{{/*  disable image processing for svg  */}}
+{{ if ne $image.MediaType.SubType "svg" }}
 {{ $imageSize := imageConfig ($image.RelPermalink | printf "content/%s" ) }}
-{{ $lqip := $image.Resize "20x" }}
+{{ $lqip = $image.Resize "20x" -}}
 {{ $lqipConfig := imageConfig ($image.RelPermalink | printf "content/%s" ) }}
 
 <!-- variables used for img tag -->
 {{ $imgSrc := "" }}
-{{ $imgSrcSet := slice }}
+{{ $imgSrcSet = slice }}
 {{ $widths := ""}}
 
 {{ if $image.Params.widthCols }}
@@ -34,13 +40,6 @@ resources:
 {{ else }}
   {{ $widths = site.Params.photoWidthFull }}
 {{ end }}
-
-<!-- uses settings from config.toml depending on orientation -->
-  {{/*  {{ $widths = site.Params.landscapePhotoWidths }}
-  {{ if gt $image.Height $image.Width }}
-    {{ $widths = site.Params.portraitPhotoWidths }}
-  {{ end }}
-{{ end }}  */}}
 
 <!--
   Add URL for each width to $imgSrcSet variable
@@ -55,8 +54,9 @@ resources:
   {{ $imgSrcSet = $imgSrcSet | append (printf "%s %dw" $srcUrl .) }}
 {{ end }}
 {{ $imgSrcSet = (delimit $imgSrcSet ",") }}
+{{ end }}
 
-<!-- output html -->
+{{/*  OUTPUT HTML  */}}
 {{- if $image.Params.figure -}}
   <figure class="figure">
 {{- end -}}
@@ -90,3 +90,4 @@ resources:
 <figcaption class="figure-caption">{{ $image.Title }}</figcaption>
 </figure>
 {{ end }}
+
