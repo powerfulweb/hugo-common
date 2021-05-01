@@ -1,8 +1,9 @@
-{{/* {{ partial "components/c-back-to-top" "icons/font-awesome/solid/chevron-up.svg" }} */}}
+{{/* usage {{ partial "components/c-back-to-top" "[icon path]" }}
+     example  {{ partial "components/c-back-to-top" "icons/font-awesome/solid/chevron-up.svg" }} */}}
 
 {{/*  only display on SM and up  */}}
 <div class="d-none d-sm-block">
-  <button class="c-to-top toggle-content-icon-fade" id="js-topNav" href="#top">
+  <a class="c-to-top toggle-content-icon-fade" id="js-topNav" href="#top">
     {{ partial "scripts/svg-inline.html" . }}
-  </button>
+  </a>
 </div>
