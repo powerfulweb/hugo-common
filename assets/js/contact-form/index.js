@@ -1,13 +1,13 @@
 'use strict';
-export function contactForm({  //defaults
+export function contactForm({  // defaults
   formId = 'js-contactForm',
-  formAction = '',
+  formAction = 'http://127.0.0.1/contact-php/3-process.php',  // for testing on localhost
   formMethod = 'POST',
-  inputNameId = 'contact-name',
+  inputNameId = 'js-contact-name',
   submitId = 'js-submit',
   successId = 'js-successMessage',
   errorId = 'js-errorMessage',
-  grecaptchaKey = '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI', // localhost testing 
+  grecaptchaKey = '6LeuusIaAAAAANZ6WMa6Mu__my_irxdf9SjG77D2',  // for testing on localhost
   grecaptchaLocation = 'bottomright', // bottomright, bottomleft, or inline. use bottom left to avoid scroll to top widget
 } = {}) {
  
@@ -71,6 +71,10 @@ export function contactForm({  //defaults
           show(error);
         }
       }
+    };
+    http.onload = function () {
+      console.log(this.response);
+      // DO SOMETHING AFTER FORM SUBMISSION
     };
     http.send(parameters.join('&'));
   }
