@@ -9,6 +9,7 @@ export function contactForm({  // defaults
   successId = 'js-successMessage',
   errorId = 'js-errorMessage',
   grecaptchaKey = '',  
+  hiddenClass = 'is-hidden',
   grecaptchaLocation = 'bottomright', // bottomright, bottomleft, or inline. use bottom left to avoid scroll to top widget
 } = {}) {
  
@@ -17,22 +18,30 @@ export function contactForm({  // defaults
     return document.getElementById(elem);  //shorthand used throghout
   };
   function show(elem) {
-    return elem.classList.add('is-visible');
+    //return elem.classList.add('is-visible'); //removed css dependency
+    //return elem.style.display = "block";
+    return elem.classList.remove(hiddenClass); 
   };
-  function modText(msg) {
+  function modText(elem,msg) {
     return elem.innerText = msg;
   };
   function hide(elem) {
-    return elem.classList.remove('is-visible');
+    //return elem.classList.remove('is-visible');
+    //return elem.style.display = "none";
+    return elem.classList.add(hiddenClass); 
   };
+  const form = el(formId);
 
   window.onSubmit = function () {
+    
     if (!form.checkValidity()) {   //if not valid
-      //grecaptcha.reset(); //reset grecaptcha as it only allows 1 click before being disabled
+      grecaptcha.reset(); //reset grecaptcha as it only allows 1 click before being disabled
     } else { //if valid
-      show(el(spinnerId));
-      hide(el(submitId));
-      //submitForm();
+      const spinner = el(spinnerId);
+      const submit = el(submitId);
+      show(spinner);  
+      hide(submit);
+      submitForm();
       console.log('submit form function called');
     }
     form.classList.add('was-validated'); //shows errors on failed fields
@@ -52,7 +61,6 @@ export function contactForm({  // defaults
 
     const success = el(successId);
     const error = el(errorId);
-    const form = el(formId);
     const msgSent = 'Thank you for your message, we will be in touch with you shortly.';
     const unavailable = 'Sorry the form is not available at the moment, please try again later';
     // Gather form data
@@ -71,18 +79,24 @@ export function contactForm({  // defaults
     xhr.onreadystatechange = function() {
       if (xhr.readyState === XMLHttpRequest.DONE) {
         if (xhr.status !== 200) { // error - form not available
-          modText(unavailable)
+          modText(error, unavailable)
           show(error);
         }
       };
     }
     xhr.onload = function () {
       if (this.response == 1) { //success
-        modText(msgSent);
+        console.log('php returned success');
+        modText(success, msgSent);
         show(success);
         hide(form);
-      } else  {
-        modText(unavailable);
+      } else if (this.response == 0) { //error
+        console.log('php returned error');
+        modText(error, unavailable);
+        show(error);
+      } else {  //no php response, may never time out
+        console.log('no php response');
+        modText(error, unavailable);
         show(error);
       }
     };
