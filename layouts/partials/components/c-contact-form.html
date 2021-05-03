@@ -6,7 +6,7 @@ formTextareas - for textarea inputs
 */}}
 
 
-<form id="{{ .Params.formId }}" class="c-contact-form needs-validation toggle-content is-visible" novalidate>
+<form id="{{ .Params.formId }}" class="c-contact-form needs-validation" novalidate>
   {{if .Params.formFieldsSplit }}
   <div class="c-contact-form__row">
     {{ range .Params.formFieldsSplit }}
@@ -18,7 +18,8 @@ formTextareas - for textarea inputs
         {{ end }}
         <input id="{{- .id -}}" name="{{- .name -}}" type="{{- .type -}}" class="form-control"
           placeholder="{{- .placeholder -}}" aria-label="{{- .placeholder -}}" {{with .minlength }}
-          minlength="{{- . -}}" {{ end }} {{ if .required }} required {{ end }}>
+          minlength="{{- . -}}" {{ end }} {{ if .required }} required {{ end }} 
+          {{ with .autocomplete }}autocomplete="{{ . }}" {{ end }}>
         {{ with .invalidFeedback }}
         <div class="invalid-feedback">
           {{- . -}}
@@ -37,7 +38,8 @@ formTextareas - for textarea inputs
     {{ end }}
     <input id="{{- .id -}}" name="{{- .name -}}" type="{{- .type -}}" class="form-control"
       placeholder="{{- .placeholder -}}" aria-label="{{- .placeholder -}}" {{with .minlength }}
-      minlength="{{- . -}}" {{ end }} {{ if .required }} required {{ end }}>
+      minlength="{{- . -}}" {{ end }} {{ if .required }} required {{ end }}
+      {{ with .autocomplete }}autocomplete="{{ . }}" {{ end }}>
     {{ with .invalidFeedback }}
     <div class="invalid-feedback">
       {{- . -}}
@@ -53,7 +55,8 @@ formTextareas - for textarea inputs
     {{ end }}
     <textarea id="{{- .id -}}" name="{{- .name -}}" class="form-control" placeholder="{{- .placeholder -}}"
       rows="{{- .rows -}}" aria-label="{{ .placeholder }}" {{with .minlength }} minlength="{{ . }}" {{ end }} 
-      {{ if .required }} required {{ end }}></textarea>
+      {{ if .required }} required {{ end }}
+      {{ with .autocomplete }}autocomplete="{{ . }}" {{ end }}></textarea>
     {{ with .invalidFeedback }}
     <div class="invalid-feedback">
       {{ . }}
@@ -62,10 +65,12 @@ formTextareas - for textarea inputs
   </div>
   {{ end }}
   <div class="c-contact-form__group">
-    <button class="btn btn-outline-primary btn-lrg mt-3" id='js-submit' disabled>Send</button>
+    <button class="btn btn-outline-primary btn-lrg" id='js-submit' disabled>Send</button>
+    <div class="is-hidden spinner-border "  id="js-load" role="status">
+    </div>
     <noscript>Please enable javascript to use the contact form</noscript>
   </div>
 
 </form>
-<div id="js-successMessage" class="toggle-content-fade alert alert-success" role="alert">Thank you for your message, we will be in touch with you shortly.</div>
-<div id="js-errorMessage" class="toggle-content-fade alert alert-danger" role="alert">Form currently unavailabe, please try later.</div>
+<div id="js-successMessage" class="is-hidden alert alert-success" role="alert">Thank you for your message, we will be in touch with you shortly...</div>
+<div id="js-errorMessage" class="is-hidden alert alert-danger" role="alert">Form currently unavailabe, please try later.</div>
