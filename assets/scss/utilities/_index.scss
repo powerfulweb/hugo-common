@@ -1,18 +1,37 @@
 //Hover Mask
-@import 'u-mask';
+@import 'u-mask';  //%u-mask
 
 //Shadow Hover
-@import 'u-shadow-hover';
+@import 'u-shadow-hover'; // %u-shadow-hover
+
+.is-hidden { // add/remove for temporary use (usually js)
+  display: none !important;
+}
+
+.is-invisible { // add/remove for temporary use (usually js). element still takes up space
+  visibility: none !important;
+}
+
+.u-fade-in {
+  animation: fadeIn 1s;
+  &--2 {
+    animation: fadeIn 2s;
+  }
+}
+@keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
 
 //visibility toggle for forms
-@import 'u-visibility.scss';
+@import 'u-visibility.scss';  //depreciated
 
 %u-transition {
   @include transition(0.3s);
 }
 
 //no text decoration on lines - inherits from standard text inside the div or higher
-a {
+a {  //depreciated
   %u-link-no-decoration {
     color: inherit;
     text-decoration: none;

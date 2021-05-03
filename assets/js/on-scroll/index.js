@@ -20,16 +20,16 @@ export function stickyCollapse({  //defaults
 export function topNav({  //defaults
     distance = 300,
     parentId = 'js-topNav',
-    visibleClass = 'is-visible',
+    hiddenClass = 'is-hidden',
   } = {}) {
 
   window.addEventListener('scroll', showOnScroll);
   const badge = document.getElementById(parentId);  //id of nav bar parent div
   const show = function (elem) {
-    elem.classList.add(visibleClass);
+    elem.classList.remove(hiddenClass);
   };
   const hide = function (elem) {
-    elem.classList.remove(visibleClass);
+    elem.classList.add(hiddenClass);
   };
   function showOnScroll() {
     if (document.body.scrollTop > distance || document.documentElement.scrollTop > distance) {

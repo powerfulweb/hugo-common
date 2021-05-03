@@ -1,3 +1,6 @@
+//depreciated
+
+
 /* Toggle visibility on/off adding body adds more specifity and overrides bs !important */
 body .toggle-content-icon-fade {
 	display: none;
@@ -29,4 +32,12 @@ body .toggle-content {
 
 body .toggle-content.is-visible {
 	display: block !important;
+}
+
+body .u-toggle-content {
+	display: none !important;
+}
+
+body .u-toggle-content--inline-flex.is-visible {
+	display: inline-flex !important;
 }
