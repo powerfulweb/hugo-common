@@ -1,28 +1,39 @@
 'use strict';
 export function contactForm({  // defaults
   formId = 'js-contactForm',
-  formAction = 'http://127.0.0.1/contact-php/3-process.php',  // for testing on localhost
+  formAction = '',  
   formMethod = 'POST',
   inputNameId = 'js-contact-name',
   submitId = 'js-submit',
+  spinnerId = 'js-load',
   successId = 'js-successMessage',
   errorId = 'js-errorMessage',
-  grecaptchaKey = '6LeuusIaAAAAANZ6WMa6Mu__my_irxdf9SjG77D2',  // for testing on localhost
+  grecaptchaKey = '',  
   grecaptchaLocation = 'bottomright', // bottomright, bottomleft, or inline. use bottom left to avoid scroll to top widget
 } = {}) {
  
   
+  function el(elem) {
+    return document.getElementById(elem);  //shorthand used throghout
+  };
+  function show(elem) {
+    return elem.classList.add('is-visible');
+  };
+  function modText(msg) {
+    return elem.innerText = msg;
+  };
+  function hide(elem) {
+    return elem.classList.remove('is-visible');
+  };
 
   window.onSubmit = function () {
-    // console.log('submit clicked');
-    const form = document.getElementById(formId);
     if (!form.checkValidity()) {   //if not valid
-      // console.log('validation failed, grecaptcha reset');
-      grecaptcha.reset(); //reset grecaptcha as it only allows 1 click before being disabled
+      //grecaptcha.reset(); //reset grecaptcha as it only allows 1 click before being disabled
     } else { //if valid
-      // console.log('validation success');
-      submitForm();
-   
+      show(el(spinnerId));
+      hide(el(submitId));
+      //submitForm();
+      console.log('submit form function called');
     }
     form.classList.add('was-validated'); //shows errors on failed fields
   };
@@ -33,51 +44,52 @@ export function contactForm({  // defaults
       'badge': grecaptchaLocation,
       'callback': onSubmit,
     });
-    document.getElementById(submitId).disabled = false;
+    el(submitId).disabled = false;
+    console.log('submit enabled');
   };
 
-
   function submitForm() {
-    const show = function (elem) {
-      elem.classList.add('is-visible');
-    };
-    const hide = function (elem) {
-      elem.classList.remove('is-visible');
-    };
-    const success = document.getElementById(successId);
-    const error = document.getElementById(errorId);
-    const form = document.getElementById(formId);
+
+    const success = el(successId);
+    const error = el(errorId);
+    const form = el(formId);
+    const msgSent = 'Thank you for your message, we will be in touch with you shortly.';
+    const unavailable = 'Sorry the form is not available at the moment, please try again later';
     // Gather form data
     let formData = new FormData(form);
     // Array to store the stringified and encoded key-value-pairs.
     let parameters = []
     for (let pair of formData.entries()) {
-        parameters.push(
-            encodeURIComponent(pair[0]) + '=' +
-            encodeURIComponent(pair[1])
-        );
-    }
-    var http = new XMLHttpRequest();
-    http.open(formMethod, formAction);
-    http.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    http.onreadystatechange = function() {
-      if (http.readyState === XMLHttpRequest.DONE) {
-        if (http.status === 200) { //SUCCESS
-          // console.log('Successfully submitted the req');
-          hide(form);
-          show(success);
-        } else { //ERROR
-          // console.log('Error while submitting the req');
+      parameters.push(
+        encodeURIComponent(pair[0]) + '=' +
+        encodeURIComponent(pair[1])
+      );
+    };
+    var xhr = new XMLHttpRequest();
+    xhr.open(formMethod, formAction);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        if (xhr.status !== 200) { // error - form not available
+          modText(unavailable)
           show(error);
         }
+      };
+    }
+    xhr.onload = function () {
+      if (this.response == 1) { //success
+        modText(msgSent);
+        show(success);
+        hide(form);
+      } else  {
+        modText(unavailable);
+        show(error);
       }
     };
-    http.onload = function () {
-      console.log(this.response);
-      // DO SOMETHING AFTER FORM SUBMISSION
-    };
-    http.send(parameters.join('&'));
-  }
+    xhr.send(parameters.join('&'));
+  };
+
+  
 
   // Function that loads scripts on form input focus
   function loadScriptsOnFocus() {
@@ -88,12 +100,12 @@ export function contactForm({  // defaults
     script.src = 'https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit';
     head.appendChild(script);
     // remove focus to avoid js error:
-    document.getElementById(inputNameId).removeEventListener('focus', loadScriptsOnFocus);
+    el(inputNameId).removeEventListener('focus', loadScriptsOnFocus);
+    console.log('event listener removed captcha loaded');
   }
 
-  document.getElementById(inputNameId).addEventListener('focus', loadScriptsOnFocus, false);
+  el(inputNameId).addEventListener('focus', loadScriptsOnFocus, false);
+  console.log('event listener added');
   //add event listener to load grecaptcha
 
 }
-
-//test
