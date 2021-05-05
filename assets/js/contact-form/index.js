@@ -26,8 +26,8 @@ export function contactForm({  // defaults
   //add event listener to load grecaptcha
   document.getElementById(inputNameId).addEventListener('focus', loadScriptsOnFocus, false);
   function loadScriptsOnFocus() {
-    var head = document.getElementsByTagName('head')[0];
-    var script = document.createElement('script');
+    const head = document.getElementsByTagName('head')[0];
+    const script = document.createElement('script');
     script.type = 'text/javascript';
     script.src = 'https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit';
     head.appendChild(script);
