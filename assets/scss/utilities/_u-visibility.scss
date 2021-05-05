@@ -1,6 +1,8 @@
 //depreciated
 
-
+.is-hidden {
+  display: none !important;
+}
 /* Toggle visibility on/off adding body adds more specifity and overrides bs !important */
 body .toggle-content-icon-fade {
 	display: none;

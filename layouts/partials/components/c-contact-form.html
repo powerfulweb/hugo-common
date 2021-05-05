@@ -6,7 +6,7 @@ formTextareas - for textarea inputs
 */}}
 
 
-<form id="{{ .Params.formId }}" class="c-contact-form needs-validation toggle-content is-visible" novalidate>
+<form id="{{ .Params.formId }}" class="c-contact-form needs-validation" novalidate>
   {{if .Params.formFieldsSplit }}
   <div class="c-contact-form__row">
     {{ range .Params.formFieldsSplit }}
@@ -63,9 +63,13 @@ formTextareas - for textarea inputs
   {{ end }}
   <div class="c-contact-form__group">
     <button class="btn btn-outline-primary btn-lrg mt-3" id='js-submit' disabled>Send</button>
+    <div id="js-load" class="spinner-border is-hidden" role="status"></div>
     <noscript>Please enable javascript to use the contact form</noscript>
   </div>
 
 </form>
 <div id="js-successMessage" class="toggle-content-fade alert alert-success" role="alert">Thank you for your message, we will be in touch with you shortly.</div>
 <div id="js-errorMessage" class="toggle-content-fade alert alert-danger" role="alert">Form currently unavailabe, please try later.</div>
+<div id="js-statusMessage" class="is-hidden" role="alert"></div>
+
+
