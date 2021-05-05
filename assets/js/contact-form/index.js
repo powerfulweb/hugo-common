@@ -1,3 +1,7 @@
+// for use with universal end point
+// does not check for response from end point, status messages based on http status of request
+// requries class "is-hidden" of display: none !important;
+
 'use strict';
 export function contactForm({  // defaults
   formId = 'js-contactForm',
@@ -11,8 +15,6 @@ export function contactForm({  // defaults
   errorClass = 'alert-danger',
   hiddenClass = 'is-hidden',
   spinnerId = 'js-load',
-  successId = 'js-successMessage', //to depreciate
-  errorId = 'js-errorMessage', //to depreciate
   grecaptchaKey = '6LeuusIaAAAAANZ6WMa6Mu__my_irxdf9SjG77D2',  // for testing on localhost
   grecaptchaLocation = 'bottomright', // bottomright, bottomleft, or inline. use bottom left to avoid scroll to top widget
 } = {}) {
@@ -45,7 +47,7 @@ export function contactForm({  // defaults
 
   // on submit event, called by recaptcha
   window.onSubmit = function () { 
-    const form = document.getElementById(formId);
+    const form = id(formId);
     if (!form.checkValidity()) {   //if not valid
       form.classList.add('was-validated'); //shows errors on failed fields
       grecaptcha.reset(); //reset grecaptcha as it only allows 1 click before being disabled
@@ -78,7 +80,7 @@ export function contactForm({  // defaults
 
   //form submission and status display
   function submitForm() {
-    const form = document.getElementById(formId);
+    const form = id(formId);
     // Gather form data
     let formData = new FormData(form);
     // Array to store the stringified and encoded key-value-pairs.
