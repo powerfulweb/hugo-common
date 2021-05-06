@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.4](https://github.com/powerfulwebdesign/hugoCommon/compare/v0.0.8...v1.0.4) (2021-05-06)
+
+
+### Bug Fixes
+
+* added id(ID) to 2 vars ([a635c5b](https://github.com/powerfulwebdesign/hugoCommon/commit/a635c5b9e84885cc574447060114f42f756f2de8))
+* added o-svg instructions ([c3054a7](https://github.com/powerfulwebdesign/hugoCommon/commit/c3054a76aaca6f3038de21fd43ea9df199aeed41))
+* added prettierrc ([efcd582](https://github.com/powerfulwebdesign/hugoCommon/commit/efcd5827a8afa01c1d4b39108a9c3b73d3e16852))
+* browser color configs ([6d90c2c](https://github.com/powerfulwebdesign/hugoCommon/commit/6d90c2c6b42fe47ad87be0cc77e03979fb0e2f60))
+* changed button to a ([9be5625](https://github.com/powerfulwebdesign/hugoCommon/commit/9be5625b0267dc0212f52bbefbf4d99b341170f6))
+* conditional image processing if not svg ([861c330](https://github.com/powerfulwebdesign/hugoCommon/commit/861c330f47ed6ae73f81a4aa3b39fa4489bef72d))
+* contact form recieves succes msg  unstatic ([eba9dce](https://github.com/powerfulwebdesign/hugoCommon/commit/eba9dce0ade7c45d6d87e61dd7e525f2d243d016))
+* form updated ([6ed0f45](https://github.com/powerfulwebdesign/hugoCommon/commit/6ed0f45b3cd03fdafdac15c03a18dcff0d4d0e66))
+* replaced var with const ([fd0fa00](https://github.com/powerfulwebdesign/hugoCommon/commit/fd0fa0052a58737173d235e319a5dabbdb466f9e))
+* updated contactForm variables for testing ([30050b2](https://github.com/powerfulwebdesign/hugoCommon/commit/30050b283a7957d398b4909d181488f6b58f2f3f))
+* updated language code for alternate languages meta ([5cc4e4b](https://github.com/powerfulwebdesign/hugoCommon/commit/5cc4e4be45ad8497a8f700e384795041f09d3294))
+* updated navar and vis css ([e448e50](https://github.com/powerfulwebdesign/hugoCommon/commit/e448e50da9f5f4f59d5b6f07c76697ac9a8a97ee))
+
 ### [1.0.3](https://github.com/powerfulwebdesign/hugoCommon/compare/v0.0.8...v1.0.3) (2021-05-01)
 
 

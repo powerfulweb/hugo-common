@@ -3,7 +3,7 @@
  "bugs": {
   "url": "https://github.com/powerfulwebdesign/hugoCommon/issues"
  },
- "version": "1.0.3",
+ "version": "1.0.4",
  "description": "modules for hugo",
  "devDependencies": {
   "standard-version": "^9.2.0"
