@@ -136,7 +136,7 @@ params:
   - 648
 
 
-  photoWidthThumb:
+  photoWidthThumbs:
   - 32
   - 72
   - 96
