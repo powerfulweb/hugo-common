@@ -5,24 +5,23 @@
 'use strict';
 export function contactForm({  // defaults
   formId = 'js-contactForm',
-  formAction = 'http://127.0.0.1/contact-php/3-process.php',  // for testing on localhost
+  formAction = '',  // for testing on localhost
   formMethod = 'POST',
   inputNameId = 'js-contact-name',
   submitId = 'js-submit',
   statusId = 'js-statusMessage',
-  alertClass = 'alert',
-  successClass = 'alert-success',
-  errorClass = 'alert-danger',
-  hiddenClass = 'is-hidden',
+  alertClass = 'alert', // BS5
+  successClass = 'alert-success', // BS5
+  errorClass = 'alert-danger', // BS5
+  hiddenClass = 'is-hidden', // custom css class dependency
   spinnerId = 'js-load',
-  grecaptchaKey = '6LeuusIaAAAAANZ6WMa6Mu__my_irxdf9SjG77D2',  // for testing on localhost
+  grecaptchaKey = '',  
   grecaptchaLocation = 'bottomright', // bottomright, bottomleft, or inline. use bottom left to avoid scroll to top widget
 } = {}) {
   function id(elem) {
     return document.getElementById(elem); //shorthand used throghout
   }
 
-  
   //add event listener to load grecaptcha
   document.getElementById(inputNameId).addEventListener('focus', loadScriptsOnFocus, false);
   function loadScriptsOnFocus() {

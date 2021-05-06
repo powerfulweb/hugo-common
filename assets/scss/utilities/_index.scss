@@ -23,6 +23,17 @@
   100% {opacity:1;}
 }
 
+.u-fade-out {
+  animation: fadeOut 1s;
+  &--2 {
+    animation: fadeOut 2s;
+  }
+}
+@keyframes fadeOut {
+  100% {opacity:1;}
+  0% {opacity:0;}
+}
+
 //visibility toggle for forms
 @import 'u-visibility.scss';  //depreciated
 

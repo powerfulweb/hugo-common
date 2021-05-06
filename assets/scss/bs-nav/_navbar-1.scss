@@ -34,8 +34,7 @@
       }
     }
   }
-  // .sticky-expanded {} //hard coded into theme incase it needs to be used
-  .sticky-collapse {
+  .is-collapsed {
     box-shadow: 0px 20px 50px 0px rgba(0, 0, 0, 0.05) !important;
     .navbar-nav {
       .nav-item {
