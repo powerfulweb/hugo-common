@@ -1,5 +1,5 @@
-// for use with universal end point
-// does not check for response from end point, status messages based on http status of request
+// for use with unstatic endpoint
+// on HTTP success, checks for JSON response and returns true on success
 // requries class "is-hidden" of display: none !important;
 
 'use strict';
@@ -52,7 +52,6 @@ export function contactForm({  // defaults
       form.classList.add('was-validated'); //shows errors on failed fields
       grecaptcha.reset(); //reset grecaptcha as it only allows 1 click before being disabled
     } else { //if valid
-      console.log('validation success');
       //hide button
       id(submitId).classList.add(hiddenClass);
       //show spinner 
@@ -62,17 +61,17 @@ export function contactForm({  // defaults
   };
 
   // status message function
-  const successMsg = 'Thank you for submitting your enquiry, we will be in touch with you soon.';
-  const errorMsg = 'Sorry the form is not available at the moment, please try again later.';
-  function msg(type) {
+  // defaults to error message unless msg(true) is called
+  function msg(status) {
     let alertType = errorClass;
-    let msg = errorMsg
-    if (type === 'success') {
+    let statusMsg = 'Sorry the form is not available at the moment, please try again later.'
+    if (status === true) { // success message
       alertType = successClass;
-      msg = successMsg
-    }
+      statusMsg = 'Thank you for submitting your enquiry, we will be in touch with you soon.'
+      id(formId).classList.add(hiddenClass); //hide form
+    } 
     id(spinnerId).classList.add(hiddenClass); // hide spinner
-    id(statusId).innerHTML = msg;
+    id(statusId).innerHTML = statusMsg;
     id(statusId).classList.add(alertClass);
     id(statusId).classList.add(alertType); // add success alert classes to message div
     id(statusId).classList.remove(hiddenClass); // remove hidden class on message div
@@ -91,27 +90,26 @@ export function contactForm({  // defaults
             encodeURIComponent(pair[1])
         );
     }
+    // AJAX 
+    let response;
     const xhr = new XMLHttpRequest();
     xhr.open(formMethod, formAction);
-    console.log('form opened');
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.onreadystatechange = function() {
-      if (xhr.readyState === XMLHttpRequest.DONE) {  //polyfill for xhr.onload
-        if (xhr.status >= 200 && xhr.status < 400) { //200-299 = success 300-399 = redirect
-          id(formId).classList.add(hiddenClass); //hide form
-          console.log('message called');
-          msg('success');
-        } else { //ERROR
-          msg('error');
+      if (xhr.readyState == (4 || XMLHttpRequest.DONE)) { 
+        if (xhr.status >= 200 && xhr.status < 400) { //loading finished //200-299 = success 300-399 = redirect
+          response = JSON.parse(this.responseText);
+          if (response.success === true) { // php returns success === true
+            msg(true); // success message
+          } else {  // php returns error
+            msg(false); // error message
+          }
+        } else { // http error
+          msg(false); // error message
         }
-      }
-    };
-    // xhr.onload = function () {
-    //   console.log(this.response);
-    //   // DO SOMETHING AFTER FORM SUBMISSION
-    //   //response {"success":true,"result":"success"}
-    // };
-    xhr.send(parameters.join('&'));
+      } 
+    }; // end function
+    xhr.send(parameters.join('&')); 
   };
 }
 
