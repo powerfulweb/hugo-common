@@ -76,17 +76,17 @@ export function contactForm({  // defaults
   }
   function safelyParseJSON (json) {
     // unpacks json data and catches error
-    var parsed
+    let parsed;
     try {
       parsed = JSON.parse(json)
       console.log(parsed); //shows json response
     } catch (e) {
-      console.error(e);  //shows error
-      console.log(json); //shows non json response
+      // console.error(e);  //shows error
+      // console.log(json); //shows non json response
       const message = 'Sorry an error has occured, please try again later.';
       msg(false, message); // error message
     }
-    return parsed // Could be undefined!
+    return parsed // Could be undefined! // outputs as variable "json"
   }
   
   //form submission and status display
@@ -103,7 +103,7 @@ export function contactForm({  // defaults
         );
     }
     // AJAX 
-    let response;
+   
     const xhr = new XMLHttpRequest();
     xhr.open(formMethod, formAction);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -111,8 +111,10 @@ export function contactForm({  // defaults
       if (xhr.readyState == (4 || XMLHttpRequest.DONE)) { 
         if (xhr.status >= 200 && xhr.status < 400) { //loading finished //200-299 = success 300-399 = redirect
           var response = safelyParseJSON(this.responseText);
+          //console.log(this.responseText);
           if (response.success === true) { // php returns success === true
             msg(true, response.message); // success message
+            //msg(true, 'temp success msg'); // success message
           } else {  // php returns error
             msg(false, response.message); // error message
           }
@@ -123,6 +125,7 @@ export function contactForm({  // defaults
       } 
     }; // end function
     xhr.send(parameters.join('&')); 
+    console.log(parameters.join('&'));
   }
 };
 
