@@ -76,6 +76,21 @@ export function contactForm({  // defaults
     id(statusId).classList.remove(hiddenClass); // remove hidden class on message div
   }
 
+  function safelyParseJSON (json) {
+    // unpacks json data and catches error
+    let parsed;
+    try {
+      parsed = JSON.parse(json)
+      console.log(parsed); //shows json response
+    } catch (e) {
+      // console.error(e);  //shows error
+      // console.log(json); //shows non json response
+      //const message = 'Sorry an error has occured, please try again later.';
+      msg(false); // error message
+    }
+    return parsed // Could be undefined! // outputs as variable "json"
+  }
+
   //form submission and status display
   function submitForm() {
     const form = id(formId);
@@ -97,7 +112,8 @@ export function contactForm({  // defaults
     xhr.onreadystatechange = function() {
       if (xhr.readyState == (4 || XMLHttpRequest.DONE)) { 
         if (xhr.status >= 200 && xhr.status < 400) { //loading finished //200-299 = success 300-399 = redirect
-          response = JSON.parse(this.responseText);
+          //response = JSON.parse(this.responseText);
+          response = safelyParseJSON(this.responseText);
           if (response.success === true) { // php returns success === true
             msg(true); // success message
           } else {  // php returns error
