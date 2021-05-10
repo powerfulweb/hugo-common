@@ -40,6 +40,8 @@
     </div>
     <div class="c-contact-details__text">
       <a class="c-contact-details__href" href="{{- . -}}" target="_BLANK">
+        {{- site.Params.contactAddressText | markdownify -}}
+        {{/* below are depreciated */}}
         {{- site.Params.contactAddressText1 -}}
         {{ with site.Params.contactAddressText2 }}<br>{{- . -}}{{ end }}
         {{ with site.Params.contactAddressText3 }}<br>{{- . -}}{{ end }}</a>
