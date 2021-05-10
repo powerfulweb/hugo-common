@@ -80,7 +80,7 @@ export function contactForm({  // defaults
     let parsed;
     try {
       parsed = JSON.parse(json)
-      console.log(parsed); //shows json response
+      //console.log(parsed); //shows json response
     } catch (e) {
       // console.error(e);  //shows error
       // console.log(json); //shows non json response
