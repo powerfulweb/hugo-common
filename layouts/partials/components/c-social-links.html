@@ -3,28 +3,28 @@
 
 <div class="c-social-links">
   {{ with .Site.Params.socialTwitterURL}}
-  <button href="{{ . }}" class="c-social-links__btn-svg" target="_BLANK">
+  <a role="button" href="{{ . }}" class="c-social-links__btn-svg" target="_BLANK">
     {{ partial "scripts/svg-inline.html" site.Params.socialTwitterIcon }}  
-  </button>
+  </a>
   {{ end }}
   {{ with .Site.Params.socialFacebookURL}}
-  <button href="{{ . }}" class="c-social-links__btn-svg" target="_BLANK">
+  <a role="button" href="{{ . }}" class="c-social-links__btn-svg" target="_BLANK">
     {{ partial "scripts/svg-inline.html" site.Params.socialFacebookIcon }}  
-  </button>
+  </a>
   {{ end }}
   {{ with .Site.Params.socialLinkedInURL}}
-  <button href="{{ . }}" class="c-social-links__btn-svg" target="_BLANK">
+  <a role="button" href="{{ . }}" class="c-social-links__btn-svg" target="_BLANK">
     {{ partial "scripts/svg-inline.html" site.Params.socialsocialLinkedInIcon }}
-  </button>
+  </a>
   {{ end }}
   {{ with .Site.Params.socialInstagramURL }}
-  <button href="{{ . }}" class="c-social-links__btn-svg" target="_BLANK">
+  <a role="button" href="{{ . }}" class="c-social-links__btn-svg" target="_BLANK">
     {{ partial "scripts/svg-inline.html" site.Params.socialInstagramIcon }}
-  </button>
+  </a>
   {{ end }}
   {{ with .Site.Params.socialGoogleBizURL }}
-  <button href="{{ . }}" class="c-social-links__btn-svg" target="_BLANK">
+  <a role="button" href="{{ . }}" class="c-social-links__btn-svg" target="_BLANK">
     {{ partial "scripts/svg-inline.html" site.Params.socialGoogleBizIcon }}
-  </button>
+  </a>
   {{ end }}
 </div>
