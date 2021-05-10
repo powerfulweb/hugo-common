@@ -61,6 +61,7 @@ export function contactForm({  // defaults
 
   // status message function
   // defaults to error message unless msg(true) is called
+  let alertType;
   function msg(status, statusMsg) {
     if (status === true) { // success 
       alertType = successClass;
