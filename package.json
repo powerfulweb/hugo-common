@@ -1,20 +1,16 @@
 {
  "author": "Powerful Web Design",
- "bugs": {
-  "url": "https://github.com/powerfulwebdesign/hugoCommon/issues"
- },
  "version": "1.0.5",
  "description": "modules for hugo",
  "devDependencies": {
   "standard-version": "^9.2.0"
  },
- "homepage": "https://github.com/powerfulwebdesign/hugoCommon#readme",
  "license": "ISC",
  "main": "index.js",
  "name": "hugo-common",
  "repository": {
   "type": "git",
-  "url": "git+https://github.com/powerfulwebdesign/hugoCommon.git"
+  "url": "git+https://github.com/powerfulweb/hugo-common.git"
  },
  "scripts": {
   "vendor": "hugo mod vendor",
