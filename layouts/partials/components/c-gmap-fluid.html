@@ -1,0 +1,47 @@
+{{/*   {{ partial "components/c-gmap-fluid" . }} 
+required parent page param
+
+gmapURL: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3314.789243479668!2d151.0872133152887!3d-33.817751523842766!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzPCsDQ5JzAzLjkiUyAxNTHCsDA1JzIxLjkiRQ!5e0!3m2!1sen!2sau!4v1612097056169!5m2!1sen!2sau" 
+
+
+*/}}
+
+
+{{ with .Params.gmapURL }}
+<style>
+.gmap--fluid {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+}
+  
+/* Ratio 16:9 ( 100%/16*9 = 56.25% ) */
+.gmap--fluid > iframe {
+  box-sizing: content-box; 
+  -webkit-box-sizing: content-box;
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  border: 0;
+}
+
+/* no-script support */
+html.no-js .gmap--fluid  {
+  display: none !important;
+}
+
+</style>
+  <div class="row">
+    <div class="gmap--fluid" data-aos="fade-up">
+      <iframe src="{{ . }}" width="800" height="800" allowfullscreen="" aria-hidden="false"
+        title="Location on Google Maps" tabindex="0" loading="lazy"></iframe>
+    </div>
+  </div>
+{{ end }}
