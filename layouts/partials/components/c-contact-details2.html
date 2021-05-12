@@ -62,8 +62,10 @@ contactDetails:
 <div class="c-contact-details">
   {{ range .Params.contactdetails }}
   <div class="c-contact-details__row">
-    <div class="c-contact-details__svg">
+    <div class="c-contact-details__svg-wrapper">
+      <a class="c-contact-details__svg">
       {{ partial "scripts/svg-inline.html" .icon }} 
+      </a>
     </div>
     <div class="c-contact-details__text">
       {{ $ctx := . }}
