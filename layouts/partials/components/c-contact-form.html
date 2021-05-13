@@ -22,8 +22,9 @@ c-contact-form
         <label for="{{- $ctx.id -}}" class="form-label">{{ . }}{{ if $ctx.requiredDot }}<span class="text-danger"> *</span></span>{{ end }}</label>
         {{ end }}
         <input id="{{- .id -}}" name="{{- .name -}}" type="{{- .type -}}" class="form-control"
-          placeholder="{{- .placeholder -}}" aria-label="{{- .placeholder -}}" {{with .minlength }}
-          minlength="{{- . -}}" {{ end }} {{ if .required }} required {{ end }}>
+          placeholder="{{- .placeholder -}}" aria-label="{{- .placeholder -}}" 
+          {{with .minlength }} minlength="{{- . -}}"{{ end }}{{ if .required }} required{{ end }}
+          {{ if .autofocus }} autofocus{{ end }}>
         {{ with .invalidFeedback }}
         <div class="invalid-feedback">
           {{- . -}}
@@ -41,8 +42,9 @@ c-contact-form
     <label for="{{- $ctx.id -}}" class="form-label">{{ . }}{{ if $ctx.requiredDot }}<span class="text-danger"> *</span></span>{{ end }}</label>
     {{ end }}
     <input id="{{- .id -}}" name="{{- .name -}}" type="{{- .type -}}" class="form-control"
-      placeholder="{{- .placeholder -}}" aria-label="{{- .placeholder -}}" {{with .minlength }}
-      minlength="{{- . -}}" {{ end }} {{ if .required }} required {{ end }}>
+      placeholder="{{- .placeholder -}}" aria-label="{{- .placeholder -}}" 
+      {{with .minlength }} minlength="{{- . -}}"{{ end }}{{ if .required }} required{{ end }}
+      {{ if .autofocus }} autofocus{{ end }}>
     {{ with .invalidFeedback }}
     <div class="invalid-feedback">
       {{- . -}}
@@ -57,8 +59,8 @@ c-contact-form
     <label for="{{- $ctx.id -}}" class="form-label">{{ . }}{{ if $ctx.requiredDot }}<span class="text-danger"> *</span></span>{{ end }}</label>
     {{ end }}
     <textarea id="{{- .id -}}" name="{{- .name -}}" class="form-control" placeholder="{{- .placeholder -}}"
-      rows="{{- .rows -}}" aria-label="{{ .placeholder }}" {{with .minlength }} minlength="{{ . }}" {{ end }} 
-      {{ if .required }} required {{ end }}></textarea>
+      rows="{{- .rows -}}" aria-label="{{ .placeholder }}" {{with .minlength }} minlength="{{ . }}"{{ end }} 
+      {{ if .required }} required{{ end }}{{ if .autofocus }} autofocus{{ end }}></textarea>
     {{ with .invalidFeedback }}
     <div class="invalid-feedback">
       {{ . }}
