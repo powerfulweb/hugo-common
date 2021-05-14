@@ -17,28 +17,28 @@ resources:
       # widthThumbs: true #(for thumbnail and 6 col layout)
 
 optional config override in params
-#SRCSET CONFIG (optional)
-  photoWidthsFull:
-  - 535
-  - 696
-  - 936
-  - 1140
-  - 1296
+#SRCSET PHOTO RESIZE CONFIG (optional)
+  photoResize:
+    widthsFull:
+    - 535
+    - 696
+    - 936
+    - 1140
+    - 1296
+    widthsCols:
+    - 178
+    - 279
+    - 372
+    - 468
+    - 558
+    - 648
+    widthsThumbs:
+    - 32
+    - 72
+    - 96
+    - 166
+    - 196
 
-  photoWidthsCols:
-  - 178
-  - 279
-  - 372
-  - 468
-  - 558
-  - 648
-
-  photoWidthsThumbs:
-  - 32
-  - 72
-  - 96
-  - 166
-  - 196
       
 */}}
 
@@ -61,13 +61,13 @@ optional config override in params
 {{ $imgSrc := "" }}
 {{ $imgSrcSet = slice }}
 {{ $widths := ""}}
-<!-- change widths based on resource params -->
+<!-- change widths based on resource params  site used rather than .Site to avoid context issues -->
 {{ if $image.Params.widthCols }}
-  {{ $widths = site.Params.photoWidthsCols | default $widthsCols }}
+  {{ $widths = site.Params.photoResize.widthsCols }}
 {{ else if $image.Params.widthThumbs }}
-  {{ $widths = site.Params.photoWidthsThumbs }}
+  {{ $widths = site.Params.photoResize.widthsThumbs }}
 {{ else }}
-  {{ $widths = site.Params.photoWidthsFull }}
+  {{ $widths = site.Params.photoResize.widthsFull }}
 {{ end }}
 
 <!--
