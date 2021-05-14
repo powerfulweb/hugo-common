@@ -119,29 +119,29 @@ params:
   - 76
   - 50
 
-  #SRCSET CONFIG
-  photoWidthFull:
-  - 535
-  - 696
-  - 936
-  - 1140
-  - 1296
+  # #SRCSET CONFIG (optional)
+  # photoWidthsFull:
+  # - 535
+  # - 696
+  # - 936
+  # - 1140
+  # - 1296
 
-  photoWidthCols:
-  - 178
-  - 279
-  - 372
-  - 468
-  - 558
-  - 648
+  # photoWidthsCols:
+  # - 178
+  # - 279
+  # - 372
+  # - 468
+  # - 558
+  # - 648
 
 
-  photoWidthThumbs:
-  - 32
-  - 72
-  - 96
-  - 166
-  - 196
+  # photoWidthsThumbs:
+  # - 32
+  # - 72
+  # - 96
+  # - 166
+  # - 196
 
 
 
