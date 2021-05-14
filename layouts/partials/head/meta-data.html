@@ -37,7 +37,7 @@ PAGE PARAMS
 <!-- alternate language support -->
 {{ if .IsTranslated }}
 	{{ range .AllTranslations }}
-	  <link rel="alternate" hreflang="{{ .Language.LanguageCode }}" href="{{ .Permalink }}" title="{{ .Language.LanguageName }}">
+	  <link rel="alternate" hreflang="{{ .Site.LanguageCode }}" href="{{ .Permalink }}" title="{{ .Language.LanguageName }}">
 	{{ end }}
 {{ end }}
 

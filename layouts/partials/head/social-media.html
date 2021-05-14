@@ -25,18 +25,22 @@ twitterCreator: # if different from the site
 
 <!-- facebook open graph-->
 {{ template "_internal/opengraph.html" . }}
-{{/* with .Site.Language.Lang }}
+{{ with .Site.LanguageCode }}
 <meta property="og:locale" content="{{ . }}">
 {{ end }}
 {{ if .IsTranslated }}
-	{{ range .Translations }}
-	  <meta property="og:locale:alternate" content="{{ .Language.Lang }}">
+	{{ range .Translations }} 
+  {{ with .Site.LanguageCode }}
+	  <meta property="og:locale:alternate" content="{{ . }}">
+  {{ end }}
 	{{ end }}
-{{ end */}}
+{{ end }}
 <!-- twitter card -->
 {{ template "_internal/twitter_cards.html" . }}
 {{ with .Site.Params.twitterSite }}
-<meta name="twitter:site" content="{{ . }}" />{{ end }}
+<meta name="twitter:site" content="{{ . }}" />
+{{ end }}
 {{ with .Params.twitterCreator }}
-<meta name="twitter:creator" content="{{ . }}" />{{ end }}
+<meta name="twitter:creator" content="{{ . }}" />
+{{ end }}
 <meta name="twitter:url" content="{{ .Permalink }}">
