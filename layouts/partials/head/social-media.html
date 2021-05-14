@@ -10,6 +10,18 @@ params:
 taxonomies:
   series: series
 
+SITE CONFIG - ALTERNATE LANGUAGES
+defaultContentLanguage: en
+languages:
+  es:
+    title: titulo
+    weight: 2
+    languageCode: es-ES
+  en:
+    title: My blog
+    weight: 1
+    languageCode: en-AU
+
 PAGE PARAMS
 audio: []
 date: "2006-01-02"
@@ -30,6 +42,7 @@ twitterCreator: # if different from the site
 {{ end }}
 {{ if .IsTranslated }}
 	{{ range .Translations }} 
+  {{/*  checks user configured language code for each lanauge */}}
   {{ with .Site.LanguageCode }}
 	  <meta property="og:locale:alternate" content="{{ . }}">
   {{ end }}
