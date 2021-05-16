@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/powerfulweb/hugo-common/compare/v1.0.6...v1.1.0) (2021-05-16)
+
+
+### Bug Fixes
+
+* added .Site.LanguageCode support ([24499a0](https://github.com/powerfulweb/hugo-common/commit/24499a0614aecc73c261c687e7e0364688c47b9b))
+* added a for button ([65bf986](https://github.com/powerfulweb/hugo-common/commit/65bf986196d5b835bef0872c3678d73fb1ff1ef9))
+* added autofocus to contact form ([6d3aa18](https://github.com/powerfulweb/hugo-common/commit/6d3aa18162349d16e7f47e9afe51d0d1e9984f58))
+* added comments ([196a4cd](https://github.com/powerfulweb/hugo-common/commit/196a4cdc439141b7acbc27e0287fb9e19b7dbbcf))
+* added default for photo resize ([f533101](https://github.com/powerfulweb/hugo-common/commit/f533101482a3d0c463188a9b06d4976835dc25af))
+* added default image resizing ([c44de81](https://github.com/powerfulweb/hugo-common/commit/c44de81f9213a1bb12a61063774c6019a23c7e3d))
+* updated contact form comments ([188d5e3](https://github.com/powerfulweb/hugo-common/commit/188d5e37d54e3e7d0727909421961aa527ed3942))
+
 ### [1.0.5](https://github.com/powerfulwebdesign/hugoCommon/compare/v0.0.8...v1.0.5) (2021-05-10)
 
 
