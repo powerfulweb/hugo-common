@@ -1,14 +1,22 @@
-<!-- breadcrumbs - not tested -->
-<ol  class="nav navbar-nav">
-  {{ template "breadcrumbnav" (dict "p1" . "p2" .) }}
+
+{{/*  Breadcrumbs based on page heirachys
+  
+  {{ partial "components/c-breadcrumbs" . }}  */}}
+
+<nav class="breadcrumb" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+  {{ define "breadcrumb" }}
+  {{ with .Parent }}
+      {{ template "breadcrumb" . }}
+      <li class="breadcrumb-item"> <a href="{{ .Permalink }}">{{ if .IsHome }}Home{{ else }}{{ .Title }}{{ end }}</a> </li>
+  {{ end }}
+  {{ end }}
+  {{ if not .IsHome }}
+  {{ template "breadcrumb" . }}
+  <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
+  {{ end }}
 </ol>
-{{ define "breadcrumbnav" }}
-{{ if .p1.Parent }}
-{{ template "breadcrumbnav" (dict "p1" .p1.Parent "p2" .p2 )  }}
-{{ else if not .p1.IsHome }}
-{{ template "breadcrumbnav" (dict "p1" .p1.Site.Home "p2" .p2 )  }}
-{{ end }}
-<li{{ if eq .p1 .p2 }} class="active"{{ end }}>
-  <a href="{{ .p1.Permalink }}">{{ .p1.Title }}</a>
-</li>
-{{ end }}
+</nav>
+
+
+

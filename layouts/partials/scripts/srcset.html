@@ -1,5 +1,5 @@
 {{/* RESIZE RESOURCE IMAGES, THEN CREATE SRCSET TAGS. ENABLE LAZY LOADING NATIVE/JS AND NOSCRIPT SUPPORT */}}
-{{/* USE {{ partial "image/srcset.html" (dict "page" . "image" "image_name")}}  - folder and file extension not required
+{{/* USE {{ partial "scripts/srcset.html" (dict "page" . "image" "image_name")}}  - folder and file extension not required
 {{<srcset image="spf13">}} - folder or extension not required
 
 */}}
@@ -63,11 +63,11 @@ optional config override in params
 {{ $widths := ""}}
 <!-- change widths based on resource params  site used rather than .Site to avoid context issues -->
 {{ if $image.Params.widthCols }}
-  {{ $widths = site.Params.photoResize.widthsCols }}
+  {{ $widths = site.Params.photoResize.widthsCols | default $widthsCols}}
 {{ else if $image.Params.widthThumbs }}
-  {{ $widths = site.Params.photoResize.widthsThumbs }}
+  {{ $widths = site.Params.photoResize.widthsThumbs | default $widthsThumbs }}
 {{ else }}
-  {{ $widths = site.Params.photoResize.widthsFull }}
+  {{ $widths = site.Params.photoResize.widthsFull | default $widthsFull  }}
 {{ end }}
 
 <!--
