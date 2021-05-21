@@ -28,6 +28,15 @@
 }
 
 @include media-breakpoint-up(lg) {
+  .is-collapsed {
+    box-shadow: 0 30px 30px 5px rgba(0, 0, 0, 0.05) !important;
+    .navbar-nav {
+      .nav-item > a {
+        padding: 1rem 1rem; //collapsed padding size
+        @include transition(0.3s); //animates collapse
+      }
+    }
+  }
   .navbar {
     padding: 0;
     background: $body-bg;
@@ -35,7 +44,7 @@
     .navbar-nav {
       .nav-item > a {
         padding: 1.8rem 1rem; //EXPANDED PADDING
-        @include transition(0.3s); //animates expansion
+        @include transition(1s); //animates expansion
         //border-bottom: 2px solid transparent;
 
         &:hover {
@@ -55,13 +64,5 @@
     }
   }
 
-  .is-collapsed {
-    box-shadow: 0 30px 30px 5px rgba(0, 0, 0, 0.05) !important;
-    .navbar-nav {
-      .nav-item > a {
-        padding: 1rem 1rem; //collapsed padding size
-        @include transition(0.3s); //animates collapse
-      }
-    }
-  }
+  
 }
