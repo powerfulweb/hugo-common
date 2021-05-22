@@ -8,10 +8,9 @@ googleAnalytics:
 
 <head>
   {{ if .IsHome -}}
-  <title>{{- .Site.Title -}}{{- with .Site.Params.titleAddition -}} {{- $.Site.Params.titleSeparator -}} {{- . -}}{{- end -}}
-  </title>
+  <title>{{ .Site.Title }}{{ with .Site.Params.titleAddition }} {{ site.Params.titleSeparator | default "-" }} {{ . }}{{ end }}</title>
   {{ else -}}
-  <title>{{ .Title }} {{ .Site.Params.titleSeparator }} {{ .Site.Title }}</title>
+  <title>{{ .Title }} {{ .Site.Params.titleSeparator |  default "-" }} {{ .Site.Title }}</title>
   {{ end -}}
   <!-- standard meta data -->
   {{ partial "head/meta-data.html" . }}
@@ -29,6 +28,7 @@ googleAnalytics:
   {{ block "head/resource-hints" . }}{{ partial "head/resource-hints.html" . }}{{ end }}
   <!-- google analytics -->
   {{ template "_internal/google_analytics.html" . }}
-  <!-- set scratch for body classes -->
-  {{ partial "head/scratch.html" }}
 </head>
+<!-- set scratch for body classes -->
+{{ partial "head/scratch.html" . }}
+
