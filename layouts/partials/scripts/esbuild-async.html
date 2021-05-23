@@ -1,8 +1,8 @@
 
-{{ $js := resources.Get . | js.Build (dict "minify" true ) }}
+{{ $js := resources.Get . | js.Build (dict "minify" true ) | fingerprint }}
 {{ $ctx := . }}
 {{ if site.IsServer }}
-{{ $js = resources.Get $ctx | js.Build (dict  "sourceMap" "inline")}}
+{{ $js = resources.Get $ctx | js.Build (dict  "sourceMap" "inline") | fingerprint }}
 {{ end }}
 <script type="text/javascript" src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer async></script>
 
