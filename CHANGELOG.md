@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.1](https://github.com/powerfulweb/hugo-common/compare/v1.3.0...v1.3.1) (2021-05-23)
+
+
+### Bug Fixes
+
+* added fingerprint for integrity ([c1728c2](https://github.com/powerfulweb/hugo-common/commit/c1728c2366ccce30b72bc29d02abd09565bcf6c1))
+* scratch fixed ([d488f8b](https://github.com/powerfulweb/hugo-common/commit/d488f8bf384fd23bd2f226d30ca9b675f86edde2))
+* temporary re order is-collapsed ([a1d15af](https://github.com/powerfulweb/hugo-common/commit/a1d15affc43439462dc001de68947f3ce3651e7c))
+
 ## [1.3.0](https://github.com/powerfulweb/hugo-common/compare/v1.1.2...v1.3.0) (2021-05-20)
 
 
