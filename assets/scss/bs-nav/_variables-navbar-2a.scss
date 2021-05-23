@@ -38,9 +38,9 @@ $nav-link-font-weight:              500; //null !default; (400)
 // $navbar-dark-toggler-icon-bg:       url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path stroke='#{$navbar-dark-color}' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg>") !default;
 // $navbar-dark-toggler-border-color:  rgba($white, .1) !default;
 
-$navbar-light-color:                $headings-color;//rgba($black, .55) !default;
-$navbar-light-hover-color:          tint-color($headings-color, 30%);//rgba($black, .7) !default;
-$navbar-light-active-color:         shade-color($headings-color, 30%);//rgba($black, .9) !default;
+$navbar-light-color:                $primary;//rgba($black, .55) !default;
+$navbar-light-hover-color:          tint-color($primary, 40%);//rgba($black, .7) !default;
+$navbar-light-active-color:         shade-color($primary, 40%);//rgba($black, .9) !default;
 // $navbar-light-disabled-color:       rgba($black, .3) !default;
 // $navbar-light-toggler-icon-bg:      url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path stroke='#{$navbar-light-color}' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg>") !default;
 // $navbar-light-toggler-border-color: rgba($black, .1) !default;

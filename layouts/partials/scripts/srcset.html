@@ -18,31 +18,32 @@ resources:
 
 optional config override in params
 #SRCSET PHOTO RESIZE CONFIG (optional)
-  photoResize:
-    widthsFull:
-    - 535
-    - 696
-    - 936
-    - 1140
-    - 1296
-    widthsCols:
-    - 178
-    - 279
-    - 372
-    - 468
-    - 558
-    - 648
-    widthsThumbs:
-    - 32
-    - 72
-    - 96
-    - 166
-    - 196
+photoResize:
+  widthsFull:
+  - 535
+  - 696
+  - 936
+  - 1140
+  - 1296
+  widthsCols:
+  - 178
+  - 279
+  - 372
+  - 468
+  - 558
+  - 648
+  widthsThumbs:
+  - 32
+  - 72
+  - 96
+  - 166
+  - 196
 
       
 */}}
 
 {{ $image := .page.Resources.GetMatch (printf "**%s**" .image ) }}
+
 
 {{ $widthsCols := (slice "178" "279" "372" "468" "558" "648") }}
 {{ $widthsThumbs := (slice "32" "72" "96" "166" "196") }}
@@ -119,4 +120,6 @@ optional config override in params
 <figcaption class="figure-caption">{{ $image.Title }}</figcaption>
 </figure>
 {{ end }}
+
+
 
