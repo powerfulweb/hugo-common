@@ -71,7 +71,7 @@ contactDetails:
       {{ $ctx := . }}
       {{ with .url }}
       <a class="c-contact-details__href" href="{{- . | safeURL -}}" 
-      {{- with $ctx.target}}target="{{- . -}}"{{- end -}}>{{- end -}}{{- .text | markdownify -}}{{ with .url }}</a>{{- end -}}
+      target="{{ $ctx.target | default "_blank" }}">{{- end -}}{{- .text | markdownify -}}{{ with .url }}</a>{{- end -}}
     </div>
   </div>
   {{ end }}
