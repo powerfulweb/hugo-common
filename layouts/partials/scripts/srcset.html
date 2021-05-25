@@ -6,7 +6,7 @@
 {{/* .md file must have resources set up including 
 resources:
   - src: ""  # (e.g. images/testimonials*), 
-    title: "" # (used for alt text), 
+    title: "" # (used for alt text),
     # name: "" #(optional override, defaults to file name), 
     params: 
       # class: " " #(optional)
@@ -42,83 +42,92 @@ photoResize:
       
 */}}
 
-{{ $image := .page.Resources.GetMatch (printf "**%s**" .image ) }}
-
-
-{{ $widthsCols := (slice "178" "279" "372" "468" "558" "648") }}
-{{ $widthsThumbs := (slice "32" "72" "96" "166" "196") }}
-{{ $widthsFull := (slice "535" "696" "936" "1140" "1296") }}
-
-{{/*  define variables inside if */}}
-{{ $imgSrcSet := ""}}
-{{ $lqip := "" -}}
-{{/*  disable image processing for svg  */}}
-{{ if ne $image.MediaType.SubType "svg" }}
-{{ $imageSize := imageConfig ($image.RelPermalink | printf "content/%s" ) }}
-{{ $lqip = $image.Resize "20x" -}}
-{{ $lqipConfig := imageConfig ($image.RelPermalink | printf "content/%s" ) }}
-
-<!-- variables used for img tag -->
-{{ $imgSrc := "" }}
-{{ $imgSrcSet = slice }}
-{{ $widths := ""}}
-<!-- change widths based on resource params  site used rather than .Site to avoid context issues -->
-{{ if $image.Params.widthCols }}
-  {{ $widths = site.Params.photoResize.widthsCols | default $widthsCols}}
-{{ else if $image.Params.widthThumbs }}
-  {{ $widths = site.Params.photoResize.widthsThumbs | default $widthsThumbs }}
+{{/* only if valid input */}}
+{{ if eq .image "placeholder" }}
+  <img src="https://via.placeholder.com/600" alt="no image provided" />
 {{ else }}
-  {{ $widths = site.Params.photoResize.widthsFull | default $widthsFull  }}
-{{ end }}
 
-<!--
-  Add URL for each width to $imgSrcSet variable
-  format: "/path/img_1000.jpg 1000w,/path/img_500.jpg 500w"
-  Note: the first URL is used as "fallback" src in $imgSrc.
--->
-{{ range $widths }}
-  {{ $srcUrl := (printf "%dx" . | $image.Resize).RelPermalink }}
-  {{ if eq $imgSrc "" }}
-    {{ $imgSrc = $srcUrl }}
+  {{ $image := .page.Resources.GetMatch (printf "**%s**" .image ) }}
+
+
+  {{ $widthsCols := (slice "178" "279" "372" "468" "558" "648") }}
+  {{ $widthsThumbs := (slice "32" "72" "96" "166" "196") }}
+  {{ $widthsFull := (slice "535" "696" "936" "1140" "1296") }}
+
+  {{/*  define variables inside if */}}
+  {{ $imgSrcSet := ""}}
+  {{ $lqip := "" -}}
+  {{/*  disable image processing for svg  */}}
+  {{ if ne $image.MediaType.SubType "svg" }}
+    {{ $imageSize := imageConfig ($image.RelPermalink | printf "content/%s" ) }}
+    {{ $lqip = $image.Resize "20x" -}}
+    {{ $lqipConfig := imageConfig ($image.RelPermalink | printf "content/%s" ) }}
+
+    <!-- variables used for img tag -->
+    {{ $imgSrc := "" }}
+    {{ $imgSrcSet = slice }}
+    {{ $widths := ""}}
+    <!-- change widths based on resource params  site used rather than .Site to avoid context issues -->
+    {{ if $image.Params.widthCols }}
+      {{ $widths = site.Params.photoResize.widthsCols | default $widthsCols}}
+    {{ else if $image.Params.widthThumbs }}
+      {{ $widths = site.Params.photoResize.widthsThumbs | default $widthsThumbs }}
+    {{ else }}
+      {{ $widths = site.Params.photoResize.widthsFull | default $widthsFull  }}
+    {{ end }}
+
+    <!--
+      Add URL for each width to $imgSrcSet variable
+      format: "/path/img_1000.jpg 1000w,/path/img_500.jpg 500w"
+      Note: the first URL is used as "fallback" src in $imgSrc.
+    -->
+    {{ range $widths }}
+      {{ $srcUrl := (printf "%dx" . | $image.Resize).RelPermalink }}
+      {{ if eq $imgSrc "" }}
+        {{ $imgSrc = $srcUrl }}
+      {{ end }}
+      {{ $imgSrcSet = $imgSrcSet | append (printf "%s %dw" $srcUrl .) }}
+    {{ end }}
+    {{ $imgSrcSet = (delimit $imgSrcSet ",") }}
   {{ end }}
-  {{ $imgSrcSet = $imgSrcSet | append (printf "%s %dw" $srcUrl .) }}
-{{ end }}
-{{ $imgSrcSet = (delimit $imgSrcSet ",") }}
-{{ end }}
 
-{{/*  OUTPUT HTML  */}}
-{{- if $image.Params.figure -}}
-  <figure class="figure">
-{{- end -}}
-{{ if eq $image.MediaType.SubType "svg" }}
-    <img alt="{{ $image.Title }}" 
+
+
+  {{/*  OUTPUT HTML  */}}
+  {{- if $image.Params.figure -}}
+    <figure class="figure">
+  {{- end -}}
+  {{ if eq $image.MediaType.SubType "svg" }}
+      <img alt="{{ $image.Title | default .page.Title }}" 
+        class="img-fluid {{ $image.Params.class }}" 
+        src="{{ $image.RelPermalink }}" />
+  {{ else }}
+    {{ if $image.Params.eager }} 
+      <img alt="{{ $image.Title | default .page.Title }}" 
+        class="lazyload {{ $image.Params.class }}" 
+        data-sizes="auto"
+        srcset="{{ $imgSrcSet }}"
+        src="{{ $image.RelPermalink }}"
+        loading="eager" />
+    {{ else -}}
+      <img alt="{{ $image.Title | default .page.Title }}" 
+        class="lazyload {{ $image.Params.class }}" 
+        data-sizes="auto"
+        data-srcset="{{- $imgSrcSet -}}"
+        src="{{- $image.RelPermalink -}}"
+        srcset="data:image/gif;base64,{{- $lqip.Content | base64Encode -}}"  />
+    {{ end }}
+    <noscript>
+      <img alt="{{ $image.Title | default .page.Title}}" 
       class="img-fluid {{ $image.Params.class }}" 
-      src="{{ $image.RelPermalink }}" />
-{{ else }}
-  {{ if $image.Params.eager }} 
-    <img alt="{{- $image.Title -}}" 
-      class="lazyload {{ $image.Params.class }}" 
-      data-sizes="auto"
-      srcset="{{- $imgSrcSet -}}"
-      src="{{- $image.RelPermalink -}}"
-      loading="eager" />
-  {{ else -}}
-    <img alt="{{- $image.Title -}}" 
-      class="lazyload {{ $image.Params.class }}" 
-      data-sizes="auto"
-      data-srcset="{{- $imgSrcSet -}}"
-      src="{{- $image.RelPermalink -}}"
-      srcset="data:image/gif;base64,{{- $lqip.Content | base64Encode -}}"  />
+      src="{{- $image.RelPermalink -}}" />
+    </noscript>
   {{ end }}
-  <noscript>
-    <img alt="{{- $image.Title -}}" 
-    class="img-fluid {{ $image.Params.class }}" 
-    src="{{- $image.RelPermalink -}}" />
-  </noscript>
-{{ end }}
-{{ if $image.Params.figure -}}
-<figcaption class="figure-caption">{{ $image.Title }}</figcaption>
-</figure>
+  {{ if $image.Params.figure -}}
+  <figcaption class="figure-caption">{{ $image.Title }}</figcaption>
+  </figure>
+  {{ end }}
+
 {{ end }}
 
 
