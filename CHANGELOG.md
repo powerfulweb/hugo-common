@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.4](https://github.com/powerfulweb/hugo-common/compare/v1.3.3...v1.3.4) (2021-05-27)
+
+
+### Bug Fixes
+
+* breadcumb and srcset ([ddb611e](https://github.com/powerfulweb/hugo-common/commit/ddb611e23aa81810bb1d1a97e3c810a8740e14b2))
+* lastmod shortcode ([fae639c](https://github.com/powerfulweb/hugo-common/commit/fae639c1ddc43b4a280f91f33c1af467b068bbcd))
+* srcset placeholder conditional ([b5617f0](https://github.com/powerfulweb/hugo-common/commit/b5617f027aa84f9e893ef6566d9214d80fefc249))
+
 ### [1.3.3](https://github.com/powerfulweb/hugo-common/compare/v1.3.2...v1.3.3) (2021-05-24)
 
 
