@@ -1,22 +1,23 @@
 
-{{/*  Breadcrumbs based on page heirachys
+{{/*  Breadcrumbs based on page heirachys - does not display "home" as highest level
   
   {{ partial "components/c-breadcrumbs" . }}  */}}
 
 <nav class="breadcrumb" aria-label="breadcrumb">
   <ol class="breadcrumb">
   {{ define "breadcrumb" }}
-  {{ with .Parent }}
-      {{ template "breadcrumb" . }}
-      <li class="breadcrumb-item"> <a href="{{ .Permalink }}">{{ if .IsHome }}Home{{ else }}{{ .Title }}{{ end }}</a> </li>
+    {{ with .Parent }}
+      {{ if not .IsHome }}
+        {{ template "breadcrumb" . }}
+        <li class="breadcrumb-item"> <a href="{{ .Permalink }}">{{ .Title }}</a> </li>
+      {{ end }}
+    {{ end }}
   {{ end }}
-  {{ end }}
+
+
   {{ if not .IsHome }}
   {{ template "breadcrumb" . }}
   <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
   {{ end }}
 </ol>
 </nav>
-
-
-

@@ -2,6 +2,9 @@
 {{/* USE {{ partial "scripts/srcset.html" (dict "page" . "image" "image_name")}}  - folder and file extension not required
 {{<srcset image="spf13">}} - folder or extension not required
 
+override resource params
+{{ partial "scripts/srcset.html" (dict "page" . "image" "image_name" "title" "title override" "figure" bool "figureTitle" "figtitle ovverride" "class" "class additions")}}
+
 */}}
 {{/* .md file must have resources set up including 
 resources:
@@ -43,6 +46,16 @@ photoResize:
 */}}
 
 {{/* only if valid input */}}
+
+<!-- $image := ""
+with .page.Resources.GetMatch (printf "**%s**" .image
+
+
+
+else 
+
+<img src="https://via.placeholder.com/600" alt="no image provided" />
+end  -->
 {{ if eq .image "placeholder" }}
   <img src="https://via.placeholder.com/600" alt="no image provided" />
 {{ else }}
@@ -94,37 +107,43 @@ photoResize:
 
 
   {{/*  OUTPUT HTML  */}}
-  {{- if $image.Params.figure -}}
+  {{/*  set vars for html tags  */}}
+  {{ $title := .title | default $image.Title }}
+  {{ $figureTitle := .figureTitle | default $title }}
+  {{ $figure := .figure | default $image.Params.figure }}
+  {{ $class := (printf "%s %s" ($image.Params.class | default "") (.class | default ""))}}
+
+  {{- if $figure -}}
     <figure class="figure">
   {{- end -}}
   {{ if eq $image.MediaType.SubType "svg" }}
-      <img alt="{{ $image.Title | default .page.Title }}" 
-        class="img-fluid {{ $image.Params.class }}" 
+      <img alt="{{ $title }}" 
+        class="img-fluid {{ $class }}" 
         src="{{ $image.RelPermalink }}" />
   {{ else }}
     {{ if $image.Params.eager }} 
-      <img alt="{{ $image.Title | default .page.Title }}" 
-        class="lazyload {{ $image.Params.class }}" 
+      <img alt="{{ $title }}" 
+        class="lazyload {{ $class }}" 
         data-sizes="auto"
         srcset="{{ $imgSrcSet }}"
         src="{{ $image.RelPermalink }}"
         loading="eager" />
     {{ else -}}
-      <img alt="{{ $image.Title | default .page.Title }}" 
-        class="lazyload {{ $image.Params.class }}" 
+      <img alt="{{ $title }}" 
+        class="lazyload {{ $class }}" 
         data-sizes="auto"
         data-srcset="{{- $imgSrcSet -}}"
         src="{{- $image.RelPermalink -}}"
         srcset="data:image/gif;base64,{{- $lqip.Content | base64Encode -}}"  />
     {{ end }}
     <noscript>
-      <img alt="{{ $image.Title | default .page.Title}}" 
-      class="img-fluid {{ $image.Params.class }}" 
+      <img alt="{{ $title }}" 
+      class="img-fluid {{ $class }}" 
       src="{{- $image.RelPermalink -}}" />
     </noscript>
   {{ end }}
-  {{ if $image.Params.figure -}}
-  <figcaption class="figure-caption">{{ $image.Title }}</figcaption>
+  {{ if $figure -}}
+  <figcaption class="figure-caption">{{ $figureTitle }}</figcaption>
   </figure>
   {{ end }}
 
