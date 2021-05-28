@@ -112,6 +112,7 @@ end  -->
   {{ $figureTitle := .figureTitle | default $title }}
   {{ $figure := .figure | default $image.Params.figure }}
   {{ $class := (printf "%s %s" ($image.Params.class | default "") (.class | default ""))}}
+  {{ $eager := .eager | default $image.Params.eager }}
 
   {{- if $figure -}}
     <figure class="figure">
@@ -121,9 +122,9 @@ end  -->
         class="img-fluid {{ $class }}" 
         src="{{ $image.RelPermalink }}" />
   {{ else }}
-    {{ if $image.Params.eager }} 
+    {{ if $eager }} 
       <img alt="{{ $title }}" 
-        class="lazyload {{ $class }}" 
+        class="lazyload {{ $class }} eager" 
         data-sizes="auto"
         srcset="{{ $imgSrcSet }}"
         src="{{ $image.RelPermalink }}"
