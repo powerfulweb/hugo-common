@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.8](https://github.com/powerfulweb/hugo-common/compare/v1.3.7...v1.3.8) (2021-05-28)
+
+
+### Bug Fixes
+
+* added eager config via partial var ([b1a17f9](https://github.com/powerfulweb/hugo-common/commit/b1a17f93720b7555209f5eaf98025314c8339688))
+
 ### [1.3.7](https://github.com/powerfulweb/hugo-common/compare/v1.3.6...v1.3.7) (2021-05-28)
 
 
