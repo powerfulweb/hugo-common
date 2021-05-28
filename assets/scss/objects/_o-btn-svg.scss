@@ -12,7 +12,7 @@ $svg-btn-icon-size-lg: 2rem !default;
 $svg-btn-border-lg: 3px !default;
 
 // for back to top button
-$svg-btn-padding-up: 0rem !default; // size / 3
+$svg-btn-padding-up: 0 !default; // size / 3
 $svg-btn-icon-size-up: 3rem !default; 
 $svg-btn-border-up: 3px !default;
 
@@ -85,9 +85,9 @@ $svg-btn-border-up: 3px !default;
   &:hover {
     background-color: $active-background;
     border-color: $active-border;
-    color: $color-hover;
+    color: $body-bg;
     svg {
-      fill: $color-hover;
+      fill: $body-bg;
     }
 
   }
