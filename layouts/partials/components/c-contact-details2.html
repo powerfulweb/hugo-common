@@ -5,75 +5,87 @@ c-contact-details
 
 requires params in the parent page's markdown e.g.   
 contactDetails:
-  #phone
-- text: 02 8004 3293
-  url: "tel:+6180043293"
-  icon: "icons/bootstrap/telephone.svg"
-  #email
-- text: sales@powerfulwebdesign.com.au
-  url: mailto:sales@powerfulwebdesign.com.au
-  icon: "icons/bootstrap/envelope.svg"
-  target: _blank
-  #location
-- text: "NSW, Australia <br> Meadowbank, Sydney"
-  url: https://goo.gl/maps/NGC8ZJTUXD2BX2zg7
-  icon: "icons/bootstrap/geo-alt.svg"
-  #help desk
-- text: Help Desk
-  url: https://support.powerfulwebdesign.com.au/
-  icon: "icons/bootstrap/exclamation-triangle.svg"
-  #contact hours
-- text: " 
-<table>
-  <tr>
-    <td>Mon:</td>
-    <td>10am - 7pm</td>
-  </tr>
-   <tr>
-    <td>Tue:</td>
-    <td>10am - 7pm</td>
-  </tr>
-  <tr>
-    <td>Wed:</td>
-    <td>10am - 7pm</td>
-  </tr>
-  <tr>
-    <td>Thu:</td>
-    <td>10am - 7pm</td>
-  </tr>
-  <tr>
-    <td>Fri:</td>
-    <td>10am - 7pm</td>
-  </tr>
-  <tr>
-    <td>Sat:</td>
-    <td>By Appointment</td>
-  </tr>
-  <tr>
-    <td>Sun:</td>
-    <td>Closed</td>
-  </tr>
-</table>"
-  icon: "icons/bootstrap/clock.svg"
+  - text: 0411 587 374
+    url: tel:+61411587374
+    icon: icons/bootstrap/telephone.svg
+    newTab: false
+    draft: false
+  - text: caringbah@majesticskinclinic.com.au
+    url: mailto:mahsa@majesticskinclinic.com.au
+    icon: icons/bootstrap/envelope.svg
+    newTab: true
+    draft: false
+  - text: "@majestic_skinclinic"
+    url: https://www.instagram.com/majestic_skinclinic/
+    icon: icons/bootstrap/instagram.svg
+    newTab: true
+    draft: false
+  - text: |-
+      Shire Doctors & Dentists Medical Center
+      <br>Unit 6-11
+      <br>416 Kingsway
+      <br>Caringbah NSW 2229
+    url: https://goo.gl/maps/pXPYKRV54vHEjXLt6
+    icon: icons/bootstrap/geo-alt.svg
+    newTab: true
+    draft: false
+  - text: |-
+      <table>
+          <tr>
+            <td>Mon:</td>
+            <td>9am - 5pm</td>
+          </tr>
+          <tr>
+            <td>Tue:</td>
+            <td>9am - 5pm</td>
+          </tr>
+          <tr>
+            <td>Wed:</td>
+            <td>9am - 5pm</td>
+          </tr>
+          <tr>
+            <td>Thu:</td>
+            <td>9am - 5pm</td>
+          </tr>
+          <tr>
+            <td>Fri:</td>
+            <td>9am - 5pm</td>
+          </tr>
+          <tr>
+            <td>Sat:</td>
+            <td>By Appointment</td>
+          </tr>
+          <tr>
+            <td>Sun:</td>
+            <td>Closed</td>
+          </tr>
+        </table>
+    url: null
+    icon: icons/bootstrap/clock.svg
+    newTab: true
+    draft: false
 */}}
 
 
 
 <div class="c-contact-details">
   {{ range .Params.contactdetails }}
-  <div class="c-contact-details__row">
-    <div class="c-contact-details__svg-wrapper">
-      <a class="c-contact-details__svg">
-      {{ partial "scripts/svg-inline.html" .icon }} 
-      </a>
-    </div>
-    <div class="c-contact-details__text">
-      {{ $ctx := . }}
-      {{ with .url }}
-      <a class="c-contact-details__href" href="{{- . | safeURL -}}" 
-      target="{{ $ctx.target | default "_blank" }}">{{- end -}}{{- .text | markdownify -}}{{ with .url }}</a>{{- end -}}
-    </div>
-  </div>
+    {{ if not .draft }}
+      <div class="c-contact-details__row">
+        <div class="c-contact-details__svg-wrapper">
+          <a class="c-contact-details__svg">
+          {{ partial "scripts/svg-inline.html" .icon }} 
+          </a>
+        </div>
+        <div class="c-contact-details__text">
+          {{ $ctx := . }}
+          {{ with .url }}
+          <a class="c-contact-details__href" href="{{- . | safeURL -}}" 
+          {{ with $ctx.newTab  }} target="_blank"{{ end }}>{{- end -}}
+          {{- .text | markdownify -}}{{ with .url }}</a>{{- end -}}
+        </div>
+      </div>
+    {{ end }}
   {{ end }}
 </div>
 

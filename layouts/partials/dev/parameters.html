@@ -88,7 +88,13 @@
 				<td>.File.Dir</td>
 				<td>{{ if .File }}{{ printf "%#v" .File.Dir }}{{ else}}""{{ end }}</td>
 			</tr>
+      <tr class="p-2 border-t">
+				<td>Hugo Replacements: </td>
+				<td>{{ getenv "HUGO_MODULE_REPLACEMENTS" }}</td>
+			</tr>
 		</tbody>
 	</table>
 </div>
+
+
 {{ end }}
