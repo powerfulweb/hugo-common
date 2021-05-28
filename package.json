@@ -1,21 +1,21 @@
 {
- "author": "Powerful Web Design",
- "version": "1.3.6",
- "description": "modules for hugo",
- "devDependencies": {
-  "standard-version": "^9.2.0"
- },
- "license": "ISC",
- "main": "index.js",
- "name": "hugo-common",
- "repository": {
-  "type": "git",
-  "url": "git+https://github.com/powerfulweb/hugo-common.git"
- },
- "scripts": {
-  "vendor": "hugo mod vendor",
-  "release": "standard-version",
-  "release:dry-run": "standard-version --dry-run",
-  "git:push": "git push --follow-tags origin main"
- }
+  "author": "Powerful Web Design",
+  "version": "1.3.7",
+  "description": "modules for hugo",
+  "devDependencies": {
+    "standard-version": "^9.2.0"
+  },
+  "license": "ISC",
+  "main": "index.js",
+  "name": "hugo-common",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/powerfulweb/hugo-common.git"
+  },
+  "scripts": {
+    "vendor": "hugo mod vendor",
+    "release": "standard-version",
+    "release:dry-run": "standard-version --dry-run",
+    "git:push": "git push --follow-tags origin main"
+  }
 }

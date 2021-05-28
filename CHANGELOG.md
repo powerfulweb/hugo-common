@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.7](https://github.com/powerfulweb/hugo-common/compare/v1.3.6...v1.3.7) (2021-05-28)
+
+
+### Bug Fixes
+
+* removed lock file ([48ec03e](https://github.com/powerfulweb/hugo-common/commit/48ec03ea20c5174780b18036ea3da3c0558c7893))
+
 ### [1.3.6](https://github.com/powerfulweb/hugo-common/compare/v1.3.5...v1.3.6) (2021-05-28)
 
 
