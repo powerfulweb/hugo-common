@@ -20,13 +20,14 @@
 
     &-brand {
       // centers logo
-      width: 98vw;
-      position: absolute;
-      top: 0;
+      // width: 98vw;
+      // position: absolute;
+      // top: 0;
+      // overflow-x: hidden;
 
       img {
-        display: block;
-        margin: auto;
+        // display: block;
+        // margin: auto;
       }
     }
   }
