@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.10](https://github.com/powerfulweb/hugo-common/compare/v1.3.9...v1.3.10) (2021-05-31)
+
+
+### Bug Fixes
+
+* added placeholder for no image and width var ([9c64268](https://github.com/powerfulweb/hugo-common/commit/9c6426897851b12a0d8bc96afa5d7f506abcb345))
+
 ### [1.3.9](https://github.com/powerfulweb/hugo-common/compare/v1.3.8...v1.3.9) (2021-05-29)
 
 
