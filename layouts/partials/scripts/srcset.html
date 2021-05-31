@@ -3,7 +3,7 @@
 {{<srcset image="spf13">}} - folder or extension not required
 
 override resource params
-{{ partial "scripts/srcset.html" (dict "page" . "image" "image_name" "title" "title override" "figure" bool "figureTitle" "figtitle ovverride" "class" "class additions")}}
+{{ partial "scripts/srcset.html" (dict "page" . "image" "image_name" "title" "title override" "width" "cols or thumbs" "figure" bool "figureTitle" "figtitle ovverride" "class" "class additions")}}
 
 */}}
 {{/* .md file must have resources set up including 
@@ -56,21 +56,20 @@ else
 
 <img src="https://via.placeholder.com/600" alt="no image provided" />
 end  -->
-{{ if eq .image "placeholder" }}
-  <img src="https://via.placeholder.com/600" alt="no image provided" />
-{{ else }}
-
-  {{ $image := .page.Resources.GetMatch (printf "**%s**" .image ) }}
+{{ $ctx := . }}
+{{ with .page.Resources.GetMatch (printf "**%s**" .image ) }}
+  {{ $image := . }}
 
 
   {{ $widthsCols := (slice "178" "279" "372" "468" "558" "648") }}
   {{ $widthsThumbs := (slice "32" "72" "96" "166" "196") }}
   {{ $widthsFull := (slice "535" "696" "936" "1140" "1296") }}
 
-  {{/*  define variables inside if */}}
+  {{/*  define variables inside if - used in img tags at end  */}}
   {{ $imgSrcSet := ""}}
   {{ $lqip := "" -}}
   {{/*  disable image processing for svg  */}}
+
   {{ if ne $image.MediaType.SubType "svg" }}
     {{ $imageSize := imageConfig ($image.RelPermalink | printf "content/%s" ) }}
     {{ $lqip = $image.Resize "20x" -}}
@@ -80,10 +79,20 @@ end  -->
     {{ $imgSrc := "" }}
     {{ $imgSrcSet = slice }}
     {{ $widths := ""}}
+
+    {{ $widthString := $ctx.width | default $image.Params.width }}
     <!-- change widths based on resource params  site used rather than .Site to avoid context issues -->
-    {{ if $image.Params.widthCols }}
+    {{/* if $image.Params.widthCols }}
       {{ $widths = site.Params.photoResize.widthsCols | default $widthsCols}}
     {{ else if $image.Params.widthThumbs }}
+      {{ $widths = site.Params.photoResize.widthsThumbs | default $widthsThumbs }}
+    {{ else }}
+      {{ $widths = site.Params.photoResize.widthsFull | default $widthsFull  }}
+    {{ end */}}
+
+    {{ if eq $widthString "cols" }}
+      {{ $widths = site.Params.photoResize.widthsCols | default $widthsCols}}
+    {{ else if eq $widthString "thumbs" }}
       {{ $widths = site.Params.photoResize.widthsThumbs | default $widthsThumbs }}
     {{ else }}
       {{ $widths = site.Params.photoResize.widthsFull | default $widthsFull  }}
@@ -94,6 +103,7 @@ end  -->
       format: "/path/img_1000.jpg 1000w,/path/img_500.jpg 500w"
       Note: the first URL is used as "fallback" src in $imgSrc.
     -->
+
     {{ range $widths }}
       {{ $srcUrl := (printf "%dx" . | $image.Resize).RelPermalink }}
       {{ if eq $imgSrc "" }}
@@ -108,11 +118,12 @@ end  -->
 
   {{/*  OUTPUT HTML  */}}
   {{/*  set vars for html tags  */}}
-  {{ $title := .title | default $image.Title }}
-  {{ $figureTitle := .figureTitle | default $title }}
-  {{ $figure := .figure | default $image.Params.figure }}
-  {{ $class := (printf "%s %s" ($image.Params.class | default "") (.class | default ""))}}
-  {{ $eager := .eager | default $image.Params.eager }}
+  {{ $title := $ctx.title | default $image.Title }}
+  {{ $figureTitle := $ctx.figureTitle | default $title }}
+  {{ $figure := $ctx.figure | default $image.Params.figure }}
+  {{ $class := (printf "%s %s" ($image.Params.class | default "") ($ctx.class | default ""))}}
+  {{ $eager := $ctx.eager | default $image.Params.eager }}
+
 
   {{- if $figure -}}
     <figure class="figure">
@@ -148,6 +159,10 @@ end  -->
   </figure>
   {{ end }}
 
+
+
+{{ else }}
+<img src="https://via.placeholder.com/1200" alt="no image provided" class="img-fluid" />
 {{ end }}
 
 
