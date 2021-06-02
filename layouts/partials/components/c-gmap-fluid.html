@@ -39,7 +39,6 @@ html.no-js .gmap--fluid  {
 }
 
 </style>
-{{ .Params.gmapURL }}
 {{ with .Params.gmapURL }}
 <div class="gmap--fluid" data-aos="fade-up">
   <iframe src="{{- . -}}" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
