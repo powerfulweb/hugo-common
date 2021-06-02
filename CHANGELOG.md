@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.11](https://github.com/powerfulweb/hugo-common/compare/v1.3.10...v1.3.11) (2021-06-02)
+
+
+### Bug Fixes
+
+* added browser theme color param ([d474416](https://github.com/powerfulweb/hugo-common/commit/d4744166c87333e9c84aef00accacf49bfb03c5d))
+* update srcset ([1ba8090](https://github.com/powerfulweb/hugo-common/commit/1ba8090a356e3ed9aa69a1692ef6c59dcf2b15c2))
+
 ### [1.3.10](https://github.com/powerfulweb/hugo-common/compare/v1.3.9...v1.3.10) (2021-05-31)
 
 
