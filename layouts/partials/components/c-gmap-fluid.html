@@ -7,12 +7,13 @@ gmapURL: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3314.78924347966
 */}}
 
 
-{{ with .Params.gmapURL }}
 <style>
 .gmap--fluid {
   position: relative;
   width: 100%;
   padding-bottom: 56.25%;
+  overflow: hidden;
+  height:0;
 }
   
 /* Ratio 16:9 ( 100%/16*9 = 56.25% ) */
@@ -38,10 +39,10 @@ html.no-js .gmap--fluid  {
 }
 
 </style>
-
+{{ .Params.gmapURL }}
+{{ with .Params.gmapURL }}
 <div class="gmap--fluid" data-aos="fade-up">
-  <iframe src="{{ . }}" width="800" height="800" allowfullscreen="" aria-hidden="false"
-    title="Location on Google Maps" tabindex="0" loading="lazy"></iframe>
+  <iframe src="{{- . -}}" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
 </div>
  
 {{ end }}

@@ -45,25 +45,16 @@ photoResize:
       
 */}}
 
-{{/* only if valid input */}}
-
-<!-- $image := ""
-with .page.Resources.GetMatch (printf "**%s**" .image
 
 
-
-else 
-
-<img src="https://via.placeholder.com/600" alt="no image provided" />
-end  -->
 {{ $ctx := . }}
 {{ with .page.Resources.GetMatch (printf "**%s**" .image ) }}
+{{/* only if valid input */}}
   {{ $image := . }}
 
-
-  {{ $widthsCols := (slice "178" "279" "372" "468" "558" "648") }}
-  {{ $widthsThumbs := (slice "32" "72" "96" "166" "196") }}
-  {{ $widthsFull := (slice "535" "696" "936" "1140" "1296") }}
+  {{ $widthsCols := (slice 178 279 372 468 558 648) }}
+  {{ $widthsThumbs := (slice 32 72 96 166 196) }}
+  {{ $widthsFull := (slice 535 696 936 1140 1296) }}
 
   {{/*  define variables inside if - used in img tags at end  */}}
   {{ $imgSrcSet := ""}}
