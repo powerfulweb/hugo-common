@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.12](https://github.com/powerfulweb/hugo-common/compare/v1.3.11...v1.3.12) (2021-06-02)
+
+
+### Bug Fixes
+
+* remove gmail text ([236fba0](https://github.com/powerfulweb/hugo-common/commit/236fba0c5b0b1a84ad445cc95a8abf1cbfe4b86e))
+
 ### [1.3.11](https://github.com/powerfulweb/hugo-common/compare/v1.3.10...v1.3.11) (2021-06-02)
 
 
