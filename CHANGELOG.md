@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.15](https://github.com/powerfulweb/hugo-common/compare/v1.3.14...v1.3.15) (2021-06-04)
+
+
+### Bug Fixes
+
+* srcset containerxxl ([77f575c](https://github.com/powerfulweb/hugo-common/commit/77f575cfb03b3b0d3bc49dd80e35dcc2e22b0d41))
+
 ### [1.3.14](https://github.com/powerfulweb/hugo-common/compare/v1.3.13...v1.3.14) (2021-06-04)
 
 
