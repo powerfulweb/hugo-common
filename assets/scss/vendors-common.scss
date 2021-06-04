@@ -1,3 +1,5 @@
+/*! purgecss start ignore */
+
 // Bootstrap 5 classes dependency - require after bootstrap
 
 // NO-JS support for vendors
@@ -43,7 +45,10 @@ figure {
     }
     &-slide {
       @extend .col-12, .col-sm-6, .col-md-3, .p-2;
+      
       height: auto;
     }
   }
 }
+
+/*! purgecss end ignore */

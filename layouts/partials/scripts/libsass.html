@@ -6,7 +6,7 @@
 {{ $ctx := . }}
 {{ if site.IsServer }}
 {{ $opts = (dict "enableSourceMap" true "includePaths" (slice "node_modules")) }}
-{{ $css = resources.Get $ctx | toCSS $opts | fingerprint }}
+{{ $css = resources.Get $ctx | toCSS $opts | postCSS | fingerprint }}
 {{ end }}
 
 <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}" >
