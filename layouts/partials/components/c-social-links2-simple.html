@@ -20,7 +20,7 @@ fill: currentColor;
 
   {{ range site.Params.socialLinks}}
     {{ if not .draft}}
-    <a role="button" href="{{ .url }}" class="{{ $class }} d-inline-block" target="_blank">
+    <a role="button" href="{{ .url }}" class="{{ $class }} d-inline-block" target="_blank" rel="noopener">
       <div class="{{ $id }}"> 
      
     
