@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.16](https://github.com/powerfulweb/hugo-common/compare/v1.3.15...v1.3.16) (2021-06-05)
+
+
+### Bug Fixes
+
+* reverse sizes and largest is fallback ([da50a6d](https://github.com/powerfulweb/hugo-common/commit/da50a6de398347f4dc64628fd09cb33d7cb32999))
+
 ### [1.3.15](https://github.com/powerfulweb/hugo-common/compare/v1.3.14...v1.3.15) (2021-06-04)
 
 
