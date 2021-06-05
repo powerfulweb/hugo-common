@@ -52,23 +52,23 @@ photoResize:
 {{/* only if valid input */}}
   {{ $image := . }}
 
-  {{ $widthsCols := (slice 178 279 377 468 558 648) }}
-  {{ $widthsThumbs := (slice 32 72 96 166 196) }}
-  {{ $widthsFull := (slice 535 696 936 1140 1320) }}
+  {{ $widthsCols := (slice 648 558 468 377 279 178) }}
+  {{ $widthsThumbs := (slice 196 166 96 72 32) }}
+  {{ $widthsFull := (slice 1320 1140 1320 1140 936 696 535) }}
 
   {{/*  define variables inside if - used in img tags at end  */}}
-  {{ $imgSrcSet := ""}}
-  {{ $lqip := "" -}}
+  {{ $imgSrcSet := slice }}
+  {{ $imgSrc := "" }}
+  {{ $lqip := "" }}
   {{/*  disable image processing for svg  */}}
 
   {{ if ne $image.MediaType.SubType "svg" }}
     {{ $imageSize := imageConfig ($image.RelPermalink | printf "content/%s" ) }}
     {{ $lqip = $image.Resize "20x" -}}
-    {{ $lqipConfig := imageConfig ($image.RelPermalink | printf "content/%s" ) }}
 
     <!-- variables used for img tag -->
-    {{ $imgSrc := "" }}
-    {{ $imgSrcSet = slice }}
+    
+    
     {{ $widths := ""}}
 
     {{ $widthString := $ctx.width | default $image.Params.width }}
@@ -94,10 +94,12 @@ photoResize:
       format: "/path/img_1000.jpg 1000w,/path/img_500.jpg 500w"
       Note: the first URL is used as "fallback" src in $imgSrc.
     -->
-
+   
+    
     {{ range $widths }}
       {{ $srcUrl := (printf "%dx" . | $image.Resize).RelPermalink }}
       {{ if eq $imgSrc "" }}
+        {{/*  first(largest size) becomes fallback image  */}}
         {{ $imgSrc = $srcUrl }}
       {{ end }}
       {{ $imgSrcSet = $imgSrcSet | append (printf "%s %dw" $srcUrl .) }}
@@ -129,20 +131,20 @@ photoResize:
         class="lazyload {{ $class }} eager" 
         data-sizes="auto"
         srcset="{{ $imgSrcSet }}"
-        src="{{ $image.RelPermalink }}"
+        src="{{ $imgSrc }}"
         loading="eager" />
     {{ else -}}
       <img alt="{{ $title }}" 
         class="lazyload {{ $class }}" 
         data-sizes="auto"
         data-srcset="{{- $imgSrcSet -}}"
-        src="{{- $image.RelPermalink -}}"
+        src="{{ $imgSrc }}"
         srcset="data:image/gif;base64,{{- $lqip.Content | base64Encode -}}"  />
     {{ end }}
     <noscript>
       <img alt="{{ $title }}" 
       class="img-fluid {{ $class }}" 
-      src="{{- $image.RelPermalink -}}" />
+      src="{{ $imgSrc }}" />
     </noscript>
   {{ end }}
   {{ if $figure -}}
