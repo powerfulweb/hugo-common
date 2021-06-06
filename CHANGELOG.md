@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.18](https://github.com/powerfulweb/hugo-common/compare/v1.3.17...v1.3.18) (2021-06-06)
+
+
+### Bug Fixes
+
+* move postcss and babel config ([7921a57](https://github.com/powerfulweb/hugo-common/commit/7921a579389478f2667d5c84c183fc58316cbd8f))
+
 ### [1.3.17](https://github.com/powerfulweb/hugo-common/compare/v1.3.16...v1.3.17) (2021-06-06)
 
 ### [1.3.16](https://github.com/powerfulweb/hugo-common/compare/v1.3.15...v1.3.16) (2021-06-05)
