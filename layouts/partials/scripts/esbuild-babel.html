@@ -1,5 +1,5 @@
-{{/*  for testing only */}}
-{{ $js := resources.Get . | js.Build | babel (dict "noComments" true "minified" true "compact" true) | fingerprint}}
+{{/*  {{ partial "scripts/esbuild-babel" "js/assets.js" }}  */}}
+{{ $js := resources.Get . | js.Build | babel (dict "noComments" true "minified" true "compact" true "config" "config/postcss.config.js") | fingerprint}}
 {{ $ctx := . }}
 {{ if site.IsServer }}
 {{ $js = resources.Get $ctx | js.Build (dict  "sourceMap" "inline") | fingerprint }}

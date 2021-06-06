@@ -1,7 +1,8 @@
-
+{{/* {{ partial "scripts/libsass" "scss/index.scss" }}   */}}
 {{ $opts := (dict "outputStyle" "compressed" "includePaths" (slice "node_modules")) }}
+{{ $postOpts := (dict "config" "config/postcss.config.js") }}
 
-{{ $css := resources.Get . | toCSS $opts | postCSS | fingerprint }}
+{{ $css := resources.Get . | toCSS $opts | postCSS $postOpts | fingerprint }}
 
 {{ $ctx := . }}
 {{ if site.IsServer }}
