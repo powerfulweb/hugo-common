@@ -1,0 +1,19 @@
+{{/*  
+
+{{ partial "components/snipcart/3.2.0/footer" . }}
+params.yml
+
+snipcart:
+  key: MjZhZjIxNjAtN2JmNC00MGEyLWFmYTUtOWYzOTJmNWU2YmMwNjM3NTg3NTcyNTgxNjc1MDg0  #demo
+  #side: true 
+
+  */}}
+<script async src="https://cdn.snipcart.com/themes/v3.2.0/default/snipcart.js"></script>
+<div hidden id="snipcart" 
+{{ with .Site.Params.snipcart.key }}
+data-api-key="{{ . }}"
+{{ end }}
+{{ if .Site.Params.snipcart.side }}
+data-config-modal-style="side"  
+{{ end }}
+></div>

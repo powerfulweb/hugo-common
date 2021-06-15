@@ -1,0 +1,19 @@
+
+{{/*  Breadcrumbs based on page heirachys displays "home" as highest level
+  
+  {{ partial "components/c-breadcrumbs-home" . }}  */}}
+
+<nav class="breadcrumb" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+  {{ define "breadcrumb" }}
+    {{ with .Parent }}
+      {{ template "breadcrumb" . }}
+      <li class="breadcrumb-item"> <a href="{{ .Permalink }}">{{ .Title }}</a> </li>
+    {{ end }}
+  {{ end }}
+
+  {{ template "breadcrumb" . }}
+  <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
+
+</ol>
+</nav>
