@@ -4,6 +4,7 @@
 ##ADD TO SITE PARAMS
 ##FACEBOOK EMBED
 ## SEE https://developers.facebook.com/docs/plugins/page-plugin/
+## see above link to understand defaults
 ##language set through .Site.LanguageCode
 facebookEmbedName: "Saint Peter&#039;s Anglican Church, Townsville" 
 facebookEmbedUrl: https://www.facebook.com/saintpeterstownsville/ 
@@ -16,7 +17,7 @@ facebookEmbedAdaptiveWidth: true   Try to fit inside the container width  (TRUE)
 facebookEmbedHideCover: false #hide cover photo in header (FALSE)
 facebookEmbedFriendsFaces: true #Show profile photos when friends like this  (TRUE)
 facebookEmbedHideCTA: false #Hide the custom call to action button (if available) (FALSE)
-facebookEmbedLazy: false # loading="lazy" iframe (FALSE)
+facebookEmbedLazy: false # loading="lazy" iframe (TRUE)
 */}}
 
 <script async defer crossorigin="anonymous" 
@@ -32,7 +33,7 @@ data-tabs="{{ .Site.Params.facebookEmbedTabs }}"
 {{ with .Site.Params.facebookEmbedAdaptiveWidth }} data-adapt-container-width="{{ . }}" {{ end }}
 {{ with .Site.Params.facebookEmbedHideCover}} data-hide-cover="{{ . }}" {{ end }}
 {{ with .Site.Params.facebookEmbedFriendsFaces }} data-show-facepile="{{ . }}" {{ end }}
-{{ with .Site.Params.facebookEmbedLazy }} data-lazy="{{ . }}" {{ end }}
+{{ with .Site.Params.facebookEmbedLazy | default true }} data-lazy="{{ . }}" {{ end }}
 {{ with .Site.Params.facebookEmbedHideCTA }} data-hide-cta="{{ . }}" {{ end }}>
 <blockquote cite="{{ .Site.Params.facebookEmbedURL }}" class="fb-xfbml-parse-ignore">
   <a href="{{ .Site.Params.facebookEmbedURL }}">{{ .Site.Params.facebookEmbedName }}</a>
