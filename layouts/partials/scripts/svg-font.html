@@ -1,0 +1,13 @@
+{{/*
+<span class="fs-4">partial</span>
+{{ partial "scripts/svg-font.html" "icons/footer/telephone.svg" }}    
+{{ partial "scripts/svg-font.html" $.Site.Params.twitterIcon }}   */}}
+<span
+  class="svg-font"
+  style="display:inline-block; height:0.9em; width:0.9em; top:0.1em; position:relative;">
+  {{ $svg := resources.Get . }}
+  {{ $svg = $svg.Content }}
+  {{ $commentStrippedSvg := replaceRE "<!--[^>]*-->" "" $svg }}
+  {{ $filledPathSvg := replace $commentStrippedSvg "<path" "<path fill='currentColor'" }}
+  {{- $filledPathSvg | safeHTML -}}
+</span>

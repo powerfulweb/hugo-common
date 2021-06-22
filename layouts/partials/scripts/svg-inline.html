@@ -1,4 +1,8 @@
-{{/*  {{ partial "scripts/svg-inline.html" "icons/footer/telephone.svg" }}    
+{{/*   22/6/21 depreciated use svg-font
+  
+  
+  
+  {{ partial "scripts/svg-inline.html" "icons/footer/telephone.svg" }}    
       {{ partial "scripts/svg-inline.html" $.Site.Params.twitterIcon }}   */}}
 {{ $icon := resources.Get . }}
 {{ $icon.Content | safeHTML }}

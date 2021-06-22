@@ -45,6 +45,7 @@ $svg-btn-border-up: 3px !default;
   $disabled-color: color-contrast($disabled-background)
 ) {
   @include box-shadow($btn-box-shadow);
+
   background: $background;
   border-color: $background;
   color: $color;
@@ -112,7 +113,8 @@ $svg-btn-border-up: 3px !default;
   border-style: solid;
   border-width: $svg-btn-border;
 
-  color: inherit; //color is inherited unless set with o-svg--$color
+  //color: inherit; //color is inherited unless set with o-svg--$color
+  color: $body-bg;
 
   padding: $svg-btn-padding;
 

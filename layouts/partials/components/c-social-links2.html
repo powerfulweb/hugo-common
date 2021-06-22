@@ -1,16 +1,13 @@
 {{/* 
-{{ partial "components/c-social-links2.html" (dict "ctx" . "class" "o-btn-svg o-btn-svg--outline-primary mr-2 mb-2") }}
-{{ partial "components/c-social-links2.html" (dict "ctx" . "class" "o-btn-svg o-btn-svg---primary mr-2 mb-2") }}
+{{ partial "components/c-social-links2.html" (dict "class" "me-2 mb-2 text-primary" "size" "16px" "id" "unique") }}
 */}}
 {{/* used site instead of $.Site inside with as $ not available from within nested partial unless passed explicitly */}}
 
-<div class="c-social-links">
-  {{ $class := .class }}
-  {{ range site.Params.socialLinks}}
-    {{ if not .draft}}
-    <a role="button" href="{{ .url }}" class="{{ $class }}" target="_blank">
-      {{ partial "scripts/svg-inline.html" .icon }}  
+{{ $class := .class }}
+{{ range site.Params.socialLinks}}
+  {{ if not .draft}}
+    <a role="button" href="{{ .url }}" class="{{ $class }} d-inline-block" target="_blank" rel="noopener">
+      {{ partial "scripts/svg-font.html" .icon }}  
     </a>
-    {{ end }}
   {{ end }}
-</div>
+{{ end }}
