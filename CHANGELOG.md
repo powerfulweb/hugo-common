@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.21](https://github.com/powerfulweb/hugo-common/compare/v1.3.20...v1.3.21) (2021-06-22)
+
+
+### Bug Fixes
+
+* facebook default lazy yes ([679610c](https://github.com/powerfulweb/hugo-common/commit/679610cc7e0763c69bce45009b87fe384071c35d))
+* heading typo ([6143477](https://github.com/powerfulweb/hugo-common/commit/6143477c778008fe05aa671619cba9a949f1a7e1))
+* social embed ([1652b76](https://github.com/powerfulweb/hugo-common/commit/1652b76215e04a041e8dfd3e9dea68005f9c8f4e))
+
 ### [1.3.20](https://github.com/powerfulweb/hugo-common/compare/v1.3.19...v1.3.20) (2021-06-15)
 
 
