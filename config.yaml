@@ -8,10 +8,10 @@ module:
       mounts:
       - source: icons
         target: assets/icons/bootstrap 
-    # - path: github.com/FortAwesome/Font-Awesome
-    #   mounts:
-    #   - source: svgs
-    #     target: assets/icons/awesome
+    - path: github.com/FortAwesome/Font-Awesome
+      mounts:
+      - source: svgs
+        target: assets/icons/awesome
     - path: github.com/feathericons/feather
       mounts:
       - source: icons
