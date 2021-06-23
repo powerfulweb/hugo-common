@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.25](https://github.com/powerfulweb/hugo-common/compare/v1.3.24...v1.3.25) (2021-06-23)
+
+
+### Bug Fixes
+
+* z index ([3bd7074](https://github.com/powerfulweb/hugo-common/commit/3bd7074fa569754c9038e21f2c99274a243fd585))
+
 ### [1.3.24](https://github.com/powerfulweb/hugo-common/compare/v1.3.23...v1.3.24) (2021-06-23)
 
 
