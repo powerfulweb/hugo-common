@@ -1,6 +1,6 @@
 {
   "author": "Powerful Web Design",
-  "version": "1.3.23",
+  "version": "1.3.24",
   "description": "modules for hugo",
   "devDependencies": {
     "standard-version": "^9.2.0"
