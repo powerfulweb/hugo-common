@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.28](https://github.com/powerfulweb/hugo-common/compare/v1.3.27...v1.3.28) (2021-06-23)
+
+
+### Bug Fixes
+
+* font ([a2ee877](https://github.com/powerfulweb/hugo-common/commit/a2ee877907f76cf4722296227cb7082f2f8631e2))
+* reinstated font awesome ([e147da7](https://github.com/powerfulweb/hugo-common/commit/e147da7140c0f078056e4674601430b63dd361f6))
+
 ### [1.3.27](https://github.com/powerfulweb/hugo-common/compare/v1.3.26...v1.3.27) (2021-06-23)
 
 
