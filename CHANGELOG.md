@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.23](https://github.com/powerfulweb/hugo-common/compare/v1.3.22...v1.3.23) (2021-06-23)
+
+
+### Bug Fixes
+
+* depreciate contact form ([24d7bfa](https://github.com/powerfulweb/hugo-common/commit/24d7bfa1c4bbb04209b7f1a89a6996eb4e316329))
+
 ### [1.3.22](https://github.com/powerfulweb/hugo-common/compare/v1.3.21...v1.3.22) (2021-06-22)
 
 
