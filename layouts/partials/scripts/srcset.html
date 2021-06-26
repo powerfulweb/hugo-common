@@ -123,11 +123,13 @@ photoResize:
   {{- end -}}
   {{ if eq $image.MediaType.SubType "svg" }}
       <img alt="{{ $title }}" 
+        title="{{ $title }}"
         class="img-fluid {{ $class }}" 
         src="{{ $image.RelPermalink }}" />
   {{ else }}
     {{ if $eager }} 
       <img alt="{{ $title }}" 
+        title="{{ $title }}"
         class="lazyload {{ $class }} eager" 
         data-sizes="auto"
         srcset="{{ $imgSrcSet }}"
@@ -135,6 +137,7 @@ photoResize:
         loading="eager" />
     {{ else -}}
       <img alt="{{ $title }}" 
+        title="{{ $title }}"
         class="lazyload {{ $class }}" 
         data-sizes="auto"
         data-srcset="{{- $imgSrcSet -}}"
@@ -143,8 +146,9 @@ photoResize:
     {{ end }}
     <noscript>
       <img alt="{{ $title }}" 
-      class="img-fluid {{ $class }}" 
-      src="{{ $imgSrc }}" />
+        title="{{ $title }}"
+        class="img-fluid {{ $class }}" 
+        src="{{ $imgSrc }}" />
     </noscript>
   {{ end }}
   {{ if $figure -}}
