@@ -1,9 +1,9 @@
 {{/* RESIZE RESOURCE IMAGES, THEN CREATE SRCSET TAGS. ENABLE LAZY LOADING NATIVE/JS AND NOSCRIPT SUPPORT */}}
-{{/* USE {{ partial "scripts/srcset.html" (dict "page" . "image" "image_name")}}  - folder and file extension not required
+{{/* USE {{ partial "scripts/srcset.html" (dict "page" $ "image" "image_name")}}  - folder and file extension not required
 {{<srcset image="spf13">}} - folder or extension not required
 
 override resource params
-{{ partial "scripts/srcset.html" (dict "page" . "image" "image_name" "title" "title override" "width" "cols or thumbs" "figure" bool "figureTitle" "figtitle ovverride" "class" "class additions")}}
+{{ partial "scripts/srcset.html" (dict "page" $ "image" "image_name" "title" "title override" "width" "cols or thumbs" "figure" bool "figureTitle" "figtitle ovverride" "class" "class additions")}}
 
 */}}
 {{/* .md file must have resources set up including 
