@@ -116,7 +116,7 @@ photoResize:
   {{ $figure := $ctx.figure | default $image.Params.figure }}
   {{ $class := (printf "%s %s" ($image.Params.class | default "") ($ctx.class | default ""))}}
   {{ $eager := $ctx.eager | default $image.Params.eager }}
-
+  
 
   {{- if $figure -}}
     <figure class="figure">
@@ -142,7 +142,8 @@ photoResize:
         data-sizes="auto"
         data-srcset="{{- $imgSrcSet -}}"
         src="{{ $imgSrc }}"
-        srcset="data:image/gif;base64,{{- $lqip.Content | base64Encode -}}"  />
+        srcset="data:image/gif;base64,{{- $lqip.Content | base64Encode -}}"
+        {{ $ctx.data | safeHTMLAttr }}  />
     {{ end }}
     <noscript>
       <img alt="{{ $title }}" 
