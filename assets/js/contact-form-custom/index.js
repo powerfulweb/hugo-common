@@ -1,4 +1,4 @@
-// for use with unstatic endpoint
+// for use with PWD endpoint
 // on HTTP success, checks for JSON response and returns true on success
 // requries class "is-hidden" of display: none !important;
 
@@ -80,7 +80,7 @@ export function contactForm({  // defaults
     let parsed;
     try {
       parsed = JSON.parse(json)
-      //console.log(parsed); //shows json response
+      // console.log(parsed); //shows json response
     } catch (e) {
       // console.error(e);  //shows error
       // console.log(json); //shows non json response
@@ -112,7 +112,7 @@ export function contactForm({  // defaults
       if (xhr.readyState == (4 || XMLHttpRequest.DONE)) { 
         if (xhr.status >= 200 && xhr.status < 400) { //loading finished //200-299 = success 300-399 = redirect
           var response = safelyParseJSON(this.responseText);
-          //console.log(this.responseText);
+          // console.log(this.responseText);
           if (response.success === true) { // php returns success === true
             msg(true, response.message); // success message
             //msg(true, 'temp success msg'); // success message
@@ -126,7 +126,7 @@ export function contactForm({  // defaults
       } 
     }; // end function
     xhr.send(parameters.join('&')); 
-    console.log(parameters.join('&'));
+    // console.log(parameters.join('&'));
   }
 };
 
