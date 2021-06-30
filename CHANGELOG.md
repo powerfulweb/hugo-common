@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.32](https://github.com/powerfulweb/hugo-common/compare/v1.3.31...v1.3.32) (2021-06-30)
+
+
+### Bug Fixes
+
+* accept data in image ([292c358](https://github.com/powerfulweb/hugo-common/commit/292c35866257f6c2c02719e5839c00cced9a29c4))
+* added title to image tag ([28e051f](https://github.com/powerfulweb/hugo-common/commit/28e051f871bcda52a8fbb0b91618c27a27d580c8))
+* changed . to $ ([166ae0c](https://github.com/powerfulweb/hugo-common/commit/166ae0cb52f8a958a6f33b16f8430b6532138867))
+* comment console.log ([89a8796](https://github.com/powerfulweb/hugo-common/commit/89a879630816afe070caa44c3df8e8a9aa015ab9))
+
 ### [1.3.31](https://github.com/powerfulweb/hugo-common/compare/v1.3.30...v1.3.31) (2021-06-23)
 
 ### [1.3.30](https://github.com/powerfulweb/hugo-common/compare/v1.3.29...v1.3.30) (2021-06-23)
