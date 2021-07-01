@@ -33,6 +33,16 @@ export function contactForm({  // defaults
     // remove focus to avoid js error/loop
     document.getElementById(inputNameId).removeEventListener('focus', loadScriptsOnFocus);
   }
+
+  
+  // function resetAlert() {
+  //   // remove event listener
+  //   document.getElementById(inputNameId).removeEventListener('focus', resetAlert);
+  //   // hide alert  
+  //   id(statusId).classList.add(hiddenClass); // add hidden class on message div
+  //   // show button if 2nd message is being sent 
+  //   id(submitId).classList.remove(hiddenClass); // remove hidden class
+  // }
   
   //google recaptcha 2 invisible
   window.onloadCallback = function () {
@@ -65,7 +75,7 @@ export function contactForm({  // defaults
   function msg(status, statusMsg) {
     if (status === true) { // success 
       alertType = successClass;
-      id(formId).classList.add(hiddenClass); //hide form
+      //id(formId).classList.add(hiddenClass); //hide form
     } else { // error
       alertType = errorClass;
     }
@@ -90,49 +100,14 @@ export function contactForm({  // defaults
     return parsed // Could be undefined! // outputs as variable "json"
   }
   
-  // //check for <input type="file" 
-  // let inputList = document.getElementsByTagName("input");
-  // let fileList = [];
-  // for(item in inputList) {
-  //     if(input[item].getAttribute("type") == "file") {
-  //       // fileList.push(nodeList[item].getAttribute("name"));
-  //       alert(inputList[item].getAttribute("name"));
-  //     }
-  //     else {
-  //      alert(inputList[item].getAttribute("type"));
-  //     }
-  // };
 
-  // const elementsArray = document.getElementsByClassName('myclass');
-
-  // [...elementsArray].forEach((element, index, array) => {
-  //     // do something
-  // });
-
-
-
- 
-  //var form = document.forms.namedItem("fileinfo");
-
+  //const progressBar = document.getElementById("progress");
   //form submission and status display
   function submitForm() {
     const form = id(formId);
-    let formData = new FormData(form);
-    // Array to store the stringified and encoded key-value-pairs.
-    // let parameters = []
-    // for (let pair of formData.entries()) {
-    //     parameters.push(
-    //         encodeURIComponent(pair[0]) + '=' +
-    //         encodeURIComponent(pair[1])
-    //     );
-    // }
-    // const photoInput = document.getElementById('contact-photo');
-    // formData.append("userfile", fileInput);
-    // AJAX 
-   
+    let formData = new FormData(form);   
     const xhr = new XMLHttpRequest();
     xhr.open(formMethod, formAction);
-    // xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.onreadystatechange = function() {
       if (xhr.readyState == (4 || XMLHttpRequest.DONE)) { 
         if (xhr.status >= 200 && xhr.status < 400) { //loading finished //200-299 = success 300-399 = redirect
@@ -141,6 +116,9 @@ export function contactForm({  // defaults
           if (response.success === true) { // php returns success === true
             msg(true, response.message); // success message
             //msg(true, 'temp success msg'); // success message
+            //reset form and reset alert/button on name input focus
+            form.reset();
+            // document.getElementById(inputNameId).addEventListener('focus', resetAlert, false);
           } else {  // php returns error
             msg(false, response.message); // error message
           }
@@ -150,10 +128,25 @@ export function contactForm({  // defaults
         }
       } 
     }; // end function
+
+    //progress bar
+    // xhr.upload.onprogress = function (e) {
+    //   if (e.lengthComputable) {
+    //       progressBar.max = e.total;
+    //       progressBar.value = e.loaded;
+    //   }
+    // }
+    // xhr.upload.onloadstart = function (e) {
+    //     progressBar.value = 0;
+    // }
+    // xhr.upload.onloadend = function (e) {
+    //     progressBar.value = e.loaded;
+    // }
     // xhr.send(parameters.join('&')); 
     xhr.send(formData);
-    // console.log(parameters.join('&'));
+    // console.log(parameters.join('&'));b
   }
 };
+
 
 
