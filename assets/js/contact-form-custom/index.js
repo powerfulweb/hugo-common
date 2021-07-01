@@ -90,24 +90,49 @@ export function contactForm({  // defaults
     return parsed // Could be undefined! // outputs as variable "json"
   }
   
+  // //check for <input type="file" 
+  // let inputList = document.getElementsByTagName("input");
+  // let fileList = [];
+  // for(item in inputList) {
+  //     if(input[item].getAttribute("type") == "file") {
+  //       // fileList.push(nodeList[item].getAttribute("name"));
+  //       alert(inputList[item].getAttribute("name"));
+  //     }
+  //     else {
+  //      alert(inputList[item].getAttribute("type"));
+  //     }
+  // };
+
+  // const elementsArray = document.getElementsByClassName('myclass');
+
+  // [...elementsArray].forEach((element, index, array) => {
+  //     // do something
+  // });
+
+
+
+ 
+  //var form = document.forms.namedItem("fileinfo");
+
   //form submission and status display
   function submitForm() {
     const form = id(formId);
-    // Gather form data
     let formData = new FormData(form);
     // Array to store the stringified and encoded key-value-pairs.
-    let parameters = []
-    for (let pair of formData.entries()) {
-        parameters.push(
-            encodeURIComponent(pair[0]) + '=' +
-            encodeURIComponent(pair[1])
-        );
-    }
+    // let parameters = []
+    // for (let pair of formData.entries()) {
+    //     parameters.push(
+    //         encodeURIComponent(pair[0]) + '=' +
+    //         encodeURIComponent(pair[1])
+    //     );
+    // }
+    // const photoInput = document.getElementById('contact-photo');
+    // formData.append("userfile", fileInput);
     // AJAX 
    
     const xhr = new XMLHttpRequest();
     xhr.open(formMethod, formAction);
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    // xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.onreadystatechange = function() {
       if (xhr.readyState == (4 || XMLHttpRequest.DONE)) { 
         if (xhr.status >= 200 && xhr.status < 400) { //loading finished //200-299 = success 300-399 = redirect
@@ -125,7 +150,8 @@ export function contactForm({  // defaults
         }
       } 
     }; // end function
-    xhr.send(parameters.join('&')); 
+    // xhr.send(parameters.join('&')); 
+    xhr.send(formData);
     // console.log(parameters.join('&'));
   }
 };
