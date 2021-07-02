@@ -41,47 +41,54 @@ export function contactForm({  // defaults
   }
 
   // add event listener to file fields and validate size
+  // [...document.getElementsByTagName('input')].forEach(
+  //   (element, index, array) => {
+  //     if(element.getAttribute("type") == "file") {
+  //       element.onchange = function() {
+  //         const fileSize = this.files[0].size / 1024 / 1024; // in MiB
+  //         if (fileSize > maxImageSize) {
+  //           this.setCustomValidity('Invalid field.');
+  //           validate();
+  //         } else {
+  //           this.setCustomValidity('');
+  //           alert('file under size');
+  //           validate();
+  //         }
+  //       }
+  //     }
+  //   }
+  // );
+
+  //validate file size
+  function fileValidate() {
+    const fileSize =this.files[0].size / 1024 / 1024; // in MiB
+    if (fileSize > maxImageSize) {
+      this.setCustomValidity('Invalid field.');
+      validate();
+    } else {
+      this.setCustomValidity('');
+      alert('file under size');
+      validate();
+    }
+  }
+  // add event listener to file fields and validate size
+  let fileList = [];
   [...document.getElementsByTagName('input')].forEach(
     (element, index, array) => {
       if(element.getAttribute("type") == "file") {
-        element.onchange = function() {
-          const fileSize = this.files[0].size / 1024 / 1024; // in MiB
-          if (fileSize > maxImageSize) {
-            this.setCustomValidity('Invalid field.');
-            validate();
-          } else {
-            this.setCustomValidity('');
-            alert('file under size');
-            validate();
-          }
-        }
+        // element.addEventListener('change', fileValidate, false);
+        fileList.push(element);
       }
-    }
-  );
- //alert(fileList);
-  // Filevalidation = () => {
-  //   const fi = document.getElementsByTagName
-  //   // Check if any file is selected.
-  //   if (fi.files.length > 0) {
-  //     alert('changed');
-  //     // for (const i = 0; i <= fi.files.length - 1; i++) {
+    });
 
-  //     //     const fsize = fi.files.item(i).size;
-  //     //     const file = Math.round((fsize / 1024));
-  //     //     // The size of the file.
-  //     //     if (file >= 4096) {
-  //     //         alert(
-  //     //           "File too Big, please select a file less than 4mb");
-  //     //     } else if (file < 2048) {
-  //     //         alert(
-  //     //           "File too small, please select a file greater than 2mb");
-  //     //     } else {
-  //     //         document.getElementById('size').innerHTML = '<b>'
-  //     //         + file + '</b> KB';
-  //     //     }
-  //     // }
-  //   }
-  // }
+  for (const file of fileList){
+    //fileValidate(file);
+    file.addEventListener('change', fileValidate, false);
+  }
+    
+  
+
+
   function resetAlert() {
     // remove event listener
     document.getElementById(inputNameId).removeEventListener('focus', resetAlert);
