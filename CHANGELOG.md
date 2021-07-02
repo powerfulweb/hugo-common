@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.37](https://github.com/powerfulweb/hugo-common/compare/v1.3.36...v1.3.37) (2021-07-02)
+
+
+### Bug Fixes
+
+* form resets after alert and focus on name ([7f82207](https://github.com/powerfulweb/hugo-common/commit/7f822077ef82f008d01328e6465b2366f1fcd711))
+
 ### [1.3.36](https://github.com/powerfulweb/hugo-common/compare/v1.3.35...v1.3.36) (2021-07-02)
 
 
