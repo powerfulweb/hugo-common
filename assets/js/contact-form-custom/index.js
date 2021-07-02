@@ -60,17 +60,18 @@ export function contactForm({  // defaults
   //     }
   //   }
   // }
-  // function resetAlert() {
-  //   // remove event listener
-  //   document.getElementById(inputNameId).removeEventListener('focus', resetAlert);
-  //   grecaptcha.reset(); //reset grecaptcha as it only allows 1 click before being disabled
-  //   // hide alert  
-  //  // reset bs form validation state
-  //    id(formId).classlist.remove('was-validated');
-  //   id(statusId).classList.add(hiddenClass); // add hidden class on message div
-  //   // show button if 2nd message is being sent 
-  //   id(submitId).classList.remove(hiddenClass); // remove hidden class
-  // }
+  function resetAlert() {
+    // remove event listener
+    document.getElementById(inputNameId).removeEventListener('focus', resetAlert);
+    //reset grecaptcha as it only allows 1 click before being disabled
+    grecaptcha.reset(); 
+    // reset bs form validation state
+    id(formId).classlist.remove('was-validated');
+    // hide alert
+    id(statusId).classList.add(hiddenClass); 
+    // show button 
+    id(submitId).classList.remove(hiddenClass); 
+  }
   
   //google recaptcha 2 invisible
   window.onloadCallback = function () {
@@ -146,7 +147,7 @@ export function contactForm({  // defaults
             //msg(true, 'temp success msg'); // success message
             //reset form and reset alert/button on name input focus
             form.reset();
-            // document.getElementById(inputNameId).addEventListener('focus', resetAlert, false);
+            document.getElementById(inputNameId).addEventListener('focus', resetAlert, false);
           } else {  // php returns error
             msg(false, response.message); // error message
           }
