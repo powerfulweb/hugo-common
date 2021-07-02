@@ -32,7 +32,7 @@ export function contactForm({  // defaults
     script.src = 'https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit';
     head.appendChild(script);
     // remove focus to avoid js error/loop
-    document.getElementById(inputNameId).removeEventListener('focus', loadScriptsOnFocus);
+    target.getElementById(inputNameId).removeEventListener('focus', loadScriptsOnFocus);
   }
 
   // add validation class to form
@@ -62,18 +62,6 @@ export function contactForm({  // defaults
       }
     }
   );
-
-  
-  function resetAlert() {
-    // remove event listener
-    document.getElementById(inputNameId).removeEventListener('focus', resetAlert);
-    //reset grecaptcha as it only allows 1 click before being disabled
-    grecaptcha.reset(); 
-    // hide alert
-    id(statusId).classList.add(hiddenClass); 
-    // show button 
-    id(submitId).classList.remove(hiddenClass); 
-  }
   
   //google recaptcha 2 invisible
   window.onloadCallback = function () {
@@ -115,6 +103,19 @@ export function contactForm({  // defaults
     id(statusId).classList.add(alertClass);
     id(statusId).classList.add(alertType); // add success alert classes to message div
     id(statusId).classList.remove(hiddenClass); // remove hidden class on message div
+    // reset form but dont reset alert/button until user focuses on name input
+    id(formId).classList.remove('was-validated');
+    id(formId).reset();
+    id(inputNameId).addEventListener('focus', function() {
+      //reset grecaptcha as it only allows 1 click before being disabled
+      grecaptcha.reset(); 
+      // hide alert
+      id(statusId).classList.add(hiddenClass); 
+      // remove alert type class on alert
+      id(statusId).classList.remove(alertType);
+      // show button 
+      id(submitId).classList.remove(hiddenClass); 
+    });
   }
   function safelyParseJSON (json) {
     // unpacks json data and catches error
@@ -127,6 +128,7 @@ export function contactForm({  // defaults
       // console.log(json); //shows non json response
       const message = 'Sorry an error has occured, please try again later.';
       msg(false, message); // error message
+
     }
     return parsed // Could be undefined! // outputs as variable "json"
   }
@@ -139,6 +141,7 @@ export function contactForm({  // defaults
     let formData = new FormData(form);   
     const xhr = new XMLHttpRequest();
     xhr.open(formMethod, formAction);
+    //xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
     xhr.onreadystatechange = function() {
       if (xhr.readyState == (4 || XMLHttpRequest.DONE)) { 
         if (xhr.status >= 200 && xhr.status < 400) { //loading finished //200-299 = success 300-399 = redirect
@@ -146,10 +149,6 @@ export function contactForm({  // defaults
           // console.log(this.responseText);
           if (response.success === true) { // php returns success === true
             msg(true, response.message); // success message
-            //reset form and reset alert/button on name input focus
-            form.reset();
-            // reset bs form validation state
-            document.getElementById(inputNameId).addEventListener('focus', resetAlert, false);
           } else {  // php returns error
             msg(false, response.message); // error message
           }
@@ -158,24 +157,8 @@ export function contactForm({  // defaults
           msg(false, message); // error message
         }
       } 
-    }; // end function
-
-    //progress bar
-    // xhr.upload.onprogress = function (e) {
-    //   if (e.lengthComputable) {
-    //       progressBar.max = e.total;
-    //       progressBar.value = e.loaded;
-    //   }
-    // }
-    // xhr.upload.onloadstart = function (e) {
-    //     progressBar.value = 0;
-    // }
-    // xhr.upload.onloadend = function (e) {
-    //     progressBar.value = e.loaded;
-    // }
-    // xhr.send(parameters.join('&')); 
+    }; 
     xhr.send(formData);
-    // console.log(parameters.join('&'));b
   }
 };
 
