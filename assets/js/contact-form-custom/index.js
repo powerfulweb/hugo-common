@@ -1,6 +1,6 @@
 // for use with PWD endpoint
 // on HTTP success, checks for JSON response and returns true on success
-// requries class "is-hidden" of display: none !important;
+// requries class "is-hidden" of display: none !important
 
 'use strict';
 export function contactForm({  // defaults
@@ -15,6 +15,7 @@ export function contactForm({  // defaults
   errorClass = 'alert-danger', // BS5
   hiddenClass = 'is-hidden', // custom css class dependency
   spinnerId = 'js-load',
+  maxImageSize = 9,
   grecaptchaKey = '',  
   grecaptchaLocation = 'bottomright', // bottomright, bottomleft, or inline. use bottom left to avoid scroll to top widget
 } = {}) {
@@ -34,30 +35,51 @@ export function contactForm({  // defaults
     document.getElementById(inputNameId).removeEventListener('focus', loadScriptsOnFocus);
   }
 
+  // add validation class to form
+  function validate() {
+    id(formId).classList.add('was-validated');
+  }
 
-  // select inputs. range over file inputs. check size. add field.setCustomValidity("Invalid field."); or field.setCustomValidity("");
-  // and add was-validated to form this should enact the bs validation messages. otherwise hack with "is-invalid" class on file input (there will still be a green tick)
-
+  // add event listener to file fields and validate size
+  [...document.getElementsByTagName('input')].forEach(
+    (element, index, array) => {
+      if(element.getAttribute("type") == "file") {
+        element.onchange = function() {
+          const fileSize = this.files[0].size / 1024 / 1024; // in MiB
+          if (fileSize > maxImageSize) {
+            this.setCustomValidity('Invalid field.');
+            validate();
+          } else {
+            this.setCustomValidity('');
+            alert('file under size');
+            validate();
+          }
+        }
+      }
+    }
+  );
+ //alert(fileList);
   // Filevalidation = () => {
   //   const fi = document.getElementsByTagName
   //   // Check if any file is selected.
   //   if (fi.files.length > 0) {
-  //     for (const i = 0; i <= fi.files.length - 1; i++) {
+  //     alert('changed');
+  //     // for (const i = 0; i <= fi.files.length - 1; i++) {
 
-  //         const fsize = fi.files.item(i).size;
-  //         const file = Math.round((fsize / 1024));
-  //         // The size of the file.
-  //         if (file >= 4096) {
-  //             alert(
-  //               "File too Big, please select a file less than 4mb");
-  //         } else if (file < 2048) {
-  //             alert(
-  //               "File too small, please select a file greater than 2mb");
-  //         } else {
-  //             document.getElementById('size').innerHTML = '<b>'
-  //             + file + '</b> KB';
-  //         }
-  //     }
+  //     //     const fsize = fi.files.item(i).size;
+  //     //     const file = Math.round((fsize / 1024));
+  //     //     // The size of the file.
+  //     //     if (file >= 4096) {
+  //     //         alert(
+  //     //           "File too Big, please select a file less than 4mb");
+  //     //     } else if (file < 2048) {
+  //     //         alert(
+  //     //           "File too small, please select a file greater than 2mb");
+  //     //     } else {
+  //     //         document.getElementById('size').innerHTML = '<b>'
+  //     //         + file + '</b> KB';
+  //     //     }
+  //     // }
   //   }
   // }
   function resetAlert() {
