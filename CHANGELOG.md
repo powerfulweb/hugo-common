@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.36](https://github.com/powerfulweb/hugo-common/compare/v1.3.35...v1.3.36) (2021-07-02)
+
+
+### Bug Fixes
+
+* validate working even on cancel ([142d2c6](https://github.com/powerfulweb/hugo-common/commit/142d2c6af93543f30966ba0b60843c6855879dd9))
+
 ### [1.3.35](https://github.com/powerfulweb/hugo-common/compare/v1.3.34...v1.3.35) (2021-07-02)
 
 
