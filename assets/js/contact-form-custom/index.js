@@ -34,11 +34,39 @@ export function contactForm({  // defaults
     document.getElementById(inputNameId).removeEventListener('focus', loadScriptsOnFocus);
   }
 
-  
+
+  // select inputs. range over file inputs. check size. add field.setCustomValidity("Invalid field."); or field.setCustomValidity("");
+  // and add was-validated to form this should enact the bs validation messages. otherwise hack with "is-invalid" class on file input (there will still be a green tick)
+
+  // Filevalidation = () => {
+  //   const fi = document.getElementsByTagName
+  //   // Check if any file is selected.
+  //   if (fi.files.length > 0) {
+  //     for (const i = 0; i <= fi.files.length - 1; i++) {
+
+  //         const fsize = fi.files.item(i).size;
+  //         const file = Math.round((fsize / 1024));
+  //         // The size of the file.
+  //         if (file >= 4096) {
+  //             alert(
+  //               "File too Big, please select a file less than 4mb");
+  //         } else if (file < 2048) {
+  //             alert(
+  //               "File too small, please select a file greater than 2mb");
+  //         } else {
+  //             document.getElementById('size').innerHTML = '<b>'
+  //             + file + '</b> KB';
+  //         }
+  //     }
+  //   }
+  // }
   // function resetAlert() {
   //   // remove event listener
   //   document.getElementById(inputNameId).removeEventListener('focus', resetAlert);
+  //   grecaptcha.reset(); //reset grecaptcha as it only allows 1 click before being disabled
   //   // hide alert  
+  //  // reset bs form validation state
+  //    id(formId).classlist.remove('was-validated');
   //   id(statusId).classList.add(hiddenClass); // add hidden class on message div
   //   // show button if 2nd message is being sent 
   //   id(submitId).classList.remove(hiddenClass); // remove hidden class
