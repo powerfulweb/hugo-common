@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.33](https://github.com/powerfulweb/hugo-common/compare/v1.3.32...v1.3.33) (2021-07-02)
+
+
+### Bug Fixes
+
+* comment out form reset ([841f81a](https://github.com/powerfulweb/hugo-common/commit/841f81a297597eaba120e8f757ba84c5c19a71f7))
+* enable file uploads ([f14005e](https://github.com/powerfulweb/hugo-common/commit/f14005eb39cb367837f0260f67bc97a2a7652f67))
+* enable file uploads ([e59c692](https://github.com/powerfulweb/hugo-common/commit/e59c692289c71f14b10ca1986607095c78c14713))
+
 ### [1.3.32](https://github.com/powerfulweb/hugo-common/compare/v1.3.31...v1.3.32) (2021-06-30)
 
 
