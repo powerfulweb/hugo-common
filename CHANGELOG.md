@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.35](https://github.com/powerfulweb/hugo-common/compare/v1.3.34...v1.3.35) (2021-07-02)
+
+
+### Bug Fixes
+
+* disable css validate reset ([cdfde5e](https://github.com/powerfulweb/hugo-common/commit/cdfde5e167a5853f8711b24cff93eabb713301a3))
+* file validate working, but not on file cancel ([60f3414](https://github.com/powerfulweb/hugo-common/commit/60f34149757bffdabadc75306cd8e54e93197978))
+* working but verbose no reset on file ([a170fa8](https://github.com/powerfulweb/hugo-common/commit/a170fa82b5ef7b72234fa6cb442aaa538059a721))
+
 ### [1.3.34](https://github.com/powerfulweb/hugo-common/compare/v1.3.33...v1.3.34) (2021-07-02)
 
 
