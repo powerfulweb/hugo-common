@@ -15,7 +15,7 @@ export function contactForm({  // defaults
   errorClass = 'alert-danger', // BS5
   hiddenClass = 'is-hidden', // custom css class dependency
   spinnerId = 'js-load',
-  maxImageSize = 9,
+  maxImageSize = 12,
   grecaptchaKey = '',  
   grecaptchaLocation = 'bottomright', // bottomright, bottomleft, or inline. use bottom left to avoid scroll to top widget
 } = {}) {
@@ -40,55 +40,30 @@ export function contactForm({  // defaults
     id(formId).classList.add('was-validated');
   }
 
-  // add event listener to file fields and validate size
-  // [...document.getElementsByTagName('input')].forEach(
-  //   (element, index, array) => {
-  //     if(element.getAttribute("type") == "file") {
-  //       element.onchange = function() {
-  //         const fileSize = this.files[0].size / 1024 / 1024; // in MiB
-  //         if (fileSize > maxImageSize) {
-  //           this.setCustomValidity('Invalid field.');
-  //           validate();
-  //         } else {
-  //           this.setCustomValidity('');
-  //           alert('file under size');
-  //           validate();
-  //         }
-  //       }
-  //     }
-  //   }
-  // );
-
-  //validate file size
-  function fileValidate() {
-    const fileSize =this.files[0].size / 1024 / 1024; // in MiB
-    if (fileSize > maxImageSize) {
-      this.setCustomValidity('Invalid field.');
-      validate();
-    } else {
-      this.setCustomValidity('');
-      alert('file under size');
-      validate();
-    }
-  }
-  // add event listener to file fields and validate size
-  let fileList = [];
+  //add event listener to file fields and validate size
   [...document.getElementsByTagName('input')].forEach(
     (element, index, array) => {
       if(element.getAttribute("type") == "file") {
-        // element.addEventListener('change', fileValidate, false);
-        fileList.push(element);
+        element.onchange = function() {
+          if (this.value.length == 0 ) {
+            this.setCustomValidity('');
+            validate();
+          } else {
+            const fileSize =this.files[0].size / 1024 / 1024; // in MiB
+            if (fileSize > maxImageSize) {
+              this.setCustomValidity('Invalid field.');
+              validate();
+            } else {
+              this.setCustomValidity('');
+              validate();
+            }
+          }
+        }
       }
-    });
+    }
+  );
 
-  for (const file of fileList){
-    //fileValidate(file);
-    file.addEventListener('change', fileValidate, false);
-  }
-    
   
-
-
   function resetAlert() {
     // remove event listener
     document.getElementById(inputNameId).removeEventListener('focus', resetAlert);
@@ -171,16 +146,14 @@ export function contactForm({  // defaults
           // console.log(this.responseText);
           if (response.success === true) { // php returns success === true
             msg(true, response.message); // success message
-            //msg(true, 'temp success msg'); // success message
             //reset form and reset alert/button on name input focus
             form.reset();
             // reset bs form validation state
-            // id(formId).classlist.remove('was-validated');
             document.getElementById(inputNameId).addEventListener('focus', resetAlert, false);
           } else {  // php returns error
             msg(false, response.message); // error message
           }
-        } else { // http error
+        } else { // http error - display fallback error message
           const message = 'Sorry the form is not available at the moment, please try again later.';
           msg(false, message); // error message
         }
