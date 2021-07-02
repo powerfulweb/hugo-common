@@ -65,8 +65,6 @@ export function contactForm({  // defaults
     document.getElementById(inputNameId).removeEventListener('focus', resetAlert);
     //reset grecaptcha as it only allows 1 click before being disabled
     grecaptcha.reset(); 
-    // reset bs form validation state
-    id(formId).classlist.remove('was-validated');
     // hide alert
     id(statusId).classList.add(hiddenClass); 
     // show button 
@@ -147,6 +145,8 @@ export function contactForm({  // defaults
             //msg(true, 'temp success msg'); // success message
             //reset form and reset alert/button on name input focus
             form.reset();
+            // reset bs form validation state
+            // id(formId).classlist.remove('was-validated');
             document.getElementById(inputNameId).addEventListener('focus', resetAlert, false);
           } else {  // php returns error
             msg(false, response.message); // error message
