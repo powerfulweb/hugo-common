@@ -129,7 +129,7 @@ export function contactForm({  // defaults
   }
   
 
-  //const progressBar = document.getElementById("progress");
+  
   //form submission and status display
   function submitForm() {
     const form = id(formId);
