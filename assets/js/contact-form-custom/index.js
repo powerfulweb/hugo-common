@@ -19,6 +19,8 @@ export function contactForm({  // defaults
   grecaptchaKey = '',  
   grecaptchaLocation = 'bottomright', // bottomright, bottomleft, or inline. use bottom left to avoid scroll to top widget
 } = {}) {
+
+ 
   function id(elem) {
     return document.getElementById(elem); //shorthand used throghout
   }
@@ -35,10 +37,10 @@ export function contactForm({  // defaults
     target.getElementById(inputNameId).removeEventListener('focus', loadScriptsOnFocus);
   }
 
-  // add validation class to form
-  function validate() {
-    id(formId).classList.add('was-validated');
-  }
+  // // add validation class to form
+  // function validate() {
+  //   id(formId).classList.add('was-validated');
+  // }
 
   //add event listener to file fields and validate size
   [...document.getElementsByTagName('input')].forEach(
@@ -47,15 +49,15 @@ export function contactForm({  // defaults
         element.onchange = function() {
           if (this.value.length == 0 ) {
             this.setCustomValidity('');
-            validate();
+            id(formId).classList.add('was-validated');
           } else {
             const fileSize =this.files[0].size / 1024 / 1024; // in MiB
             if (fileSize > maxImageSize) {
               this.setCustomValidity('Invalid field.');
-              validate();
+              id(formId).classList.add('was-validated');
             } else {
               this.setCustomValidity('');
-              validate();
+              id(formId).classList.add('was-validated');
             }
           }
         }
