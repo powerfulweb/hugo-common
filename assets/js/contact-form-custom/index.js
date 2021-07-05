@@ -34,7 +34,7 @@ export function contactForm({  // defaults
     script.src = 'https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit';
     head.appendChild(script);
     // remove focus to avoid js error/loop
-    target.getElementById(inputNameId).removeEventListener('focus', loadScriptsOnFocus);
+    document.getElementById(inputNameId).removeEventListener('focus', loadScriptsOnFocus);
   }
 
   // // add validation class to form
