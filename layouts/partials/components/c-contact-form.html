@@ -16,7 +16,7 @@ c-contact-form
 */}}
 
 
-<form id="{{ .Params.formId }}" class="c-contact-form needs-validation" novalidate>
+<form id="{{ .Params.formId }}" class="c-contact-form needs-validation" enctype="multipart/form-data">
   {{if .Params.formFieldsSplit }}
   <div class="c-contact-form__row">
     {{ range .Params.formFieldsSplit }}
