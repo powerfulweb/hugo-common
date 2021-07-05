@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.40](https://github.com/powerfulweb/hugo-common/compare/v1.3.39...v1.3.40) (2021-07-05)
+
+
+### Bug Fixes
+
+* form in progress ([bb39fef](https://github.com/powerfulweb/hugo-common/commit/bb39fef65c21e4a21fe8770e78ab2fad5f64651e))
+* form in progress ([539e804](https://github.com/powerfulweb/hugo-common/commit/539e804d0b61c4575fa5acf8595260a643ed7406))
+* let > const ([108d51e](https://github.com/powerfulweb/hugo-common/commit/108d51e0e52c99de2a81c018a030d113e6d1a6af))
+
 ### [1.3.39](https://github.com/powerfulweb/hugo-common/compare/v1.3.38...v1.3.39) (2021-07-05)
 
 ### [1.3.38](https://github.com/powerfulweb/hugo-common/compare/v1.3.37...v1.3.38) (2021-07-05)
