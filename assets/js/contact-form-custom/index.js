@@ -5,7 +5,7 @@
 'use strict';
 export function contactForm({  // defaults
   formId = 'js-contactForm',
-  formAction = '',  // for testing on localhost
+  formAction = '',  
   formMethod = 'POST',
   inputNameId = 'js-contact-name',
   submitId = 'js-submit',
@@ -20,27 +20,20 @@ export function contactForm({  // defaults
   grecaptchaLocation = 'bottomright', // bottomright, bottomleft, or inline. use bottom left to avoid scroll to top widget
 } = {}) {
 
- 
   function id(elem) {
     return document.getElementById(elem); //shorthand used throghout
   }
 
   //add event listener to load grecaptcha
-  document.getElementById(inputNameId).addEventListener('focus', loadScriptsOnFocus, false);
-  function loadScriptsOnFocus() {
+  id(inputNameId).addEventListener('focus', function gLoad() {
     const head = document.getElementsByTagName('head')[0];
     const script = document.createElement('script');
     script.type = 'text/javascript';
     script.src = 'https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit';
     head.appendChild(script);
-    // remove focus to avoid js error/loop
-    document.getElementById(inputNameId).removeEventListener('focus', loadScriptsOnFocus);
-  }
-
-  // // add validation class to form
-  // function validate() {
-  //   id(formId).classList.add('was-validated');
-  // }
+    // removed so script only loads once.
+    this.removeEventListener('focus', gLoad)
+  }, false);
 
   //add event listener to file fields and validate size
   [...document.getElementsByTagName('input')].forEach(
