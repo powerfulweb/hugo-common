@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.38](https://github.com/powerfulweb/hugo-common/compare/v1.3.37...v1.3.38) (2021-07-05)
+
+
+### Bug Fixes
+
+* added enctype multipart to form to match js file ([859825c](https://github.com/powerfulweb/hugo-common/commit/859825cfec0f6e7c4e60ec922f69064b0124e62b))
+* cleaned up event listener ([b3641e5](https://github.com/powerfulweb/hugo-common/commit/b3641e5d0ea08b6fb87a27d11fd2396dd30f46ff))
+* fixed event listener ([1ca65b1](https://github.com/powerfulweb/hugo-common/commit/1ca65b135dfbf5204c3df3b5b65981eac4333277))
+* removed validate() ([4d9dc49](https://github.com/powerfulweb/hugo-common/commit/4d9dc49d68fe28441f5a0118b4dbf2e73260ed96))
+
 ### [1.3.37](https://github.com/powerfulweb/hugo-common/compare/v1.3.36...v1.3.37) (2021-07-02)
 
 
