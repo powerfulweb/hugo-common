@@ -133,7 +133,7 @@ export function contactForm({  // defaults
   //form submission and status display
   function submitForm() {
     const form = id(formId);
-    let formData = new FormData(form);   
+    const formData = new FormData(form);   
     const xhr = new XMLHttpRequest();
     xhr.open(formMethod, formAction);
     //xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
