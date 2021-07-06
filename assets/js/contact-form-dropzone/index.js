@@ -28,18 +28,17 @@ export function contactForm({  // defaults
   }
 
   //add event listener to load grecaptcha
-  document.getElementById(inputNameId).addEventListener('focus', loadScriptsOnFocus, false);
-  function loadScriptsOnFocus() {
+  id(inputNameId).addEventListener('focus', function gLoad(){
     const head = document.getElementsByTagName('head')[0];
     const script = document.createElement('script');
     script.type = 'text/javascript';
     script.src = 'https://www.google.com/recaptcha/api.js';
     head.appendChild(script);
     // remove focus to avoid js error/loop
-    document.getElementById(inputNameId).removeEventListener('focus', loadScriptsOnFocus);
+    this.removeEventListener('focus', gLoad);
     // enable submit button (for div recaptcha)
-    document.getElementById(submitId).disabled = false;
-  }
+    id(submitId).disabled = false;
+  }, false);
 
   // function for serializing all inputs in a form
   var serializeArray = function (form) {
@@ -163,12 +162,11 @@ export function contactForm({  // defaults
     // The setting up of the dropzone
     init: function() {
       photoDropzone = this;
-
       // Listen to the sendingmultiple event. In this case, it's the sendingmultiple event instead
       // of the sending event because uploadMultiple is set to true.
       this.on("sendingmultiple", function(file, xhr, formData) {
         // Gets triggered when the form is actually being sent
-        // THESE EVENTS ARE TRIGGERED BY GRECAPTCHA (hide button, show spinner)
+        // initial event triggered by window.onSubmit
         const formFields = serializeArray(id(formId));
         // console.log('serialised form fields:');
         // console.log(formFields);
@@ -212,34 +210,28 @@ export function contactForm({  // defaults
 
   window.onSubmit = function (token) {
     // console.log('recaptcha token: ' + token);
-    // hide button
+    // hide submit button
     id(submitId).classList.add(hiddenClass);
     // show spinner
     id(spinnerId).classList.remove(hiddenClass);
-    // submit dropzone
+    // submit dropzone if it contains files, else just submit form 
     if (photoDropzone.getQueuedFiles().length > 0) {                        
       photoDropzone.processQueue();  
-      // console.log('dropzone send');
-  } else {                       
+    } else {                       
       submitForm();
-  }    
-
+    }    
   }
-  //check for submit click (grecaptcha does not handle)
+
+  //check for submit click - grecaptcha does not handle this
   id(submitId).addEventListener('click', function() {
-  // on submit event, called by recaptcha
-  //window.onSubmit = function () {
     const form = id(formId);
     if (!form.checkValidity()) {   //if not valid
-      form.classList.add('was-validated'); //shows errors on failed fields
-      // no need to reset as it's called on below 
-      //grecaptcha.reset(); //reset grecaptcha as it only allows 1 click before being disabled
+      //shows errors on failed fields
+      form.classList.add('was-validated'); 
     } else { //if valid
       // call recaptcha (execute)
       grecaptcha.execute();
-      
     }
-  //}
   }, false);
 
 }
