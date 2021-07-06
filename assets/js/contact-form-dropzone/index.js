@@ -7,6 +7,7 @@
 //import Dropzone from 'dropzone/src/dropzone.js';
 export function contactForm({  // defaults
   formId = 'js-contactForm',
+  dropzoneId = 'js-photo-dropzone',
   formAction = '',  // for testing on localhost
   formMethod = 'POST',
   inputNameId = 'js-contact-name',
@@ -17,11 +18,10 @@ export function contactForm({  // defaults
   errorClass = 'alert-danger', // BS5
   hiddenClass = 'is-hidden', // custom css class dependency
   spinnerId = 'js-load',
-  grecaptchaKey = '',
-  grecaptchaLocation = 'bottomright', // bottomright, bottomleft, or inline. use bottom left to avoid scroll to top widget
+  // grecaptchaKey = '',
+  // grecaptchaLocation = 'bottomright', // bottomright, bottomleft, or inline. use bottom left to avoid scroll to top widget
 } = {}) {
-  // const formAction = formId.action;
-  // const formMethod = formId.method;
+
 
   function id(elem) {
     return document.getElementById(elem); //shorthand used throghout
@@ -33,10 +33,12 @@ export function contactForm({  // defaults
     const head = document.getElementsByTagName('head')[0];
     const script = document.createElement('script');
     script.type = 'text/javascript';
-    script.src = 'https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit';
+    script.src = 'https://www.google.com/recaptcha/api.js';
     head.appendChild(script);
     // remove focus to avoid js error/loop
     document.getElementById(inputNameId).removeEventListener('focus', loadScriptsOnFocus);
+    // enable submit button (for div recaptcha)
+    document.getElementById(submitId).disabled = false;
   }
 
   // function for serializing all inputs in a form
@@ -63,18 +65,6 @@ export function contactForm({  // defaults
     return arr;
   };
 
-  //google recaptcha 2 invisible
-  window.onloadCallback = function () {
-    grecaptcha.render(submitId, {
-      'sitekey': grecaptchaKey,
-      'badge': grecaptchaLocation,
-      'callback': onSubmit,
-    });
-    document.getElementById(submitId).disabled = false;
-  };
-
-
-
   // status message function
   // defaults to error message unless msg(true) is called
   let alertType;
@@ -82,6 +72,7 @@ export function contactForm({  // defaults
     if (status === true) { // success
       alertType = successClass;
       id(formId).classList.add(hiddenClass); //hide form
+      id(dropzoneId).classList.add(hiddenClass); //hide dropzone
     } else { // error
       alertType = errorClass;
     }
@@ -92,7 +83,9 @@ export function contactForm({  // defaults
     id(statusId).classList.remove(hiddenClass); // remove hidden class on message div
     // reset form but dont reset alert/button until user focuses on name input
     id(formId).classList.remove('was-validated');
+    //reset form and dropzone
     id(formId).reset();
+    photoDropzone.removeAllFiles();
     id(inputNameId).addEventListener('focus', function() {
       //reset grecaptcha as it only allows 1 click before being disabled
       grecaptcha.reset();
@@ -102,7 +95,7 @@ export function contactForm({  // defaults
       id(statusId).classList.remove(alertType);
       // show button
       id(submitId).classList.remove(hiddenClass);
-    });
+    }, false);
   }
 
   function safelyParseJSON (json) {
@@ -110,9 +103,12 @@ export function contactForm({  // defaults
     let parsed;
     try {
       parsed = JSON.parse(json)
+      // console.log('paresed json response:');
       // console.log(parsed); //shows json response
     } catch (e) {
+      // console.log('error:');
       // console.error(e);  //shows error
+      // console.log('un-parsed JSON');
       // console.log(json); //shows non json response
       const message = 'Sorry an error has occured, please try again later.';
       msg(false, message); // error message
@@ -124,14 +120,17 @@ export function contactForm({  // defaults
   //form submission and status display
   function submitForm() {
     const form = id(formId);
-    const formData = new FormData(form);   
+    const formData = new FormData(form);  
+    // console.log('submitForm FormData:');
+    // for (var entry of formData.entries()) {
+    //   console.log(entry[0]+ ', ' + entry[1]); 
+    // }
     const xhr = new XMLHttpRequest();
     xhr.open(formMethod, formAction);
-    //xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
     xhr.onreadystatechange = function() {
       if (xhr.readyState == (4 || XMLHttpRequest.DONE)) { 
         if (xhr.status >= 200 && xhr.status < 400) { //loading finished //200-299 = success 300-399 = redirect
-          var response = safelyParseJSON(this.responseText);
+          const response = safelyParseJSON(this.responseText);
           // console.log(this.responseText);
           if (response.success === true) { // php returns success === true
             msg(true, response.message); // success message
@@ -161,64 +160,86 @@ export function contactForm({  // defaults
     addRemoveLinks: true,
     autoQueue: true,
 
-
-    
     // The setting up of the dropzone
     init: function() {
       photoDropzone = this;
 
       // Listen to the sendingmultiple event. In this case, it's the sendingmultiple event instead
       // of the sending event because uploadMultiple is set to true.
-      this.on("sendingmultiple", function() {
+      this.on("sendingmultiple", function(file, xhr, formData) {
         // Gets triggered when the form is actually being sent
         // THESE EVENTS ARE TRIGGERED BY GRECAPTCHA (hide button, show spinner)
         const formFields = serializeArray(id(formId));
-        console.log(formFields);
-        //formData.append();
+        // console.log('serialised form fields:');
+        // console.log(formFields);
+        formFields.forEach(function(field){
+          formData.append(field.name, field.value);
+          // console.log('appended field:');
+          // console.log(field.name, field.value);
+        });
+        // loop over formData
+        console.log('dropzone FormData:');
+        for (const value of formData.values()) {
+          console.log(value);
+        }
       });
-      this.on("sending", function() {
-        // Gets triggered when the form is actually being sent
-        // THESE EVENTS ARE TRIGGERED BY GRECAPTCHA (hide button, show spinner)
-        const formFields = serializeArray(id(formId));
-        console.log(formFields);
-        console.log('single send');
-        //formData.append();
-      });
+
       this.on("successmultiple", function(files, response) {
         // Gets triggered when the files have successfully been sent.
-        const message = 'Form submitted, we will be in touch with you shortly!';
-        msg(true, message);
-        console.log(response);
+        msg(true, response.message);
       });
       this.on("errormultiple", function(files, response) {
         // Gets triggered when there was an error sending the files.
-        const message = 'Sorry there is a form error , please try again later.';
-        msg(false, message);
         console.log(response);
+        if (typeof response.message  === 'undefined') {
+          // only show this generic error is there is no response, 
+          // as dropzone also assigns error messages to response
+          if (message === 'undefined') {  
+            const message = 'Sorry there is a connection error, please try again later.';
+            msg(false,message);
+          }
+          
+        } else {
+          msg(false, response.message);
+        }
       });
+      this.on("maxfilesexceeded", function(file){
+        this.removeFile(file);
+        alert('Only 6 files can be uploaded!');
+    });
     }
   }
 
+  window.onSubmit = function (token) {
+    // console.log('recaptcha token: ' + token);
+    // hide button
+    id(submitId).classList.add(hiddenClass);
+    // show spinner
+    id(spinnerId).classList.remove(hiddenClass);
+    // submit dropzone
+    if (photoDropzone.getQueuedFiles().length > 0) {                        
+      photoDropzone.processQueue();  
+      // console.log('dropzone send');
+  } else {                       
+      submitForm();
+  }    
+
+  }
+  //check for submit click (grecaptcha does not handle)
+  id(submitId).addEventListener('click', function() {
   // on submit event, called by recaptcha
-  window.onSubmit = function () {
+  //window.onSubmit = function () {
     const form = id(formId);
     if (!form.checkValidity()) {   //if not valid
       form.classList.add('was-validated'); //shows errors on failed fields
-      grecaptcha.reset(); //reset grecaptcha as it only allows 1 click before being disabled
+      // no need to reset as it's called on below 
+      //grecaptcha.reset(); //reset grecaptcha as it only allows 1 click before being disabled
     } else { //if valid
-      //hide button
-      id(submitId).classList.add(hiddenClass);
-      //show spinner
-      id(spinnerId).classList.remove(hiddenClass);
-      // submit dropzone
-      //photoDropzone.processQueue();
-      if (photoDropzone.getQueuedFiles().length > 0) {                        
-        photoDropzone.processQueue();  
-        alert('process queue');
-    } else {                       
-        submitForm();
-    }    
+      // call recaptcha (execute)
+      grecaptcha.execute();
+      
     }
-  }
+  //}
+  }, false);
 
 }
