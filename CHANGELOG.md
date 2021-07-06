@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.41](https://github.com/powerfulweb/hugo-common/compare/v1.3.40...v1.3.41) (2021-07-06)
+
+
+### Bug Fixes
+
+* dropzone js wokring ([1879824](https://github.com/powerfulweb/hugo-common/commit/1879824a7e8eecdb73148c8506d2c89f3ad48ed0))
+
 ### [1.3.40](https://github.com/powerfulweb/hugo-common/compare/v1.3.39...v1.3.40) (2021-07-05)
 
 
