@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.1](https://github.com/powerfulweb/hugo-common/compare/v1.4.0...v1.4.1) (2021-07-08)
+
+
+### Bug Fixes
+
+* js6 formatting of script ([4a70dcf](https://github.com/powerfulweb/hugo-common/commit/4a70dcf25fe6155415bd5da47cc2787ed8a1939d))
+
 ## [1.4.0](https://github.com/powerfulweb/hugo-common/compare/v1.3.41...v1.4.0) (2021-07-06)
 
 
