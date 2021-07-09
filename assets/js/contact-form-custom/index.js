@@ -16,7 +16,6 @@ export function contactForm({
   errorClass = 'alert-danger', // BS5
   hiddenClass = 'is-hidden', // custom css class dependency
   spinnerId = 'js-load',
-  maxImageSize = 12,
   grecaptchaKey = '',
   grecaptchaLocation = 'bottomright', // bottomright, bottomleft, or inline. use bottom left to avoid scroll to top widget
 } = {}) {
