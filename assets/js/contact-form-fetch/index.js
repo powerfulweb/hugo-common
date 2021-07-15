@@ -16,12 +16,13 @@ export default ({
   errorClass = 'alert-danger', // BS5
   hiddenClass = 'is-hidden', // custom css class dependency
   spinnerId = 'js-load',
+  maxImageSize = 12,
   grecaptchaKey = '',
   grecaptchaLocation = 'bottomright', // bottomright, bottomleft, or inline. use bottom left to avoid scroll to top widget
 } = {}) => {
-  const id = (elem) => {
+  function id(elem) {
     return document.getElementById(elem); //shorthand used throghout
-  };
+  }
 
   //add event listener to load grecaptcha
   id(inputNameId).addEventListener(
@@ -69,7 +70,8 @@ export default ({
     }
   };
 
-  const submitFetch = () => {
+  // no timeout function has been provided
+  function submitFetch() {
     const form = id(formId);
     const formData = new FormData(form);
 
@@ -78,31 +80,32 @@ export default ({
       body: formData,
     })
       .then(checkStatus)
-      .then((jsonMessage) => message(true, jsonMessage))
+      .then(jsonMessage => message(true, jsonMessage))
       .catch(handleError);
-
-    const checkStatus = (response) => {
-      return response.json().then((json) => {
-        if (response.ok) {
-          // response.status 200-299
-          if (json.success) {
-            // success: true
-            return json.message;
+    
+    function checkStatus(response) {
+      return response.json()
+        .then(json => {
+          if (response.ok) {
+            // response.status 200-299
+            if (json.success) {
+              // success: true
+              return json.message;
+            } else {
+              // success: false
+              //throw new Error(json);
+              return Promise.reject(json);
+            } 
           } else {
-            // success: false
-            //throw new Error(json);
-            return Promise.reject(json);
+            // connection error, so no clean response message from server
+            // response sent for debugging only
+            //throw new Error(response);
+            return Promise.reject(response);
           }
-        } else {
-          // connection error, so no clean response message from server
-          // response sent for debugging only
-          //throw new Error(response);
-          return Promise.reject(response);
-        }
-      });
-    };
+        })
+    }
 
-    const handleError = (error) => {
+    function handleError(error) {
       // console.log('error:');
       // console.log(error);
       if (error.hasOwnProperty('success')) {
@@ -111,16 +114,13 @@ export default ({
       } else {
         // cases where fetch rejects promise - network error and no response message received from server
         // uses fall back error message
-        message(false);
+        message(false); 
         // error.status &  error.message can be checked here
       }
-    };
+    }
 
     // message function. fallback message provided here
-    const message = (
-      status,
-      statusMsg = 'Sorry a connection error has occured, please try again later.'
-    ) => {
+    function message(status, statusMsg = 'Sorry a connection error has occured, please try again later.') {
       // hide spinner
       id(spinnerId).classList.add(hiddenClass);
       // add text to status div
@@ -157,6 +157,8 @@ export default ({
           id(submitId).classList.remove(hiddenClass);
         });
       }
-    };
-  };
-};
+    }
+  }
+
+ 
+}
