@@ -2,9 +2,9 @@
 {{/* used site instead of $.Site inside with as $ not available from within nested partial unless passed explicitly */}}
 
 <div class="c-social-links">
-  {{ with .Site.Params.socialTwitterURL}}
+  {{ with .Site.Params.socialGoogleBizURL }}
   <a role="button" href="{{ . }}" class="c-social-links__btn-svg" target="_BLANK">
-    {{ partial "scripts/svg-inline.html" site.Params.socialTwitterIcon }}  
+    {{ partial "scripts/svg-inline.html" site.Params.socialGoogleBizIcon }}
   </a>
   {{ end }}
   {{ with .Site.Params.socialFacebookURL}}
@@ -12,19 +12,20 @@
     {{ partial "scripts/svg-inline.html" site.Params.socialFacebookIcon }}  
   </a>
   {{ end }}
-  {{ with .Site.Params.socialLinkedInURL}}
-  <a role="button" href="{{ . }}" class="c-social-links__btn-svg" target="_BLANK">
-    {{ partial "scripts/svg-inline.html" site.Params.socialsocialLinkedInIcon }}
-  </a>
-  {{ end }}
   {{ with .Site.Params.socialInstagramURL }}
   <a role="button" href="{{ . }}" class="c-social-links__btn-svg" target="_BLANK">
     {{ partial "scripts/svg-inline.html" site.Params.socialInstagramIcon }}
   </a>
   {{ end }}
-  {{ with .Site.Params.socialGoogleBizURL }}
+  {{ with .Site.Params.socialLinkedInURL}}
   <a role="button" href="{{ . }}" class="c-social-links__btn-svg" target="_BLANK">
-    {{ partial "scripts/svg-inline.html" site.Params.socialGoogleBizIcon }}
+    {{ partial "scripts/svg-inline.html" site.Params.socialsocialLinkedInIcon }}
   </a>
   {{ end }}
+  {{ with .Site.Params.socialTwitterURL}}
+  <a role="button" href="{{ . }}" class="c-social-links__btn-svg" target="_BLANK">
+    {{ partial "scripts/svg-inline.html" site.Params.socialTwitterIcon }}  
+  </a>
+  {{ end }}
+
 </div>
