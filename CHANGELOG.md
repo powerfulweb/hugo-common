@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.6](https://github.com/powerfulweb/hugo-common/compare/v1.4.5...v1.4.6) (2021-07-18)
+
+
+### Bug Fixes
+
+* update link order ([42c21ce](https://github.com/powerfulweb/hugo-common/commit/42c21cece72748d838f90c1db6a6c023a99233a7))
+
 ### [1.4.5](https://github.com/powerfulweb/hugo-common/compare/v1.4.4...v1.4.5) (2021-07-15)
 
 
