@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.7](https://github.com/powerfulweb/hugo-common/compare/v1.4.6...v1.4.7) (2021-07-26)
+
+
+### Bug Fixes
+
+* add webp detection ([f905d9b](https://github.com/powerfulweb/hugo-common/commit/f905d9be5faa30bc4648314916e7b20d5bdfb401))
+
 ### [1.4.6](https://github.com/powerfulweb/hugo-common/compare/v1.4.5...v1.4.6) (2021-07-18)
 
 
