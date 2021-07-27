@@ -1,10 +1,10 @@
-{{/* {{ partial "components/c-contact-details2.html" . }} */}}
+{{/* {{ partial "components/c-contact-details2.html" .Params }} */}}
 {{/* 
 css:
 c-contact-details
 
 requires params in the parent page's markdown e.g.   
-contactDetails:
+details:
   - text: 0411 587 374
     url: tel:+61411587374
     icon: icons/bootstrap/telephone.svg
@@ -69,7 +69,7 @@ contactDetails:
 
 
 <div class="c-contact-details">
-  {{ range .Params.contactdetails }}
+  {{ range .details }}
     {{ if not .draft }}
       <div class="c-contact-details__row">
         <div class="c-contact-details__svg-wrapper">

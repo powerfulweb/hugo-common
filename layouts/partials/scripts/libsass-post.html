@@ -1,3 +1,5 @@
+{{/* depreciated */}}
+
 {{ $optionsToCSS := (dict "outputStyle" "compressed" "enableSourceMap" false "includePaths" (slice "node_modules")) }}
 
 {{ $css := resources.Get . | toCSS $optionsToCSS | postCSS | fingerprint | resources.PostProcess}}

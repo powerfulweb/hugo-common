@@ -21,11 +21,11 @@ figure {
 // lazysizes blur up css
 .js .lazyload,
 .lazyloading {
-  filter: blur(5px);
-  transition: filter 400ms;
+  filter: blur(3px);
 }
 .js .lazyloaded {
-  filter: blur(0);
+  filter: none;
+  transition: filter 1s;
 }
 
 //SWIPER
@@ -41,12 +41,32 @@ figure {
      // empty
     }
     &-wrapper {
-      @extend .row;
+      //@extend .row;
+      display: flex;
+      flex-wrap: wrap;
+      margin: 1rem;
+      & > * {
+        flex-shrink: 0;
+        width: 100%;
+        max-width: 100%;
+        padding-right: 1rem;
+        padding-left: 1rem;
+        margin-top: 1rem;
+      }
     }
     &-slide {
-      @extend .col-12, .col-sm-6, .col-md-3, .p-2;
-      
+      //@extend .col-12, .col-sm-6, .col-md-3, .p-2;
       height: auto;
+      padding: 0.5rem;
+      flex: 0 0 auto;
+      @media (min-width: 576px) {
+        //sm
+        width: 25%;
+      }
+      @media (min-width: 768px) {
+        //md
+        width: 50%;
+      }
     }
   }
 }
